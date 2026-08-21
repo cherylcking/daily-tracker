@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Daily Tracker v628f</title>
+    <title>Daily Tracker v629e</title>
     <style>
         :root {
             --bg: #0d0d12;
@@ -169,10 +169,10 @@
             background:var(--surface2); border:1.5px solid var(--border);
             border-radius:var(--radius); padding:11px 12px;
             cursor:pointer; margin-bottom:6px;
-            transition:transform 0.1s, opacity 0.1s; user-select:none; -webkit-user-select:none;
+            transition:opacity 0.1s; user-select:none; -webkit-user-select:none;
             position:relative;
         }
-        .item-filled-row:active { transform:scale(0.98); opacity:0.8; }
+        .item-filled-row:active { opacity:0.75; }
         .item-filled-row.done    { background:var(--green-bg);  border-color:var(--green-border); }
         .item-filled-row.partial { background:var(--yellow-bg); border-color:var(--yellow-border); }
         .item-filled-row.skipped { background:var(--red-bg);    border-color:var(--red-border); }
@@ -1041,6 +1041,9 @@
         <h3 id="ms-title">Log Value</h3>
         <div class="sheet-sub" id="ms-sub"></div>
         <input class="big-input" type="number" id="ms-inp" inputmode="decimal" placeholder="0">
+        <div id="ms-not-measured-wrap" style="display:none;margin-bottom:8px">
+            <button class="btn btn-g" style="width:100%;color:var(--yellow)" onclick="saveMetricNotMeasured()">Not Measured Today</button>
+        </div>
         <div class="sheet-btns">
             <button class="btn btn-g" onclick="clearMetric()">Clear</button>
             <button class="btn btn-g" onclick="closeMetric()">Cancel</button>
@@ -1818,6 +1821,14 @@ const isPriorityItem = item => item.category === 'priority' || item.category ===
 function itemStatus(item, date) {
     const log = getLog(date, item.id);
     if (item.type === 'metric') {
+        // Weight (m1): special color rules — not measured=yellow, ≥175=red, ≥173=yellow, <173=green
+        if (item.id === 'm1') {
+            if (log.value == null)  return 'pending';      // nothing entered yet → gray
+            if (log.value === -1)   return 'partial';      // "Not Measured" chosen → yellow
+            if (log.value >= 175)   return 'skipped';      // ≥175 → red
+            if (log.value >= 173)   return 'partial';      // ≥173 → yellow
+            return 'done';                                  // <173 → green
+        }
         if (log.value == null) return 'pending';
         if (!item.target) return 'done';
         return log.value >= item.target ? 'done' : log.value >= 10 ? 'partial' : 'skipped';
@@ -2012,7 +2023,7 @@ function _renderTodayInner() {
                         ${show.network ? `<div style="font-size:11px;color:var(--text-dim)">${escHtml(show.network)}</div>` : ''}
                     </div>
                     <div style="display:flex;gap:5px;flex-shrink:0">
-                        ${isReturning ? `<button onclick="cycleWatchlistStatus('${show.id}');renderToday()"
+                        ${isReturning ? `<button onclick="cycleWatchlistStatus('${show.id}',true)"
                             style="font-size:10px;padding:3px 8px;border-radius:6px;border:1px solid var(--green);color:var(--green);background:none;cursor:pointer;white-space:nowrap">→ Watching</button>` : ''}
                         <button onclick="openTVEdit('${show.id}')"
                             style="font-size:10px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap">
@@ -2131,26 +2142,28 @@ function _renderTodayInner() {
             const nextAction = task.type==='project' ? task.subtasks?.find(s=>s.nextAction&&!s.done) : null;
             const naLine     = nextAction ? `<div onclick="openBankSheet('${task.id}');event.stopPropagation()" style="font-size:11px;color:#fbbf24;margin-top:2px;cursor:pointer">⚡ Next: ${escHtml(nextAction.text)} <span style="font-size:9px;opacity:0.7">✎</span></div>` : '';
             const isRec = !(!task.recurrence || task.recurrence.type === 'none' || !task.recurrence.type);
-            const isDone    = schedDoneIds.has(task.id);
             const hasCL     = task.checklist?.length > 0;
             const clDoneSet = hasCL ? getClDoneSet(task, date) : new Set();
             const clDone    = clDoneSet.size;
             const clTotal   = hasCL ? task.checklist.length : 0;
-            const clHtml = hasCL ? task.checklist.map((c, ci) => {
+            const clAllDone = hasCL && clDone === clTotal;
+            const isDone    = schedDoneIds.has(task.id) || clAllDone;
+            const cols      = clTotal >= 4 ? 3 : clTotal >= 2 ? 2 : 1;
+            const clHtml = hasCL ? `<div style="display:grid;grid-template-columns:repeat(${cols},1fr);gap:2px 6px;margin-top:4px;padding-left:28px">` +
+                task.checklist.map((c, ci) => {
                 const cDone = clDoneSet.has(ci);
-                return `
-                <div style="display:flex;align-items:center;gap:8px;padding:4px 0 4px 28px">
+                return `<div style="display:flex;align-items:center;gap:5px;padding:3px 0">
                     <button type="button" onclick="toggleTaskChecklist('${task.id}',${ci});event.stopPropagation()"
-                        style="width:20px;height:20px;border-radius:3px;flex-shrink:0;cursor:pointer;padding:0;touch-action:manipulation;
+                        style="width:18px;height:18px;border-radius:3px;flex-shrink:0;cursor:pointer;padding:0;touch-action:manipulation;
                         border:1.5px solid ${cDone?'var(--green)':'var(--border)'};
                         background:${cDone?'var(--green-bg)':'none'};
-                        display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green)">
+                        display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green)">
                         ${cDone?'✓':''}
                     </button>
-                    <span style="font-size:11px;flex:1;${cDone?'text-decoration:line-through;color:var(--text-dim);opacity:0.6':''}">${escHtml(c.text)}</span>
+                    <span style="font-size:11px;${cDone?'text-decoration:line-through;color:var(--text-dim);opacity:0.6':''}">${escHtml(c.text)}</span>
                 </div>`;
-            }).join('') : '';
-            return `<div class="item-row scheduled-card" style="display:flex;align-items:flex-start;gap:8px;padding:8px 2px">
+            }).join('') + '</div>' : '';
+            return `<div class="item-row scheduled-card" style="display:flex;align-items:flex-start;gap:8px;padding:8px 2px;${isDone?'border-color:var(--green)!important;background:var(--green-bg);':''}">
                 <button onclick="toggleSchedDone('${task.id}','${date}',this);event.stopPropagation()"
                     style="width:22px;height:22px;border-radius:5px;flex-shrink:0;cursor:pointer;padding:0;margin-top:1px;touch-action:manipulation;
                     border:1.5px solid ${isDone?'var(--green)':'var(--border)'};
@@ -2207,7 +2220,7 @@ function _renderTodayInner() {
             const hasFill =
                 (item.type==='metric'    && log.value!=null) ||                            // metric with value
                 (item.category==='dayplan' && !!log.text) ||                               // day plan with entered text
-                (isPriorityItem(item)    && (log.tasks?.length || (log.status && log.status !== 'pending') || db.taskBank.some(t => !t.archivedAt && isScheduledOn(t,date) && ITEM_TAG[item.id] && (t.tags||[]).includes(ITEM_TAG[item.id]))));  // priority with active scheduled tasks or a set status
+                (isPriorityItem(item)    && (log.tasks?.length || (log.status && log.status !== 'pending') || (log.checkedTasks||[]).length > 0 || (log.slotTaskIds||[]).length > 0 || db.taskBank.some(t => !t.archivedAt && isScheduledOn(t,date) && ITEM_TAG[item.id] && (t.tags||[]).includes(ITEM_TAG[item.id]))));  // priority with active scheduled tasks or a set status
             (hasFill ? filledItems : emptyItems).push(item);
         });
 
@@ -2221,17 +2234,19 @@ function _renderTodayInner() {
                 let metricHtml = '';
                 if (item.id === 'm1' && item.startValue != null && item.target != null) {
                     // Weight: show lbs to go + % of goal attained
-                    const lbsToGo = Math.max(0, Math.round((log.value - item.target) * 10) / 10);
+                    const notMeasured = log.value === -1;
+                    const displayVal  = notMeasured ? '—' : log.value;
+                    const lbsToGo     = notMeasured ? '?' : Math.max(0, Math.round((log.value - item.target) * 10) / 10);
                     const totalToLose = item.startValue - item.target;
-                    const lostSoFar = item.startValue - log.value;
-                    const pctAttained = totalToLose > 0 ? Math.round(Math.max(0, lostSoFar) / totalToLose * 100) : 0;
-                    const pctColor = pctAttained >= 75 ? 'var(--green)' : pctAttained >= 40 ? 'var(--yellow)' : 'var(--red)';
+                    const lostSoFar   = notMeasured ? 0 : item.startValue - log.value;
+                    const pctAttained = (!notMeasured && totalToLose > 0) ? Math.round(Math.max(0, lostSoFar) / totalToLose * 100) : 0;
+                    const pctColor    = pctAttained >= 75 ? 'var(--green)' : pctAttained >= 40 ? 'var(--yellow)' : 'var(--red)';
                     metricHtml = `<div class="item-filled-row ${status}" onclick="cycleItem('${item.id}')">
                         <div class="ifr-dot"></div>
                         <div class="ifr-body">
                             <div class="ifr-label">${item.name}</div>
-                            <div class="ifr-value">${log.value}<span style="font-size:12px;font-weight:400;color:var(--text-dim);margin-left:3px">lbs</span></div>
-                            <div class="ifr-sub">${lbsToGo} lbs to go · <span style="color:${pctColor}">${pctAttained}% of goal</span><span style="color:var(--text-dim);margin-left:5px">· goal ${item.target} lbs</span></div>
+                            <div class="ifr-value">${displayVal}<span style="font-size:12px;font-weight:400;color:var(--text-dim);margin-left:3px">${notMeasured ? 'not measured' : 'lbs'}</span></div>
+                            <div class="ifr-sub">${notMeasured ? '<span style="color:var(--yellow)">chose not to measure today</span>' : `${lbsToGo} lbs to go · <span style="color:${pctColor}">${pctAttained}% of goal</span><span style="color:var(--text-dim);margin-left:5px">· goal ${item.target} lbs</span>`}</div>
                         </div>
                     </div>`;
                 } else {
@@ -2274,7 +2289,12 @@ function _renderTodayInner() {
                     const pScore  = (checkedIds.has(prev.id)?100000:0) + (prev.checklist?.filter(c=>c.done).length||0)*100 + (prev.checklist?.length||0);
                     if (tScore > pScore) slotSeen.set(key, t);
                 });
-                const slotTasks = [...slotSeen.values()];
+                const slotTasks = [...slotSeen.values()].sort((a, b) => {
+                    // Sort by due date ascending; tasks with no date go last
+                    const ad = a.onDate || '9999-99-99';
+                    const bd = b.onDate || '9999-99-99';
+                    return ad.localeCompare(bd);
+                });
                 const taskListHtml = slotTasks.map(t => {
                     const isDone   = checkedIds.has(t.id);
                     const hasCL    = t.checklist?.length > 0;
@@ -2346,7 +2366,14 @@ function _renderTodayInner() {
                         ${dayplanTextHtml}
                         ${taskListHtml}
                         ${legacyHtml}
-                        <div style="margin-top:6px;display:flex;justify-content:flex-end">
+                        <div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center">
+                            <button onclick="skipPrioritySlot('${item.id}','${date}');event.stopPropagation()"
+                                style="font-size:11px;padding:3px 10px;border-radius:6px;cursor:pointer;font-weight:700;
+                                border:1px solid ${status==='skipped'?'var(--red)':'var(--border)'};
+                                color:${status==='skipped'?'var(--red)':'var(--text-dim)'};
+                                background:${status==='skipped'?'var(--red-bg)':'none'}">
+                                ✕ Not Done
+                            </button>
                             <button class="pa-btn pomo-cat-btn${pomoCategory===(ITEM_TAG[item.id]||'priority')?' active-cat':''}" onclick="startPomoForCategory('${ITEM_TAG[item.id]||'priority'}');event.stopPropagation()" title="Start Pomodoro for this priority">🍅</button>
                         </div>
                     </div>
@@ -2370,7 +2397,11 @@ function _renderTodayInner() {
                 } else if (isPriorityItem(item)) {
                     bottom = `<div style="display:flex;align-items:center;justify-content:space-between;gap:4px">
                         <div class="item-plan-empty">tap to plan →</div>
-                        <button class="pomo-cat-btn${pomoCategory===(ITEM_TAG[item.id]||'priority')?' active-cat':''}" style="padding:2px 6px;font-size:13px" onclick="startPomoForCategory('${ITEM_TAG[item.id]||'priority'}');event.stopPropagation()" title="Start Pomodoro">🍅</button>
+                        <div style="display:flex;gap:4px;align-items:center">
+                            <button onclick="skipPrioritySlot('${item.id}','${date}');event.stopPropagation()"
+                                style="font-size:10px;padding:2px 6px;border-radius:5px;cursor:pointer;font-weight:700;border:1px solid var(--border);color:var(--text-dim);background:none">✕</button>
+                            <button class="pomo-cat-btn${pomoCategory===(ITEM_TAG[item.id]||'priority')?' active-cat':''}" style="padding:2px 6px;font-size:13px" onclick="startPomoForCategory('${ITEM_TAG[item.id]||'priority'}');event.stopPropagation()" title="Start Pomodoro">🍅</button>
+                        </div>
                     </div>`;
                 } else {
                     bottom = `<div class="item-check">${MARK[status]||''}</div>`;
@@ -2635,7 +2666,10 @@ function openMetricSheet(item) {
     document.getElementById('ms-title').textContent=item.name;
     document.getElementById('ms-sub').textContent=item.unit?`Enter value in ${item.unit}${item.target?' · target: '+item.target+item.unit:''}`:'Enter value';
     const log=getLog(viewDate,item.id);
-    document.getElementById('ms-inp').value=log.value!=null?log.value:'';
+    // Show "Not Measured" button only for weight; -1 is the sentinel for "not measured by choice"
+    const isWeight = item.id === 'm1';
+    document.getElementById('ms-not-measured-wrap').style.display = isWeight ? '' : 'none';
+    document.getElementById('ms-inp').value = (log.value != null && log.value !== -1) ? log.value : '';
     document.getElementById('metric-ov').classList.remove('hidden');
     setTimeout(()=>document.getElementById('ms-inp').focus(),120);
 }
@@ -2655,6 +2689,12 @@ function saveMetric() {
     document.getElementById('metric-ov').classList.add('hidden');
     activeMetricItem=null; renderToday();
 }
+function saveMetricNotMeasured() {
+    if(!activeMetricItem) return;
+    setLog(viewDate, activeMetricItem.id, {value: -1, status: 'partial'});
+    document.getElementById('metric-ov').classList.add('hidden');
+    activeMetricItem=null; renderToday();
+}
 function clearMetric() {
     if(!activeMetricItem) return;
     setLog(viewDate,activeMetricItem.id,{value:null,status:'pending'});
@@ -2671,6 +2711,13 @@ function getMonday(d) {
     date.setDate(date.getDate() - (day === 0 ? 6 : day - 1));
     date.setHours(0,0,0,0);
     return date;
+}
+
+function skipPrioritySlot(itemId, date) {
+    const log = getLog(date, itemId);
+    const isSkipped = log.status === 'skipped';
+    setLog(date, itemId, {...log, status: isSkipped ? 'pending' : 'skipped'});
+    renderToday();
 }
 
 function skipRecurringDate(taskId, dateStr) {
@@ -4045,7 +4092,8 @@ function isEffectivelyDone(task) {
     // All checklist items checked (and there are some)
     if (task.checklist?.length && task.checklist.every(c => c.done)) return true;
     // Checked in a priority slot log or the sched log on its onDate
-    if (task.onDate) {
+    // (Skip this check for recurring tasks — they reset each day; archivedAt handles permanent done)
+    if (task.onDate && !isActuallyRecurring(task)) {
         for (const [itemId, tag] of Object.entries(ITEM_TAG)) {
             if ((task.tags||[]).includes(tag)) {
                 if ((getLog(task.onDate, itemId).checkedTasks||[]).includes(task.id)) return true;
@@ -4282,9 +4330,16 @@ function toggleSlotTask(itemId, date, taskId) {
                 if (!wasChecked) t.archivedAt = date;
                 else delete t.archivedAt;
             }
+            // Recurring tasks: clear onDate when checked so pure recurrence takes over going forward
+            // (prevents onDate from overriding the recurrence schedule tomorrow)
+            if (isActuallyRecurring(t) && !wasChecked) {
+                delete t.onDate;
+            }
             // Projects: clear onDate when marked done so they return to the unscheduled task bank pool
+            // When unchecking, restore onDate only if not since rescheduled elsewhere
             if (t.type === 'project') {
                 if (!wasChecked) delete t.onDate;
+                else if (!t.onDate) t.onDate = date;
             }
         });
     }
@@ -4682,11 +4737,18 @@ function addWatchlistShow() {
     document.getElementById('wl-status').value = 'watching';
     save(); renderGTD();
 }
-function cycleWatchlistStatus(id) {
+function cycleWatchlistStatus(id, forceWatching) {
     const WL_CYCLE = { possible:'watching', watching:'hiatus', hiatus:'unknown', unknown:'done', done:'cancelled', cancelled:'possible' };
     const show = db.watchlist.find(s=>s.id===id);
-    if (show) { show.status = WL_CYCLE[show.status] || 'watching'; }
-    save(); renderGTD();
+    if (!show) return;
+    if (forceWatching) {
+        // "→ Watching" from On Tonight: mark as watching and clear returnDate so it leaves On Tonight
+        show.status = 'watching';
+        show.returnDate = null;
+    } else {
+        show.status = WL_CYCLE[show.status] || 'watching';
+    }
+    save(); renderGTD(); renderToday();
 }
 function deleteWatchlistShow(id) {
     db.watchlist = db.watchlist.filter(s=>s.id!==id);
@@ -4729,7 +4791,7 @@ function saveTVEdit() {
     const name = document.getElementById('tv-edit-name').value.trim();
     const date = document.getElementById('tv-edit-date').value;
     if (name) show.name = name;
-    if (date) show.returnDate = date;
+    show.returnDate = date || null;  // allow clearing the date
     document.getElementById('tv-edit-ov').classList.add('hidden');
     tvEditId = null;
     save(); renderToday(); renderGTD();
