@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Daily Tracker v629e</title>
+    <title>Daily Tracker v629f</title>
     <style>
         :root {
             --bg: #0d0d12;
@@ -1470,10 +1470,10 @@ function syncToCloud() {
     _syncTimer = setTimeout(async () => {
         setSyncStatus('syncing');
         try {
-            const r = await fetch(SB_URL + '/rest/v1/tracker_data?id=eq.main', {
-                method: 'PATCH',
-                headers: { ...SB_HEADERS, 'Prefer': 'return=minimal' },
-                body: JSON.stringify({ data: db, updated_at: db._savedAt })
+            const r = await fetch(SB_URL + '/rest/v1/tracker_data', {
+                method: 'POST',
+                headers: { ...SB_HEADERS, 'Prefer': 'resolution=merge-duplicates,return=minimal' },
+                body: JSON.stringify({ id: 'main', data: db, updated_at: db._savedAt })
             });
             if (!r.ok) throw new Error(r.status);
             setSyncStatus('ok');
