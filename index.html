@@ -1466,6 +1466,9 @@ function save() {
 
 let _syncTimer = null;
 function syncToCloud() {
+    // Never push empty/default data — require at least tasks OR logs to exist
+    const hasRealData = (db.taskBank?.length ?? 0) > 0 || Object.keys(db.logs || {}).length > 0;
+    if (!hasRealData) { setSyncStatus('ok'); return; }
     clearTimeout(_syncTimer);
     _syncTimer = setTimeout(async () => {
         setSyncStatus('syncing');
