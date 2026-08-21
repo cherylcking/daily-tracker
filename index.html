@@ -1522,9 +1522,9 @@ async function loadFromCloud() {
         const cloudTs   = rows?.[0]?.updated_at || '';
         if (!cloudData || !Object.keys(cloudData).length) { setSyncStatus('ok'); return; }
 
-        // Always prefer local if it has any data — only load cloud when local is completely empty.
-        // Cloud is used as a backup restore, not an auto-overwrite. Use syncToCloud() to push.
-        const localHasData = db.items && db.items.length > 0;
+        // Prefer local only if it has a _savedAt timestamp (proof it's real user data, not makeDefaults).
+        // makeDefaults() never sets _savedAt, so fresh/cleared localStorage always pulls from cloud.
+        const localHasData = db._savedAt && db.items && db.items.length > 0;
         if (localHasData) {
             setSyncStatus('ok');
             syncToCloud(); // push local → cloud to keep cloud current
