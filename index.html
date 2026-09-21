@@ -1525,15 +1525,18 @@ async function loadFromCloud() {
         const cloudTs   = rows?.[0]?.updated_at || '';
         if (!cloudData || !Object.keys(cloudData).length) { setSyncStatus('ok'); return; }
 
-        // Prefer local only if it has real user data: tasks OR completion logs.
-        // An empty state (0 tasks, 0 logs) always defers to cloud, even if _savedAt is set.
-        const localHasData = db.items?.length > 0 &&
-                             ((db.taskBank?.length ?? 0) > 0 || Object.keys(db.logs || {}).length > 0);
-        if (localHasData) {
+        // Timestamp-based resolution: whichever data is newer wins.
+        // Local must also have real content (tasks or logs) to be preferred over cloud.
+        const localHasRealData = (db.taskBank?.length ?? 0) > 0 || Object.keys(db.logs || {}).length > 0;
+        const localIsNewer     = localHasRealData && db._savedAt && (!cloudTs || db._savedAt >= cloudTs);
+        if (localIsNewer) {
             setSyncStatus('ok');
-            syncToCloud(); // push local → cloud to keep cloud current
+            syncToCloud(); // local is current — push to keep cloud in sync
             return;
         }
+        // Cloud is newer (or local is empty) — pull cloud data
+        const cloudHasRealData = (cloudData.taskBank?.length ?? 0) > 0 || Object.keys(cloudData.logs || {}).length > 0;
+        if (!cloudHasRealData) { setSyncStatus('ok'); return; } // cloud also empty — nothing to do
 
         db = cloudData;
         // Re-initialize any fields that may be missing from older cloud snapshots
