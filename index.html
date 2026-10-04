@@ -1528,7 +1528,7 @@ async function loadFromCloud() {
         // Timestamp-based resolution: whichever data is newer wins.
         // Local must also have real content (tasks or logs) to be preferred over cloud.
         const localHasRealData = (db.taskBank?.length ?? 0) > 0 || Object.keys(db.logs || {}).length > 0;
-        const localIsNewer     = localHasRealData && db._savedAt && (!cloudTs || db._savedAt >= cloudTs);
+        const localIsNewer     = localHasRealData && _originalSavedAt && (!cloudTs || _originalSavedAt >= cloudTs);
         if (localIsNewer) {
             setSyncStatus('ok');
             syncToCloud(); // local is current — push to keep cloud in sync
@@ -1565,6 +1565,7 @@ function setSyncStatus(s) {
 }
 
 let db = load();
+const _originalSavedAt = db._savedAt || ''; // capture BEFORE startup save() calls mutate _savedAt
 if (!db.weeklyReview)  db.weeklyReview  = {};
 if (!db.monthlyReview) db.monthlyReview = {};
 if (!db.pomo)         db.pomo         = { todayCount:0, totalCount:0, lastDate:'' };
