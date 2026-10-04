@@ -1536,7 +1536,11 @@ async function loadFromCloud() {
         }
         // Cloud is newer (or local is empty) — pull cloud data
         const cloudHasRealData = (cloudData.taskBank?.length ?? 0) > 0 || Object.keys(cloudData.logs || {}).length > 0;
-        if (!cloudHasRealData) { setSyncStatus('ok'); return; } // cloud also empty — nothing to do
+        if (!cloudHasRealData) {
+            // Cloud is empty/default — if local has real data, push it to fix cloud
+            if (localHasRealData) syncToCloud();
+            setSyncStatus('ok'); return;
+        }
 
         db = cloudData;
         // Re-initialize any fields that may be missing from older cloud snapshots
