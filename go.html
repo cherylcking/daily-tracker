@@ -36,7 +36,8 @@ async function go() {
   } catch(e) {
     document.getElementById('msg').textContent = 'Offline — opening tracker with local data…';
   }
-  setTimeout(() => { window.location.replace('https://cherylcking.github.io/daily-tracker/'); }, 500);
+  // Add cache-bust param so browser fetches fresh HTML every time
+  setTimeout(() => { window.location.replace('https://cherylcking.github.io/daily-tracker/?v=' + Date.now()); }, 500);
 }
 go();
 </script>
