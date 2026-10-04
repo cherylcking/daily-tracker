@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sync Diagnostic</title>
+<style>
+  body { font-family: -apple-system, sans-serif; background: #111; color: #eee; padding: 20px; font-size: 14px; }
+  h2 { color: #7c4dff; }
+  .step { margin: 8px 0; padding: 10px; background: #222; border-radius: 6px; }
+  .ok { border-left: 3px solid #4caf50; }
+  .fail { border-left: 3px solid #f44336; }
+  .warn { border-left: 3px solid #ff9800; }
+</style>
+</head>
+<body>
+<h2>Sync Diagnostic</h2>
+<div id="log"></div>
+<script>
+const SB_URL = 'https://rankahhsqzhipkshibpj.supabase.co';
+const SB_KEY = 'sb_publishable_VxsDCmlmYbnunoi7OCjdWg_2Dgcfu7q';
+const SK = 'dt_v3';
+function log(msg, type='') {
+  const d = document.createElement('div');
+  d.className = 'step ' + type;
+  d.innerHTML = msg;
+  document.getElementById('log').appendChild(d);
+}
+async function run() {
+  log('Starting…');
+  const raw = localStorage.getItem(SK);
+  const local = raw ? JSON.parse(raw) : null;
+  log('localStorage: ' + (local?.taskBank?.length??0) + ' tasks, ' + Object.keys(local?.logs||{}).length + ' logs', local?.taskBank?.length>0?'ok':'warn');
+  log('Testing Supabase…');
+  try {
+    const r = await fetch(SB_URL + '/rest/v1/tracker_data?id=eq.main&select=data,updated_at', {
+      headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+    });
+    log('HTTP ' + r.status + ' ' + r.statusText, r.ok?'ok':'fail');
+    const cors = r.headers.get('access-control-allow-origin');
+    log('CORS: ' + (cors||'none'), cors?'ok':'warn');
+    const rows = await r.json();
+    log('Rows: ' + rows?.length, rows?.length>0?'ok':'warn');
+    if (rows?.length > 0) {
+      const cd = rows[0].data;
+      const tasks = cd?.taskBank?.length??0;
+      const logs = Object.keys(cd?.logs||{}).length;
+      log('<b>Cloud: ' + tasks + ' tasks, ' + logs + ' logs</b> @ ' + rows[0].updated_at, tasks>0?'ok':'fail');
+      if (tasks > 0) {
+        localStorage.setItem(SK, JSON.stringify(cd));
+        log('Written to localStorage ✓', 'ok');
+        log('<b>Redirecting to tracker in 3s…</b>', 'ok');
+        setTimeout(() => window.location.replace('https://cherylcking.github.io/daily-tracker/?v=' + Date.now()), 3000);
+      }
+    }
+  } catch(e) {
+    log('<b>FAILED: ' + e.constructor.name + ': ' + e.message + '</b>', 'fail');
+    log('Device cannot reach Supabase. Check: VPN, firewall, network.', 'fail');
+  }
+}
+run();
+</script>
+</body>
+</html>
