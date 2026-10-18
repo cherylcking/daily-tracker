@@ -8,13 +8,13 @@
     <title>Daily Tracker v629f</title>
     <style>
         :root {
-            --bg: #12131e;
-            --surface: #1a1b2e;
-            --surface2: #222437;
-            --surface3: #2a2c3f;
-            --border: #363852;
-            --text: #eeeef8;
-            --text-dim: #9090b8;
+            --bg: #1c1e30;
+            --surface: #252840;
+            --surface2: #2e3150;
+            --surface3: #363960;
+            --border: #464970;
+            --text: #f0f0fa;
+            --text-dim: #a0a2c8;
             --green: #3de07e;
             --green-bg: #0f3d25;
             --green-border: #1f7a44;
@@ -2245,6 +2245,16 @@ function _renderTodayInner() {
                 (isPriorityItem(item)    && (log.tasks?.length || (log.status && log.status !== 'pending') || (log.checkedTasks||[]).length > 0 || (log.slotTaskIds||[]).length > 0 || db.taskBank.some(t => !t.archivedAt && isScheduledOn(t,date) && ITEM_TAG[item.id] && (t.tags||[]).includes(ITEM_TAG[item.id]))));  // priority with active scheduled tasks or a set status
             (hasFill ? filledItems : emptyItems).push(item);
         });
+        // Sort: pending/partial first, done/skipped float to bottom
+        const _statusOrder = {pending:0, partial:1, done:2, skipped:3};
+        const _sortByStatus = arr => arr.sort((a,b) => (_statusOrder[itemStatus(a,date)]??0) - (_statusOrder[itemStatus(b,date)]??0));
+        _sortByStatus(filledItems);
+        _sortByStatus(emptyItems);
+        // Sort: pending/partial first, done/skipped float to bottom
+        const _statusOrder = {pending:0, partial:1, done:2, skipped:3};
+        const _sortByStatus = arr => arr.sort((a,b) => (_statusOrder[itemStatus(a,date)]??0) - (_statusOrder[itemStatus(b,date)]??0));
+        _sortByStatus(filledItems);
+        _sortByStatus(emptyItems);
 
         // ── Full-width rows for filled items ──
         filledItems.forEach(item=>{
@@ -2483,6 +2493,44 @@ function _renderTodayInner() {
             <div style="font-size:14px">Tap Items below to add habits & metrics</div></div>`;
     }
 
+    // ── Completed Today archive ──────────────────────
+    {
+        const completedItems = db.items.filter(i => {
+            const s = itemStatus(i, date);
+            return s === 'done' || s === 'partial' || s === 'skipped';
+        });
+        if (completedItems.length) {
+            const isOpen = window._archOpen?.[date] ?? false;
+            html += `<div class="section" style="margin-bottom:8px">
+                <button onclick="toggleArch('${date}')" style="width:100%;display:flex;align-items:center;justify-content:space-between;
+                    background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);
+                    padding:12px 14px;cursor:pointer;color:var(--text-dim)">
+                    <span style="font-size:14px;font-weight:700">✅ Completed Today</span>
+                    <span style="display:flex;align-items:center;gap:8px">
+                        <span style="font-size:13px;font-weight:800;color:var(--green)">${completedItems.length}</span>
+                        <span style="font-size:18px">${isOpen ? '▲' : '▼'}</span>
+                    </span>
+                </button>
+                ${isOpen ? '<div style="margin-top:6px;display:flex;flex-direction:column;gap:4px">' +
+                    completedItems.map(item => {
+                        const s = itemStatus(item, date);
+                        const dot = s==='done'?'var(--green)':s==='partial'?'var(--yellow)':'var(--red)';
+                        const log = getLog(date, item.id);
+                        const val = item.type==='metric' && log.value!=null && log.value!==-1 ? ' · ' + log.value + (item.unit||'') : '';
+                        return '<div onclick="cycleItem(\'' + item.id + '\')" ' +
+                            'style="display:flex;align-items:center;gap:10px;padding:9px 12px;' +
+                            'background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);' +
+                            'cursor:pointer;opacity:0.72">' +
+                            '<div style="width:8px;height:8px;border-radius:50%;background:' + dot + ';flex-shrink:0"></div>' +
+                            '<span style="font-size:14px;font-weight:600;text-decoration:line-through;color:var(--text-dim);flex:1">' + escHtml(item.name) + val + '</span>' +
+                            '<span style="font-size:12px;color:var(--text-dim)">' + s + '</span>' +
+                            '</div>';
+                    }).join('') +
+                '</div>' : ''}
+            </div>`;
+        }
+    }
+
     // ── Task Bank (all tasks, grouped by tag) ──
     {
         const TAG_ORDER_BANK = ['priority','tiger','quickwin','bonus','declutter','general'];
@@ -2671,6 +2719,12 @@ function updateBadge() {
     document.getElementById('badge-d').textContent=done;
     document.getElementById('badge-t').textContent=total;
     document.getElementById('hdr-badge').style.display=total>0&&curView==='today'?'':'none';
+}
+
+window._archOpen = window._archOpen || {};
+function toggleArch(date) {
+    window._archOpen[date] = !window._archOpen[date];
+    renderToday();
 }
 
 
