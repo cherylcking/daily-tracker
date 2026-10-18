@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Daily Tracker v629f</title>
+    <title>Daily Tracker v630</title>
     <style>
         :root {
             --bg: #1c1e30;
@@ -2245,11 +2245,6 @@ function _renderTodayInner() {
                 (isPriorityItem(item)    && (log.tasks?.length || (log.status && log.status !== 'pending') || (log.checkedTasks||[]).length > 0 || (log.slotTaskIds||[]).length > 0 || db.taskBank.some(t => !t.archivedAt && isScheduledOn(t,date) && ITEM_TAG[item.id] && (t.tags||[]).includes(ITEM_TAG[item.id]))));  // priority with active scheduled tasks or a set status
             (hasFill ? filledItems : emptyItems).push(item);
         });
-        // Sort: pending/partial first, done/skipped float to bottom
-        const _statusOrder = {pending:0, partial:1, done:2, skipped:3};
-        const _sortByStatus = arr => arr.sort((a,b) => (_statusOrder[itemStatus(a,date)]??0) - (_statusOrder[itemStatus(b,date)]??0));
-        _sortByStatus(filledItems);
-        _sortByStatus(emptyItems);
         // Sort: pending/partial first, done/skipped float to bottom
         const _statusOrder = {pending:0, partial:1, done:2, skipped:3};
         const _sortByStatus = arr => arr.sort((a,b) => (_statusOrder[itemStatus(a,date)]??0) - (_statusOrder[itemStatus(b,date)]??0));
