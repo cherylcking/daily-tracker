@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Daily Tracker v631</title>
+    <title>Daily Tracker v632</title>
     <style>
         :root {
             --bg: #1c1e30;
@@ -2490,38 +2490,38 @@ function _renderTodayInner() {
 
     // ── Completed Today archive ──────────────────────
         {
-            const completedItems = db.items.filter(i => {
+            const completedItems = db.items.filter(function(i) {
                 const s = itemStatus(i, date);
-                return s === 'done' || s === 'partial' || s === 'skipped';
+                return s === "done" || s === "partial" || s === "skipped";
             });
             if (completedItems.length) {
-                const isOpen = window._archOpen && window._archOpen[date] ? true : false;
-                let archHtml = '<div class="section" style="margin-bottom:8px">';
-                archHtml += '<button onclick="toggleArch('' + date + '')" style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer">';
-                archHtml += '<span style="font-size:14px;font-weight:700">✅ Completed Today</span>';
-                archHtml += '<span style="display:flex;align-items:center;gap:6px"><span style="font-size:13px;font-weight:800;color:var(--green)">' + completedItems.length + '</span>';
-                archHtml += '<span style="font-size:18px">' + (isOpen ? '▲' : '▼') + '</span></span>';
-                archHtml += '</button>';
+                const isOpen = !!(window._archOpen && window._archOpen[date]);
+                let archHtml = "<div class=\"section\" style=\"margin-bottom:8px\">";
+                archHtml += "<button onclick=\"toggleArch(this.dataset.d)\" data-d=\"" + date + "\" style=\"width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer\">";
+                archHtml += "<span style=\"font-size:14px;font-weight:700\">✅ Completed Today</span>";
+                archHtml += "<span style=\"display:flex;align-items:center;gap:6px\"><span style=\"font-size:13px;font-weight:800;color:var(--green)\">" + completedItems.length + "</span>";
+                archHtml += "<span style=\"font-size:18px\">" + (isOpen ? "▲" : "▼") + "</span></span>";
+                archHtml += "</button>";
                 if (isOpen) {
-                    archHtml += '<div style="margin-top:6px;display:flex;flex-direction:column;gap:4px">';
+                    archHtml += "<div style=\"margin-top:6px;display:flex;flex-direction:column;gap:4px\">";
                     completedItems.forEach(function(item) {
                         const s = itemStatus(item, date);
-                        const dot = s === 'done' ? 'var(--green)' : s === 'partial' ? 'var(--yellow)' : 'var(--red)';
+                        const dot = s === "done" ? "var(--green)" : s === "partial" ? "var(--yellow)" : "var(--red)";
                         const log = getLog(date, item.id);
-                        const val = item.type === 'metric' && log.value != null && log.value !== -1 ? ' · ' + log.value + (item.unit || '') : '';
-                        archHtml += '<div onclick="cycleItem('' + item.id + '')" style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;opacity:0.72">';
-                        archHtml += '<div style="width:8px;height:8px;border-radius:50%;background:' + dot + ';flex-shrink:0"></div>';
-                        archHtml += '<span style="font-size:14px;font-weight:600;text-decoration:line-through;color:var(--text-dim);flex:1">' + item.name + val + '</span>';
-                        archHtml += '<span style="font-size:12px;color:var(--text-dim)">' + s + '</span>';
-                        archHtml += '</div>';
+                        const val = item.type === "metric" && log.value != null && log.value !== -1 ? " · " + log.value + (item.unit || "") : "";
+                        archHtml += "<div onclick=\"cycleItem(this.dataset.id)\" data-id=\"" + item.id + "\" style=\"display:flex;align-items:center;gap:10px;padding:9px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;opacity:0.72\">";
+                        archHtml += "<div style=\"width:8px;height:8px;border-radius:50%;background:" + dot + ";flex-shrink:0\"></div>";
+                        archHtml += "<span style=\"font-size:14px;font-weight:600;text-decoration:line-through;color:var(--text-dim);flex:1\">" + item.name + val + "</span>";
+                        archHtml += "<span style=\"font-size:12px;color:var(--text-dim)\">" + s + "</span>";
+                        archHtml += "</div>";
                     });
-                    archHtml += '</div>';
+                    archHtml += "</div>";
                 }
-                archHtml += '</div>';
+                archHtml += "</div>";
                 html += archHtml;
             }
         }
-        
+
         // ── Task Bank (all tasks, grouped by tag) ──
     {
         const TAG_ORDER_BANK = ['priority','tiger','quickwin','bonus','declutter','general'];
