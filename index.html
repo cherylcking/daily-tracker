@@ -47,11 +47,11 @@
             position: sticky; top:0; z-index:50;
         }
         .header-row { display:flex; align-items:center; justify-content:space-between; }
-        .header h1 { font-size:20px; font-weight:700; letter-spacing:-0.4px; }
-        .header .hdate { font-size:14px; font-weight:600; color:var(--text); margin-top:2px; letter-spacing:0.01em; }
+        .header h1 { font-size:22px; font-weight:700; letter-spacing:-0.4px; }
+        .header .hdate { font-size:16px; font-weight:600; color:var(--text); margin-top:2px; letter-spacing:0.01em; }
         .header-badge {
             background:var(--surface3); border:1px solid var(--border);
-            border-radius:20px; padding:4px 10px; font-size:12px; color:var(--text-dim);
+            border-radius:20px; padding:4px 10px; font-size:14px; color:var(--text-dim);
         }
         .header-badge b { color:var(--text); }
 
@@ -61,32 +61,32 @@
         }
         .date-nav-btn {
             background:none; border:1px solid var(--border); border-radius:10px;
-            color:var(--text-dim); font-size:20px; padding:4px 14px;
+            color:var(--text-dim); font-size:22px; padding:4px 14px;
             cursor:pointer; line-height:1.4; flex-shrink:0;
         }
         .date-nav-btn:active { background:var(--surface2); }
         .date-nav-center { flex:1; min-width:0; }
         .date-nav-label {
-            font-size:11px; font-weight:800; text-transform:uppercase;
+            font-size:13px; font-weight:800; text-transform:uppercase;
             letter-spacing:0.08em; margin-bottom:1px;
         }
         .date-nav-label.today-lbl { color:var(--accent); }
         .date-nav-label.future-lbl { color:var(--yellow); }
         .date-nav-label.past-lbl { color:var(--text-dim); }
         .today-chip {
-            font-size:10px; background:var(--accent); color:#fff;
+            font-size:12px; background:var(--accent); color:#fff;
             border-radius:6px; padding:1px 6px; margin-left:6px;
             cursor:pointer; font-weight:700;
         }
 
         /* ── PRIORITY ITEM TEXT ─────────── */
         .item-plan-text {
-            font-size:12px; font-style:italic; color:rgba(255,255,255,0.75);
+            font-size:14px; font-style:italic; color:rgba(255,255,255,0.75);
             margin-top:5px; line-height:1.35; overflow:hidden;
             display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;
         }
         .item-plan-empty {
-            font-size:10px; color:var(--text-dim); margin-top:5px;
+            font-size:12px; color:var(--text-dim); margin-top:5px;
         }
 
         /* ── BOTTOM NAV ─────────────────── */
@@ -100,7 +100,7 @@
             flex:1; display:flex; flex-direction:column;
             align-items:center; gap:4px; padding:6px 2px;
             background:none; border:none; color:var(--text-dim);
-            font-size:11px; font-weight:700; letter-spacing:0.04em; cursor:pointer;
+            font-size:13px; font-weight:700; letter-spacing:0.04em; cursor:pointer;
         }
         .nav-btn svg { width:22px; height:22px; stroke-width:1.8; }
         .nav-btn.active { color:var(--accent); }
@@ -112,10 +112,10 @@
         #view-gfn { padding:0; display:none; flex-direction:column; height:calc(100vh - 56px - max(20px,env(safe-area-inset-bottom))); }
         #view-gfn.active { display:flex; }
         .gfn-topbar { flex-shrink:0; display:flex; align-items:center; justify-content:space-between; padding:12px 16px; border-bottom:1px solid var(--border); background:var(--surface); }
-        .gfn-topbar h2 { font-size:15px; font-weight:800; margin:0; }
-        .gfn-open-btn { font-size:12px; font-weight:700; color:var(--accent); background:none; border:1.5px solid var(--accent); border-radius:8px; padding:7px 14px; cursor:pointer; text-decoration:none; white-space:nowrap; }
+        .gfn-topbar h2 { font-size:17px; font-weight:800; margin:0; }
+        .gfn-open-btn { font-size:14px; font-weight:700; color:var(--accent); background:none; border:1.5px solid var(--accent); border-radius:8px; padding:7px 14px; cursor:pointer; text-decoration:none; white-space:nowrap; }
         .gfn-tabs { flex-shrink:0; display:flex; gap:0; border-bottom:1px solid var(--border); background:var(--surface); overflow-x:auto; -webkit-overflow-scrolling:touch; }
-        .gfn-tab { flex-shrink:0; padding:9px 16px; font-size:12px; font-weight:700; color:var(--text-dim); background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; }
+        .gfn-tab { flex-shrink:0; padding:9px 16px; font-size:14px; font-weight:700; color:var(--text-dim); background:none; border:none; border-bottom:2px solid transparent; cursor:pointer; white-space:nowrap; }
         .gfn-tab.active { color:var(--accent); border-bottom-color:var(--accent); }
         .gfn-iframe-wrap { flex:1; overflow:hidden; background:var(--bg); }
         .gfn-iframe-wrap iframe { width:100%; height:100%; border:none; display:block; filter:invert(1) hue-rotate(180deg); }
@@ -124,7 +124,7 @@
         /* ── SECTION ────────────────────── */
         .section { margin-bottom:20px; }
         .section-title {
-            font-size:10px; font-weight:800; text-transform:uppercase;
+            font-size:12px; font-weight:800; text-transform:uppercase;
             letter-spacing:0.12em; color:var(--text-dim);
             margin-bottom:8px; padding:0 2px;
             display:flex; align-items:center; gap:6px;
@@ -156,12 +156,12 @@
         .partial .item-dot { background:var(--yellow); box-shadow:0 0 5px var(--yellow); }
         .skipped .item-dot { background:var(--red);    box-shadow:0 0 5px var(--red); }
 
-        .item-name { font-size:13px; font-weight:700; line-height:1.3; padding-right:14px; }
-        .item-sub  { font-size:10px; color:var(--text-dim); margin-top:3px; }
-        .item-val  { font-size:20px; font-weight:900; margin-top:5px; letter-spacing:-0.5px; }
-        .item-unit { font-size:11px; font-weight:400; color:rgba(255,255,255,0.45); }
-        .item-check { font-size:20px; margin-top:4px; line-height:1; }
-        .item-hint  { font-size:9px; color:var(--text-dim); margin-top:3px; }
+        .item-name { font-size:15px; font-weight:700; line-height:1.3; padding-right:14px; }
+        .item-sub  { font-size:12px; color:var(--text-dim); margin-top:3px; }
+        .item-val  { font-size:22px; font-weight:900; margin-top:5px; letter-spacing:-0.5px; }
+        .item-unit { font-size:13px; font-weight:400; color:rgba(255,255,255,0.45); }
+        .item-check { font-size:22px; margin-top:4px; line-height:1; }
+        .item-hint  { font-size:11px; color:var(--text-dim); margin-top:3px; }
 
         /* ── FILLED ITEM ROW (full-width when data is entered) ── */
         .item-filled-row {
@@ -184,13 +184,13 @@
         .item-filled-row.partial .ifr-dot { background:var(--yellow); box-shadow:0 0 5px var(--yellow); }
         .item-filled-row.skipped .ifr-dot { background:var(--red);    box-shadow:0 0 5px var(--red); }
         .ifr-body  { flex:1; min-width:0; }
-        .ifr-label { font-size:12px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; }
-        .ifr-value { font-size:16px; font-weight:800; margin-top:2px; line-height:1.35; }
-        .ifr-sub   { font-size:10px; color:var(--text-dim); margin-top:1px; }
+        .ifr-label { font-size:14px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.06em; }
+        .ifr-value { font-size:18px; font-weight:800; margin-top:2px; line-height:1.35; }
+        .ifr-sub   { font-size:12px; color:var(--text-dim); margin-top:1px; }
         .ifr-right { display:flex; flex-direction:column; align-items:flex-end; flex-shrink:0; }
         .priority-actions { display:flex; gap:5px; margin-top:8px; flex-wrap:wrap; }
         .pa-btn { padding:7px 13px; border-radius:9px; border:1px solid var(--border);
-            background:var(--surface3); color:var(--text-dim); font-size:13px; font-weight:700;
+            background:var(--surface3); color:var(--text-dim); font-size:15px; font-weight:700;
             cursor:pointer; white-space:nowrap; }
         .pa-btn.done-btn    { border-color:var(--green-border); color:var(--green); }
         .pa-btn.partial-btn { border-color:var(--yellow-border); color:var(--yellow); }
@@ -207,8 +207,8 @@
             border-radius:var(--radius); padding:12px 14px; margin-bottom:16px;
         }
         .bar-row { display:flex; justify-content:space-between; align-items:baseline; margin-bottom:7px; }
-        .bar-label { font-size:12px; font-weight:700; }
-        .bar-pct   { font-size:17px; font-weight:900; letter-spacing:-0.5px; }
+        .bar-label { font-size:14px; font-weight:700; }
+        .bar-pct   { font-size:19px; font-weight:900; letter-spacing:-0.5px; }
         .pct-g { color:var(--green); } .pct-y { color:var(--yellow); } .pct-r { color:var(--red); }
         .progress-bar { height:7px; background:var(--surface3); border-radius:4px; overflow:hidden; }
         .progress-fill { height:100%; border-radius:4px; transition:width 0.6s cubic-bezier(0.4,0,0.2,1); }
@@ -220,7 +220,7 @@
         .legend { display:flex; gap:5px; margin-bottom:14px; }
         .leg {
             flex:1; display:flex; align-items:center; justify-content:center;
-            gap:4px; padding:6px 3px; border-radius:8px; font-size:10px; font-weight:700;
+            gap:4px; padding:6px 3px; border-radius:8px; font-size:12px; font-weight:700;
         }
         .leg-g { background:var(--green-bg);  color:var(--green);  border:1px solid var(--green-border); }
         .leg-y { background:var(--yellow-bg); color:var(--yellow); border:1px solid var(--yellow-border); }
@@ -230,7 +230,7 @@
         .section-title { justify-content:space-between; }
         .pomo-cat-btn {
             background:none; border:1px solid var(--border); border-radius:6px;
-            color:var(--text-dim); font-size:11px; padding:2px 7px;
+            color:var(--text-dim); font-size:13px; padding:2px 7px;
             cursor:pointer; flex-shrink:0; margin-left:auto;
         }
         .pomo-cat-btn:active { background:var(--accent); color:#fff; border-color:var(--accent); }
@@ -238,13 +238,13 @@
 
         /* ── SUGGESTION CHIPS ────────────────── */
         .sug-section-lbl {
-            font-size:10px; font-weight:800; text-transform:uppercase;
+            font-size:12px; font-weight:800; text-transform:uppercase;
             letter-spacing:0.09em; color:var(--text-dim); margin-bottom:7px;
         }
         .sug-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:14px; }
         .sug-chip {
             background:var(--surface2); border:1px solid var(--border);
-            border-radius:20px; padding:8px 14px; font-size:13px; font-weight:600;
+            border-radius:20px; padding:8px 14px; font-size:15px; font-weight:600;
             color:var(--text); cursor:pointer; transition:all 0.1s;
         }
         .sug-chip:active, .sug-chip.selected {
@@ -261,10 +261,10 @@
             border-radius:var(--radius-sm); margin-bottom:6px;
         }
         .bank-task-info { flex:1; min-width:0; }
-        .bank-task-name { font-size:15px; font-weight:600; }
+        .bank-task-name { font-size:17px; font-weight:600; }
         .bank-task-tags { display:flex; flex-wrap:wrap; gap:4px; margin-top:4px; }
         .tag-chip {
-            font-size:10px; font-weight:700; padding:2px 7px; border-radius:10px;
+            font-size:12px; font-weight:700; padding:2px 7px; border-radius:10px;
         }
         .tag-priority { background:#1a1040; color:#a78bfa; border:1px solid #3d2090; }
         .tag-quickwin { background:#0d2e1a; color:#34d472; border:1px solid #1a6e3c; }
@@ -278,11 +278,11 @@
         .dow-btn {
             flex:1; padding:7px 2px; border-radius:8px; border:1px solid var(--border);
             background:var(--surface2); color:var(--text-dim);
-            font-size:11px; font-weight:800; cursor:pointer; text-align:center;
+            font-size:13px; font-weight:800; cursor:pointer; text-align:center;
         }
         .dow-btn.selected { background:var(--accent); color:#fff; border-color:var(--accent); }
         .rec-badge {
-            font-size:9px; font-weight:800; background:var(--surface3);
+            font-size:11px; font-weight:800; background:var(--surface3);
             border:1px solid var(--border); border-radius:6px;
             padding:1px 5px; color:var(--text-dim); margin-left:4px;
         }
@@ -290,17 +290,17 @@
         /* Task / Project toggle */
         .type-toggle { display:flex; gap:6px; margin-bottom:4px; }
         .type-btn { flex:1; padding:8px; border-radius:9px; border:1.5px solid var(--border);
-            background:var(--surface2); color:var(--text-dim); font-size:12px; font-weight:700; cursor:pointer; }
+            background:var(--surface2); color:var(--text-dim); font-size:14px; font-weight:700; cursor:pointer; }
         .type-btn.selected { background:var(--accent); color:#fff; border-color:var(--accent); }
-        .type-badge { font-size:9px; font-weight:800; border-radius:6px; padding:1px 6px; border:1px solid; }
+        .type-badge { font-size:11px; font-weight:800; border-radius:6px; padding:1px 6px; border:1px solid; }
         .type-badge.task    { background:#0d2a1a; color:#4ade80; border-color:#166534; }
         .type-badge.project { background:#1a1040; color:#a78bfa; border-color:#4c2fad; }
         .subtask-row { display:flex; align-items:center; gap:6px; padding:6px 0; border-bottom:1px solid var(--border); }
         .subtask-row:last-child { border-bottom:none; }
-        .na-btn { font-size:9px; font-weight:800; padding:2px 7px; border-radius:6px; border:1px solid var(--border);
+        .na-btn { font-size:11px; font-weight:800; padding:2px 7px; border-radius:6px; border:1px solid var(--border);
             background:var(--surface3); color:var(--text-dim); cursor:pointer; white-space:nowrap; }
         .na-btn.active { background:#1c1000; color:#fbbf24; border-color:#92400e; }
-        .na-badge { font-size:9px; font-weight:800; background:#1c1000; color:#fbbf24;
+        .na-badge { font-size:11px; font-weight:800; background:#1c1000; color:#fbbf24;
             border:1px solid #92400e; border-radius:6px; padding:1px 5px; }
         .scheduled-card { border-color:var(--accent) !important; }
         .scheduled-card .item-dot { background:var(--accent) !important; box-shadow:0 0 5px var(--accent) !important; }
@@ -313,21 +313,21 @@
             width:18px; height:18px; border-radius:4px; flex-shrink:0;
             border:1.5px solid var(--border); background:var(--surface3);
             display:flex; align-items:center; justify-content:center;
-            font-size:11px; cursor:pointer;
+            font-size:13px; cursor:pointer;
         }
         .tiger-cb.done { background:var(--green-bg); border-color:var(--green-border); color:var(--green); }
-        .tiger-task-text { flex:1; font-size:12px; line-height:1.3; }
+        .tiger-task-text { flex:1; font-size:14px; line-height:1.3; }
         .tiger-task-text.done { text-decoration:line-through; color:var(--text-dim); }
-        .tiger-empty { font-size:10px; color:var(--text-dim); font-style:italic; margin-top:4px; }
+        .tiger-empty { font-size:12px; color:var(--text-dim); font-style:italic; margin-top:4px; }
 
         /* ── POMO CATEGORY DISPLAY ────────── */
         .pomo-cat-display {
             background:var(--surface2); border:1px solid var(--border);
             border-radius:var(--radius-sm); padding:8px 14px;
-            font-size:13px; font-weight:700; margin-bottom:16px;
+            font-size:15px; font-weight:700; margin-bottom:16px;
             display:flex; align-items:center; gap:8px; justify-content:center;
         }
-        .pomo-cat-none { color:var(--text-dim); font-weight:400; font-size:12px; }
+        .pomo-cat-none { color:var(--text-dim); font-weight:400; font-size:14px; }
 
 
         /* ── REVIEW TABS ────────────────── */
@@ -338,7 +338,7 @@
         }
         .tab-btn {
             flex:1; padding:9px 4px; text-align:center;
-            font-size:13px; font-weight:800; border-radius:8px;
+            font-size:15px; font-weight:800; border-radius:8px;
             cursor:pointer; border:none; background:none; color:var(--text-dim);
         }
         .tab-btn.active { background:var(--accent); color:#fff; }
@@ -349,11 +349,11 @@
             gap:4px; margin-bottom:16px;
         }
         .wc { text-align:center; }
-        .wc-lbl { font-size:9px; color:var(--text-dim); margin-bottom:3px; font-weight:700; }
+        .wc-lbl { font-size:11px; color:var(--text-dim); margin-bottom:3px; font-weight:700; }
         .wc-dot {
             width:34px; height:34px; border-radius:50%;
             margin:0 auto; display:flex; align-items:center;
-            justify-content:center; font-size:10px; font-weight:700;
+            justify-content:center; font-size:12px; font-weight:700;
         }
         .wd-e { background:var(--surface2); color:var(--text-dim); }
         .wd-f { background:var(--surface2); color:transparent; }
@@ -368,30 +368,30 @@
             background:var(--surface2); border:1px solid var(--border);
             border-radius:var(--radius-sm); padding:10px 6px; text-align:center;
         }
-        .stat-val { font-size:20px; font-weight:900; letter-spacing:-0.5px; }
-        .stat-lbl { font-size:9px; color:var(--text-dim); margin-top:2px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; }
+        .stat-val { font-size:22px; font-weight:900; letter-spacing:-0.5px; }
+        .stat-lbl { font-size:11px; color:var(--text-dim); margin-top:2px; font-weight:700; text-transform:uppercase; letter-spacing:0.07em; }
 
         /* ── PROGRESS ROWS ──────────────── */
         .prog-row { margin-bottom:11px; }
         .prog-hdr { display:flex; justify-content:space-between; margin-bottom:4px; }
-        .prog-name { font-size:12px; font-weight:700; }
-        .prog-detail { font-size:11px; color:var(--text-dim); }
+        .prog-name { font-size:14px; font-weight:700; }
+        .prog-detail { font-size:13px; color:var(--text-dim); }
 
         /* ── WEEKLY REVIEW FIELDS ───────── */
         .review-fields { margin-top:20px; }
         .rf-group { margin-bottom:14px; }
-        .rf-label { font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-bottom:5px; display:block; }
+        .rf-label { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:0.1em; color:var(--text-dim); margin-bottom:5px; display:block; }
         .rf-input {
             width:100%; background:var(--surface2); border:1.5px solid var(--border);
             border-radius:var(--radius-sm); padding:10px 12px;
-            font-size:14px; color:var(--text); resize:none;
+            font-size:16px; color:var(--text); resize:none;
             font-family:inherit;
         }
         .rf-input:focus { outline:none; border-color:var(--accent); }
         .rf-calc {
             background:var(--surface2); border:1px solid var(--border);
             border-radius:var(--radius-sm); padding:10px 12px;
-            font-size:16px; font-weight:800; color:var(--green);
+            font-size:18px; font-weight:800; color:var(--green);
         }
         .rf-row { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
 
@@ -404,12 +404,12 @@
             align-items:center; justify-content:center; position:relative;
         }
         .pomo-ring svg { position:absolute; top:0; left:0; transform:rotate(-90deg); }
-        .pomo-time { font-size:44px; font-weight:900; letter-spacing:-2px; position:relative; z-index:1; }
-        .pomo-label { font-size:12px; color:var(--text-dim); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; position:relative; z-index:1; margin-top:4px; }
+        .pomo-time { font-size:46px; font-weight:900; letter-spacing:-2px; position:relative; z-index:1; }
+        .pomo-label { font-size:14px; color:var(--text-dim); font-weight:700; text-transform:uppercase; letter-spacing:0.08em; position:relative; z-index:1; margin-top:4px; }
         .pomo-btns { display:flex; gap:10px; justify-content:center; margin-bottom:20px; }
         .pomo-btn {
             padding:13px 24px; border-radius:var(--radius-sm);
-            border:none; font-size:15px; font-weight:800; cursor:pointer;
+            border:none; font-size:17px; font-weight:800; cursor:pointer;
         }
         .pomo-btn.start { background:var(--accent); color:#fff; }
         .pomo-btn.stop  { background:var(--surface2); color:var(--text); border:1px solid var(--border); }
@@ -424,7 +424,7 @@
         .pomo-dot.done { background:var(--accent); border-color:var(--accent2); }
         .pomo-mode-row { display:flex; gap:7px; justify-content:center; margin-bottom:24px; }
         .pomo-mode {
-            padding:7px 14px; border-radius:20px; font-size:12px; font-weight:700;
+            padding:7px 14px; border-radius:20px; font-size:14px; font-weight:700;
             border:none; cursor:pointer; background:var(--surface2); color:var(--text-dim);
             border:1px solid var(--border);
         }
@@ -449,17 +449,17 @@
             max-height:92vh; overflow-y:auto; -webkit-overflow-scrolling:touch;
         }
         .sheet-handle { width:34px; height:4px; background:var(--border); border-radius:2px; margin:0 auto 16px; }
-        .sheet h3 { font-size:20px; font-weight:800; margin-bottom:3px; }
-        .sheet-sub { font-size:14px; color:var(--text-dim); margin-bottom:16px; }
+        .sheet h3 { font-size:22px; font-weight:800; margin-bottom:3px; }
+        .sheet-sub { font-size:16px; color:var(--text-dim); margin-bottom:16px; }
         .big-input {
             width:100%; background:var(--surface2); border:1.5px solid var(--border);
             border-radius:var(--radius-sm); padding:13px;
-            font-size:30px; font-weight:900; color:var(--text); text-align:center;
+            font-size:33px; font-weight:900; color:var(--text); text-align:center;
             margin-bottom:12px; letter-spacing:-1px;
         }
         .big-input:focus { outline:none; border-color:var(--accent); }
         .sheet-btns { display:flex; gap:7px; }
-        .btn { flex:1; padding:13px; border-radius:var(--radius-sm); border:none; font-size:14px; font-weight:800; cursor:pointer; }
+        .btn { flex:1; padding:13px; border-radius:var(--radius-sm); border:none; font-size:16px; font-weight:800; cursor:pointer; }
         .btn:active { opacity:0.75; }
         .btn-p { background:var(--accent); color:#fff; }
         .btn-g { background:var(--surface2); color:var(--text); border:1px solid var(--border); }
@@ -468,7 +468,7 @@
         /* ── SETTINGS ───────────────────── */
         .add-btn {
             width:100%; padding:13px; background:var(--accent); color:#fff;
-            border:none; border-radius:var(--radius); font-size:14px; font-weight:800;
+            border:none; border-radius:var(--radius); font-size:16px; font-weight:800;
             cursor:pointer; margin-bottom:16px; display:flex; align-items:center; justify-content:center; gap:7px;
         }
         .item-row {
@@ -477,20 +477,20 @@
             margin-bottom:6px; gap:9px;
         }
         .item-row-info { flex:1; min-width:0; }
-        .item-row-name { font-size:13px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
-        .item-row-meta { font-size:10px; color:var(--text-dim); margin-top:1px; }
+        .item-row-name { font-size:15px; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+        .item-row-meta { font-size:12px; color:var(--text-dim); margin-top:1px; }
         .item-row-del { background:none; border:none; color:var(--text-dim); cursor:pointer; padding:4px; flex-shrink:0; }
         .form-group { margin-bottom:11px; }
-        .form-lbl { display:block; font-size:10px; font-weight:800; color:var(--text-dim); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.07em; }
+        .form-lbl { display:block; font-size:12px; font-weight:800; color:var(--text-dim); margin-bottom:4px; text-transform:uppercase; letter-spacing:0.07em; }
         .form-inp,.form-sel {
             width:100%; background:var(--surface2); border:1.5px solid var(--border);
-            border-radius:var(--radius-sm); padding:11px 12px; font-size:16px; color:var(--text); -webkit-appearance:none;
+            border-radius:var(--radius-sm); padding:11px 12px; font-size:18px; color:var(--text); -webkit-appearance:none;
         }
         .form-inp:focus,.form-sel:focus { outline:none; border-color:var(--accent); }
         .form-row { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
         .data-btn {
             width:100%; padding:11px; background:var(--surface2); border:1px solid var(--border);
-            border-radius:var(--radius-sm); color:var(--text-dim); font-size:12px; font-weight:700;
+            border-radius:var(--radius-sm); color:var(--text-dim); font-size:14px; font-weight:700;
             cursor:pointer; margin-bottom:7px; text-align:left;
         }
         .empty-state { text-align:center; padding:40px 16px; color:var(--text-dim); }
@@ -510,11 +510,11 @@
             background:none; border:none; cursor:pointer; padding:4px 2px;
             border-radius:var(--radius-sm);
         }
-        .cal-day-lbl { font-size:9px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; }
+        .cal-day-lbl { font-size:11px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; }
         .cal-day-num {
             width:30px; height:30px; border-radius:50%;
             display:flex; align-items:center; justify-content:center;
-            font-size:13px; font-weight:700; color:var(--text-dim);
+            font-size:15px; font-weight:700; color:var(--text-dim);
         }
         .cal-day-btn.cal-today .cal-day-num  { background:var(--accent); color:#fff; }
         .cal-day-btn.cal-active .cal-day-num  { background:var(--surface3); color:var(--text); box-shadow:0 0 0 2px var(--accent); }
@@ -533,12 +533,12 @@
         .cal-priority-strip {
             padding:10px 14px; border-bottom:1px solid var(--border);
         }
-        .cal-priority-strip-title { font-size:9px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
+        .cal-priority-strip-title { font-size:11px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:6px; }
         .cal-priority-chip {
             display:inline-flex; align-items:center; gap:5px;
             background:var(--surface2); border:1.5px solid var(--border);
             border-radius:20px; padding:4px 10px; margin:0 4px 4px 0;
-            font-size:11px; font-weight:700; cursor:pointer;
+            font-size:13px; font-weight:700; cursor:pointer;
             transition:background 0.15s, border-color 0.15s;
         }
         .cal-priority-chip:active { background:var(--surface3); }
@@ -555,7 +555,7 @@
         }
         .cal-hour-row:last-child { border-bottom:1px solid var(--border); }
         .cal-hour-lbl {
-            width:38px; flex-shrink:0; font-size:10px; font-weight:700;
+            width:38px; flex-shrink:0; font-size:12px; font-weight:700;
             color:var(--text-dim); padding-top:4px; user-select:none;
         }
         .cal-hour-body { flex:1; position:relative; min-height:60px; }
@@ -564,11 +564,11 @@
             cursor:pointer; opacity:0; transition:opacity 0.15s;
         }
         .cal-hour-row:hover .cal-add-hint { opacity:1; }
-        .cal-add-hint-lbl { font-size:10px; color:var(--accent); font-weight:700; }
+        .cal-add-hint-lbl { font-size:12px; color:var(--accent); font-weight:700; }
         .cal-event-block {
             position:absolute; left:0; right:0;
             border-radius:var(--radius-sm); padding:5px 8px;
-            font-size:11px; font-weight:700; cursor:pointer;
+            font-size:13px; font-weight:700; cursor:pointer;
             overflow:hidden; z-index:5;
             border-left:3px solid var(--accent);
             background:rgba(124,77,255,0.15);
@@ -581,8 +581,8 @@
         .cal-event-block.color-yellow { border-left-color:#f5c542; background:rgba(245,197,66,0.12); }
         .cal-event-block.color-teal   { border-left-color:#2dd4bf; background:rgba(45,212,191,0.12); }
         .cal-event-block.color-gcal   { border-left-color:#4285f4; background:rgba(66,133,244,0.13); }
-        .cal-event-block.allday { border-radius:6px; padding:3px 8px; font-size:10px; }
-        .cal-event-time { font-size:9px; color:var(--text-dim); margin-top:1px; font-weight:600; }
+        .cal-event-block.allday { border-radius:6px; padding:3px 8px; font-size:12px; }
+        .cal-event-time { font-size:11px; color:var(--text-dim); margin-top:1px; font-weight:600; }
         .cal-now-line {
             position:absolute; left:0; right:0; height:2px;
             background:var(--red); z-index:10; pointer-events:none;
@@ -595,9 +595,9 @@
 
         /* Habits section */
         .cal-habits { padding:14px; }
-        .cal-habits-title { font-size:10px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; }
+        .cal-habits-title { font-size:12px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px; }
         .cal-habit-group { margin-bottom:14px; }
-        .cal-habit-group-lbl { font-size:10px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:5px; opacity:0.7; }
+        .cal-habit-group-lbl { font-size:12px; font-weight:800; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.07em; margin-bottom:5px; opacity:0.7; }
         .cal-habit-row {
             display:flex; align-items:center; gap:10px;
             padding:7px 0; border-bottom:1px solid rgba(46,46,62,0.5);
@@ -607,13 +607,13 @@
             width:22px; height:22px; border-radius:6px; flex-shrink:0;
             border:1.5px solid var(--border); background:none;
             display:flex; align-items:center; justify-content:center;
-            font-size:12px; color:var(--green); cursor:pointer;
+            font-size:14px; color:var(--green); cursor:pointer;
             touch-action:manipulation;
         }
         .cal-habit-cb.done { background:var(--green-bg); border-color:var(--green-border); }
-        .cal-habit-name { flex:1; font-size:13px; }
+        .cal-habit-name { flex:1; font-size:15px; }
         .cal-habit-name.done { text-decoration:line-through; color:var(--text-dim); }
-        .cal-habit-val { font-size:12px; font-weight:700; color:var(--accent); cursor:pointer; padding:3px 8px; border-radius:6px; border:1px solid var(--border); background:var(--surface2); }
+        .cal-habit-val { font-size:14px; font-weight:700; color:var(--accent); cursor:pointer; padding:3px 8px; border-radius:6px; border:1px solid var(--border); background:var(--surface2); }
 
         /* Event sheet */
         #cal-event-ov .sheet { max-height:85vh; overflow-y:auto; }
@@ -655,13 +655,13 @@
     <!-- Search bar -->
     <div style="padding:10px 14px 0;position:relative">
         <div style="display:flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:8px 14px">
-            <span style="font-size:15px;color:var(--text-dim)">🔍</span>
+            <span style="font-size:17px;color:var(--text-dim)">🔍</span>
             <input id="global-search" type="search" placeholder="Search tasks, items, waiting for…"
-                style="flex:1;background:none;border:none;outline:none;font-size:13px;color:var(--text);min-width:0"
+                style="flex:1;background:none;border:none;outline:none;font-size:15px;color:var(--text);min-width:0"
                 oninput="renderSearch(this.value)"
                 onkeydown="if(event.key==='Escape'){this.value='';renderSearch('');}">
             <button id="search-clear" onclick="document.getElementById('global-search').value='';renderSearch('');"
-                style="display:none;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:0">✕</button>
+                style="display:none;background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;padding:0">✕</button>
         </div>
     </div>
     <div id="search-results" style="display:none;padding:10px 14px;"></div>
@@ -700,7 +700,7 @@
         <div class="sheet-sub">Just get it out of your head — no decisions needed</div>
         <textarea class="form-inp" id="inbox-inp" rows="3"
             placeholder="What's on your mind?"
-            style="resize:none;font-size:15px;line-height:1.6;margin-top:8px"></textarea>
+            style="resize:none;font-size:17px;line-height:1.6;margin-top:8px"></textarea>
         <div class="sheet-btns" style="margin-top:8px">
             <button class="btn btn-g" onclick="closeInbox()">Cancel</button>
             <button class="btn btn-p" onclick="saveInboxItem()">Capture</button>
@@ -749,33 +749,33 @@
 
         <!-- Manual log section -->
         <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--border);width:100%;text-align:left">
-            <div style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px">📝 Log Past Sessions</div>
+            <div style="font-size:14px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:12px">📝 Log Past Sessions</div>
             <div style="display:flex;flex-direction:column;gap:10px">
                 <div style="display:flex;gap:8px;align-items:flex-end">
                     <div style="flex:1">
-                        <label style="font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Date</label>
+                        <label style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Date</label>
                         <input type="date" id="pomo-log-date"
-                            style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px">
+                            style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:15px">
                     </div>
                     <div style="flex:1">
-                        <label style="font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Start Time</label>
+                        <label style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Start Time</label>
                         <input type="time" id="pomo-log-time" oninput="updatePomoPreview()"
-                            style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px">
+                            style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:15px">
                     </div>
                 </div>
                 <div>
-                    <label style="font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Sessions</label>
+                    <label style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Sessions</label>
                     <div style="display:flex;align-items:center;gap:0;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden">
                         <button onclick="adjustPomoCount(-1)" style="background:var(--surface3);border:none;color:var(--text);font-size:18px;font-weight:700;padding:8px 14px;cursor:pointer;border-right:1px solid var(--border)">−</button>
-                        <div id="pomo-log-count-display" style="flex:1;text-align:center;font-size:15px;font-weight:700;color:var(--text);background:var(--surface3);padding:8px 0">1</div>
+                        <div id="pomo-log-count-display" style="flex:1;text-align:center;font-size:17px;font-weight:700;color:var(--text);background:var(--surface3);padding:8px 0">1</div>
                         <button onclick="adjustPomoCount(1)"  style="background:var(--surface3);border:none;color:var(--text);font-size:18px;font-weight:700;padding:8px 14px;cursor:pointer;border-left:1px solid var(--border)">+</button>
                     </div>
                     <div id="pomo-session-preview" style="margin-top:6px;display:flex;flex-direction:column;gap:3px"></div>
                 </div>
                 <div>
-                    <label style="font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Category</label>
+                    <label style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Category</label>
                     <select id="pomo-log-cat"
-                        style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px">
+                        style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:15px">
                         <option value="general">General</option>
                         <option value="priority">🎯 Priority</option>
                         <option value="quickwin">⚡ Quick Win</option>
@@ -789,10 +789,10 @@
                     </select>
                 </div>
                 <button onclick="logPastPomos()"
-                    style="width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);padding:11px;font-size:14px;font-weight:800;cursor:pointer">
+                    style="width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);padding:11px;font-size:16px;font-weight:800;cursor:pointer">
                     + Add Sessions
                 </button>
-                <div id="pomo-log-msg" style="font-size:12px;color:var(--green);text-align:center;min-height:18px"></div>
+                <div id="pomo-log-msg" style="font-size:14px;color:var(--green);text-align:center;min-height:18px"></div>
             </div>
         </div>
 
@@ -806,25 +806,25 @@
 <div class="overlay hidden" id="task-action-ov" onclick="closeTaskAction(event)">
     <div class="sheet" style="max-width:420px" onclick="event.stopPropagation()">
         <div class="sheet-handle"></div>
-        <div id="task-action-name" style="font-size:14px;font-weight:600;color:var(--text);padding:0 0 14px;line-height:1.4"></div>
+        <div id="task-action-name" style="font-size:16px;font-weight:600;color:var(--text);padding:0 0 14px;line-height:1.4"></div>
         <div style="display:flex;flex-direction:column;gap:6px">
             <button onclick="taskActionDone()"
-                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--green);font-size:14px;font-weight:600;cursor:pointer;text-align:left">
+                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--green);font-size:16px;font-weight:600;cursor:pointer;text-align:left">
                 ✅ <span>Mark Done</span></button>
             <button onclick="taskActionOpenEdit()"
-                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--accent);font-size:14px;font-weight:600;cursor:pointer;text-align:left">
+                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--accent);font-size:16px;font-weight:600;cursor:pointer;text-align:left">
                 📋 <span>Open / Edit checklist</span></button>
             <button onclick="taskActionReschedule()"
-                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--text);font-size:14px;font-weight:600;cursor:pointer;text-align:left">
+                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--text);font-size:16px;font-weight:600;cursor:pointer;text-align:left">
                 📅 <span>Reschedule</span></button>
             <button onclick="taskActionDuplicate()"
-                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--text);font-size:14px;font-weight:600;cursor:pointer;text-align:left">
+                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--text);font-size:16px;font-weight:600;cursor:pointer;text-align:left">
                 ⧉ <span>Duplicate</span></button>
             <button onclick="taskActionSkip()" id="task-action-skip-btn"
-                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--text-dim);font-size:14px;font-weight:600;cursor:pointer;text-align:left">
+                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--text-dim);font-size:16px;font-weight:600;cursor:pointer;text-align:left">
                 ⏭ <span>Skip (remove from today)</span></button>
             <button onclick="taskActionDelete()" id="task-action-del-btn"
-                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--red);font-size:14px;font-weight:600;cursor:pointer;text-align:left">
+                style="display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface3);color:var(--red);font-size:16px;font-weight:600;cursor:pointer;text-align:left">
                 🗑 <span>Delete</span></button>
         </div>
         <div class="sheet-btns" style="margin-top:14px">
@@ -839,14 +839,14 @@
         <div class="sheet-title">🚫 Log Go For No</div>
         <div style="display:flex;flex-direction:column;gap:12px;margin-top:12px">
             <div>
-                <label style="font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Date</label>
+                <label style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">Date</label>
                 <input type="date" id="gfn-date"
-                    style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px">
+                    style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:15px">
             </div>
             <div>
-                <label style="font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">What did you go for?</label>
+                <label style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:4px">What did you go for?</label>
                 <textarea id="gfn-note" rows="4" placeholder="Describe what you asked for or attempted…"
-                    style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px;resize:none;line-height:1.5"></textarea>
+                    style="width:100%;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:15px;resize:none;line-height:1.5"></textarea>
             </div>
         </div>
         <div class="sheet-btns" style="margin-top:14px">
@@ -904,7 +904,7 @@
     <button class="nav-btn" onclick="showView('review')" id="nav-review">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
             <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-        </svg>Review<span id="inbox-nav-badge" style="display:none;background:var(--red);color:#fff;border-radius:8px;font-size:9px;font-weight:700;padding:1px 5px;margin-left:3px;vertical-align:middle"></span>
+        </svg>Review<span id="inbox-nav-badge" style="display:none;background:var(--red);color:#fff;border-radius:8px;font-size:11px;font-weight:700;padding:1px 5px;margin-left:3px;vertical-align:middle"></span>
     </button>
     <button class="nav-btn" onclick="showView('pomo')" id="nav-pomo">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
@@ -937,16 +937,16 @@
         <!-- Tab strip -->
         <div style="display:flex;gap:6px;margin:10px 0 14px">
             <button id="ical-tab-url" onclick="switchIcalTab('url')"
-                style="flex:1;padding:7px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--accent);background:var(--accent);color:#fff">
+                style="flex:1;padding:7px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;border:1.5px solid var(--accent);background:var(--accent);color:#fff">
                 Auto Sync</button>
             <button id="ical-tab-paste" onclick="switchIcalTab('paste')"
-                style="flex:1;padding:7px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:none;color:var(--text-dim)">
+                style="flex:1;padding:7px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:none;color:var(--text-dim)">
                 Paste ICS</button>
         </div>
 
         <!-- AUTO SYNC tab -->
         <div id="ical-pane-url">
-            <div style="background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:12px;font-size:11px;color:var(--text);line-height:1.6">
+            <div style="background:var(--green-bg);border:1px solid var(--green-border);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:12px;font-size:13px;color:var(--text);line-height:1.6">
                 ✅ <b>Google Apps Script connected</b> — tap Save &amp; Sync below, then use the ↻ Sync button anytime to refresh.
             </div>
             <div class="form-group">
@@ -961,7 +961,7 @@
 
         <!-- PASTE / UPLOAD ICS tab -->
         <div id="ical-pane-paste" style="display:none">
-            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:12px;font-size:11px;color:var(--text-dim);line-height:1.7">
+            <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:12px;font-size:13px;color:var(--text-dim);line-height:1.7">
                 <b style="color:var(--text)">How to get your .ics file:</b><br>
                 Google Calendar → Settings → [your calendar]<br>
                 → Integrate calendar → <b style="color:var(--text)">Export calendar</b><br>
@@ -971,17 +971,17 @@
             <!-- File upload -->
             <div style="border:2px dashed var(--border);border-radius:var(--radius-sm);padding:18px;text-align:center;margin-bottom:12px;cursor:pointer" onclick="document.getElementById('ical-file-inp').click()">
                 <div style="font-size:22px;margin-bottom:6px">📁</div>
-                <div style="font-size:13px;font-weight:700;color:var(--text)">Upload .ics file</div>
-                <div style="font-size:11px;color:var(--text-dim);margin-top:3px">Tap to choose file</div>
+                <div style="font-size:15px;font-weight:700;color:var(--text)">Upload .ics file</div>
+                <div style="font-size:13px;color:var(--text-dim);margin-top:3px">Tap to choose file</div>
                 <input type="file" id="ical-file-inp" accept=".ics,text/calendar" style="display:none" onchange="handleICSFile(this)">
             </div>
 
-            <div style="text-align:center;font-size:11px;color:var(--text-dim);margin-bottom:10px">— or paste raw ICS text below —</div>
+            <div style="text-align:center;font-size:13px;color:var(--text-dim);margin-bottom:10px">— or paste raw ICS text below —</div>
 
             <div class="form-group">
                 <textarea id="ical-paste-inp" class="form-inp"
                     placeholder="BEGIN:VCALENDAR&#10;VERSION:2.0&#10;..."
-                    style="width:100%;min-height:80px;resize:vertical;font-size:11px;font-family:monospace;line-height:1.4;padding:8px 10px"></textarea>
+                    style="width:100%;min-height:80px;resize:vertical;font-size:13px;font-family:monospace;line-height:1.4;padding:8px 10px"></textarea>
             </div>
             <div class="form-group" style="margin-top:6px">
                 <input type="text" id="ical-paste-label" class="form-inp" placeholder="Label (e.g. Work, Personal)">
@@ -1132,16 +1132,16 @@
         </div>
         <!-- Project sub-tasks -->
         <div id="bank-subtasks-section" style="display:none">
-            <label class="form-lbl">Next Actions <span style="font-size:10px;font-weight:400;color:var(--text-dim)">(at least one required)</span></label>
+            <label class="form-lbl">Next Actions <span style="font-size:12px;font-weight:400;color:var(--text-dim)">(at least one required)</span></label>
             <div id="bank-subtasks-list" style="margin-bottom:8px"></div>
             <div style="display:flex;gap:6px">
                 <input class="form-inp" type="text" id="bank-sub-inp" placeholder="Add next action…" style="flex:1;margin-bottom:0"
                     onkeydown="if(event.key==='Enter'){addBankSubtask();event.preventDefault();}">
-                <button onclick="addBankSubtask()" style="background:var(--accent);color:#fff;border:none;border-radius:9px;padding:0 14px;font-weight:700;font-size:13px;cursor:pointer">+</button>
+                <button onclick="addBankSubtask()" style="background:var(--accent);color:#fff;border:none;border-radius:9px;padding:0 14px;font-weight:700;font-size:15px;cursor:pointer">+</button>
             </div>
         </div>
         <div id="bank-worklog-section" style="display:none;margin-top:14px">
-            <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">📋 Work Log</div>
+            <div style="font-size:13px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">📋 Work Log</div>
             <div id="bank-worklog-list"></div>
         </div>
         <div class="form-group">
@@ -1183,7 +1183,7 @@
             </div>
         </div>
         <div id="bank-rec-biweekly" style="display:none;margin-bottom:10px">
-            <div style="font-size:11px;color:var(--text-dim);line-height:1.5">
+            <div style="font-size:13px;color:var(--text-dim);line-height:1.5">
                 Every other week starting from <b id="bw-start-lbl"></b>.<br>
                 <span id="bw-this-week" style="color:var(--accent)"></span>
             </div>
@@ -1195,7 +1195,7 @@
         <div class="form-group">
             <label class="form-lbl">Project</label>
             <select class="form-inp" id="bank-project-sel"
-                style="padding:8px 10px;font-size:13px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);width:100%">
+                style="padding:8px 10px;font-size:15px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);width:100%">
                 <option value="">— No Project —</option>
             </select>
         </div>
@@ -1203,18 +1203,18 @@
             <label class="form-lbl">Notes</label>
             <textarea class="form-inp" id="bank-notes" rows="3"
                 placeholder="Context, links, details…"
-                style="resize:none;line-height:1.5;font-size:13px"></textarea>
+                style="resize:none;line-height:1.5;font-size:15px"></textarea>
         </div>
         <!-- CHECKLIST SECTION -->
         <div class="form-group">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
                 <label class="form-lbl" style="margin-bottom:0">Checklist</label>
-                <span style="font-size:11px;color:var(--text-dim)">✓ items move to bottom</span>
+                <span style="font-size:13px;color:var(--text-dim)">✓ items move to bottom</span>
             </div>
             <div id="bank-cl-list" style="display:flex;flex-direction:column;gap:5px;margin-bottom:8px"></div>
             <div style="display:flex;gap:6px">
                 <input class="form-inp" id="bank-cl-inp" type="text" placeholder="Add checklist item…"
-                    style="flex:1;padding:8px 10px;font-size:13px"
+                    style="flex:1;padding:8px 10px;font-size:15px"
                     onkeydown="if(event.key==='Enter'){event.preventDefault();addBankChecklistItem();}">
                 <button onclick="addBankChecklistItem()"
                     style="background:var(--surface3);border:1px solid var(--border);color:var(--text);
@@ -1298,7 +1298,7 @@
         <div class="sheet-handle"></div>
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px">
             <h3 id="proj-pick-title" style="margin:0">Choose Action</h3>
-            <button id="proj-pick-options-btn" onclick="openProjTaskOptions()" style="display:none;font-size:11px;font-weight:700;color:var(--text-dim);background:none;border:1px solid var(--border);border-radius:8px;padding:5px 10px;cursor:pointer">⋯ Options</button>
+            <button id="proj-pick-options-btn" onclick="openProjTaskOptions()" style="display:none;font-size:13px;font-weight:700;color:var(--text-dim);background:none;border:1px solid var(--border);border-radius:8px;padding:5px 10px;cursor:pointer">⋯ Options</button>
         </div>
         <div class="sheet-sub" id="proj-pick-sub"></div>
         <div id="proj-pick-list" style="margin-bottom:14px"></div>
@@ -1340,12 +1340,12 @@
         <div id="plan-add-row" style="display:none;margin-bottom:14px">
             <div style="display:flex;gap:7px;margin-bottom:8px">
                 <input class="form-inp" type="text" id="plan-new-task" placeholder="Search task bank or type new…"
-                    style="flex:1;font-size:15px" oninput="planBankSearch(this.value)" onkeydown="if(event.key='Enter')addPlanTask()">
-                <button class="btn btn-p" style="flex:0;padding:10px 18px;font-size:20px;font-weight:900" onclick="addPlanTask()">+</button>
+                    style="flex:1;font-size:17px" oninput="planBankSearch(this.value)" onkeydown="if(event.key='Enter')addPlanTask()">
+                <button class="btn btn-p" style="flex:0;padding:10px 18px;font-size:22px;font-weight:900" onclick="addPlanTask()">+</button>
             </div>
             <div id="plan-search-results" style="margin-bottom:8px"></div>
             <div style="display:flex;gap:5px;flex-wrap:wrap;align-items:center">
-                <span style="font-size:12px;color:var(--text-dim);font-weight:700;white-space:nowrap">Add as:</span>
+                <span style="font-size:14px;color:var(--text-dim);font-weight:700;white-space:nowrap">Add as:</span>
                 <button class="sug-chip" id="pi-priority" onclick="setPlanImportance('priority')">★ Priority</button>
                 <button class="sug-chip" id="pi-quickwin" onclick="setPlanImportance('quickwin')">⚡ Quick Win</button>
                 <button class="sug-chip" id="pi-bonus"    onclick="setPlanImportance('bonus')">🎁 Bonus</button>
@@ -1355,7 +1355,7 @@
         <!-- Text entry (non-priority slots: d1, d2) -->
         <textarea class="rf-input" id="plan-text" rows="3"
             placeholder="What is it? Be specific…"
-            style="margin-bottom:14px;font-size:15px"></textarea>
+            style="margin-bottom:14px;font-size:17px"></textarea>
         <div id="plan-status-btns" style="display:flex;gap:7px;margin-bottom:14px">
             <button class="btn" id="psb-done"    onclick="setPlanStatus('done')"   style="background:var(--green-bg);color:var(--green);border:1.5px solid var(--green-border)">✓ Done</button>
             <button class="btn" id="psb-partial" onclick="setPlanStatus('partial')" style="background:var(--yellow-bg);color:var(--yellow);border:1.5px solid var(--yellow-border)">~ Partial</button>
@@ -1735,7 +1735,7 @@ function secHdr(key, title, extraHtml='') {
     const open = secIsOpen(key);
     return `<div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-bottom:${open?'10':'0'}px" onclick="toggleSec('${key}')">
         <div class="section-title" style="margin:0;pointer-events:none">${title}</div>
-        <div style="display:flex;align-items:center;gap:8px">${extraHtml}<span style="color:var(--text-dim);font-size:16px">${open?'▾':'▸'}</span></div>
+        <div style="display:flex;align-items:center;gap:8px">${extraHtml}<span style="color:var(--text-dim);font-size:18px">${open?'▾':'▸'}</span></div>
     </div>`;
 }
 
@@ -1912,16 +1912,16 @@ function renderSearch(query) {
     const row = (emoji, label, sub, onclick) =>
         `<div onclick="${onclick}" style="padding:9px 10px;border-radius:var(--radius-sm);background:var(--surface2);margin-bottom:5px;cursor:${onclick?'pointer':'default'}">
             <div style="display:flex;align-items:center;gap:8px">
-                <span style="font-size:14px">${emoji}</span>
+                <span style="font-size:16px">${emoji}</span>
                 <div style="flex:1;min-width:0">
-                    <div style="font-size:13px;font-weight:600">${escHtml(label)}</div>
-                    ${sub?`<div style="font-size:11px;color:var(--text-dim);margin-top:1px">${escHtml(sub)}</div>`:''}
+                    <div style="font-size:15px;font-weight:600">${escHtml(label)}</div>
+                    ${sub?`<div style="font-size:13px;color:var(--text-dim);margin-top:1px">${escHtml(sub)}</div>`:''}
                 </div>
             </div>
         </div>`;
 
     const section = (title, items) => items.length
-        ? `<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim);margin:10px 0 5px">${title}</div>${items.join('')}`
+        ? `<div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-dim);margin:10px 0 5px">${title}</div>${items.join('')}`
         : '';
 
     let html = '';
@@ -1950,7 +1950,7 @@ function renderSearch(query) {
     const inbox = db.inbox.filter(i => match(i.text));
     html += section('Inbox', inbox.map(i => row('📥', i.text, '', '')));
 
-    if (!html) html = `<div style="color:var(--text-dim);font-size:13px;padding:16px 0 8px;text-align:center">No results for "${escHtml(query)}"</div>`;
+    if (!html) html = `<div style="color:var(--text-dim);font-size:15px;padding:16px 0 8px;text-align:center">No results for "${escHtml(query)}"</div>`;
     resultsEl.innerHTML = html;
 }
 
@@ -1960,8 +1960,8 @@ function renderToday() {
   } catch(e) {
     console.error('renderToday crash:', e);
     const el = document.getElementById('today-content');
-    if (el) el.innerHTML = `<div style="padding:20px;color:var(--red);font-size:13px;background:var(--surface2);border-radius:8px;margin:12px 0">
-      ⚠️ Render error — please report this:<br><code style="font-size:11px;word-break:break-all">${e.message}</code>
+    if (el) el.innerHTML = `<div style="padding:20px;color:var(--red);font-size:15px;background:var(--surface2);border-radius:8px;margin:12px 0">
+      ⚠️ Render error — please report this:<br><code style="font-size:13px;word-break:break-all">${e.message}</code>
     </div>`;
   }
 }
@@ -2006,16 +2006,16 @@ function _renderTodayInner() {
         background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
         padding:11px 14px;margin-bottom:14px;text-decoration:none;color:var(--text)">
         <div style="display:flex;align-items:center;gap:9px">
-            <span style="font-size:20px">📅</span>
+            <span style="font-size:22px">📅</span>
             <div>
-                <div style="font-size:13px;font-weight:700">Google Calendar</div>
-                <div style="font-size:11px;color:var(--text-dim);margin-top:1px">Open day view →</div>
+                <div style="font-size:15px;font-weight:700">Google Calendar</div>
+                <div style="font-size:13px;color:var(--text-dim);margin-top:1px">Open day view →</div>
             </div>
         </div>
     </a>`;
 
     if (isFuture) {
-        html += `<div style="background:var(--yellow-bg);border:1px solid var(--yellow-border);border-radius:var(--radius);padding:10px 14px;margin-bottom:14px;font-size:12px;color:var(--yellow);font-weight:700;">
+        html += `<div style="background:var(--yellow-bg);border:1px solid var(--yellow-border);border-radius:var(--radius);padding:10px 14px;margin-bottom:14px;font-size:14px;color:var(--yellow);font-weight:700;">
             ✏️ Planning mode — set your priorities for this day in advance
         </div>`;
     }
@@ -2028,7 +2028,7 @@ function _renderTodayInner() {
             html += `<div class="section" style="padding:12px 14px;margin-bottom:14px">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
                     <div class="section-title" style="margin:0">📺 On Tonight</div>
-                    <span style="font-size:10px;color:var(--text-dim)">edit date in Watchlist to move forward</span>
+                    <span style="font-size:12px;color:var(--text-dim)">edit date in Watchlist to move forward</span>
                 </div>`;
             airingToday.forEach(show => {
                 const wlog = getLog(date, 'wl_' + show.id);
@@ -2039,16 +2039,16 @@ function _renderTodayInner() {
                     border-radius:var(--radius-sm);padding:8px 12px;margin-bottom:6px;
                     display:flex;align-items:center;justify-content:space-between;gap:8px">
                     <div style="flex:1;min-width:0">
-                        <div style="font-size:13px;font-weight:700;${watched?'text-decoration:line-through;color:var(--text-dim)':isReturning?'color:var(--green)':''}">
+                        <div style="font-size:15px;font-weight:700;${watched?'text-decoration:line-through;color:var(--text-dim)':isReturning?'color:var(--green)':''}">
                             ${isReturning ? '🔔 ' : ''}${escHtml(show.name)}
                         </div>
-                        ${show.network ? `<div style="font-size:11px;color:var(--text-dim)">${escHtml(show.network)}</div>` : ''}
+                        ${show.network ? `<div style="font-size:13px;color:var(--text-dim)">${escHtml(show.network)}</div>` : ''}
                     </div>
                     <div style="display:flex;gap:5px;flex-shrink:0">
                         ${isReturning ? `<button onclick="cycleWatchlistStatus('${show.id}',true)"
-                            style="font-size:10px;padding:3px 8px;border-radius:6px;border:1px solid var(--green);color:var(--green);background:none;cursor:pointer;white-space:nowrap">→ Watching</button>` : ''}
+                            style="font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--green);color:var(--green);background:none;cursor:pointer;white-space:nowrap">→ Watching</button>` : ''}
                         <button onclick="openTVEdit('${show.id}')"
-                            style="font-size:10px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap">
+                            style="font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap">
                             ✏️ Edit
                         </button>
                     </div>
@@ -2098,21 +2098,21 @@ function _renderTodayInner() {
             html += `<div class="section" style="border-left:3px solid var(--yellow);background:var(--yellow-bg);padding:10px 14px;margin-bottom:14px">
                 <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer;margin-bottom:${carryoverOpen?'10':'0'}px"
                     onclick="carryoverOpen=!carryoverOpen;renderToday()">
-                    <div style="font-size:12px;font-weight:700;color:var(--yellow)">⚠️ ${total} item${total!==1?'s':''} pending from prior days</div>
-                    <span style="font-size:14px;color:var(--yellow)">${carryoverOpen?'▾':'▸'}</span>
+                    <div style="font-size:14px;font-weight:700;color:var(--yellow)">⚠️ ${total} item${total!==1?'s':''} pending from prior days</div>
+                    <span style="font-size:16px;color:var(--yellow)">${carryoverOpen?'▾':'▸'}</span>
                 </div>`;
             if (carryoverOpen) {
                 [...carryoverDays].sort((a,b) => b.date.localeCompare(a.date)).forEach(day => {
                     const d = new Date(day.date + 'T12:00:00');
                     const dayLabel = d.toLocaleDateString('en-US', {weekday:'short', month:'short', day:'numeric'});
-                    html += `<div style="font-size:10px;color:var(--yellow);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin:8px 0 4px">${dayLabel}</div>`;
+                    html += `<div style="font-size:12px;color:var(--yellow);font-weight:700;text-transform:uppercase;letter-spacing:0.06em;margin:8px 0 4px">${dayLabel}</div>`;
                     day.items.forEach(({item, log, itemId}) => {
                         const displayText = log.text || item.name;
                         const subLabel    = log.text && log.text !== item.name ? item.name : '';
                         html += `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--yellow-border)">
                             <div style="flex:1;min-width:0">
-                                <div style="font-size:12px;font-weight:600;color:var(--text)">${escHtml(displayText)}</div>
-                                ${subLabel ? `<div style="font-size:10px;color:var(--text-dim)">${escHtml(subLabel)}</div>` : ''}
+                                <div style="font-size:14px;font-weight:600;color:var(--text)">${escHtml(displayText)}</div>
+                                ${subLabel ? `<div style="font-size:12px;color:var(--text-dim)">${escHtml(subLabel)}</div>` : ''}
                             </div>
                             <div style="display:flex;gap:4px;flex-shrink:0">
                                 ${btnSm('✓','var(--green)',`carryoverStatus('${day.date}','${itemId}','done')`)}
@@ -2162,7 +2162,7 @@ function _renderTodayInner() {
         const renderSchedTask = task => {
             const recLabel   = recurrenceLabel(task.recurrence, task.onDate);
             const nextAction = task.type==='project' ? task.subtasks?.find(s=>s.nextAction&&!s.done) : null;
-            const naLine     = nextAction ? `<div onclick="openBankSheet('${task.id}');event.stopPropagation()" style="font-size:11px;color:#fbbf24;margin-top:2px;cursor:pointer">⚡ Next: ${escHtml(nextAction.text)} <span style="font-size:9px;opacity:0.7">✎</span></div>` : '';
+            const naLine     = nextAction ? `<div onclick="openBankSheet('${task.id}');event.stopPropagation()" style="font-size:13px;color:#fbbf24;margin-top:2px;cursor:pointer">⚡ Next: ${escHtml(nextAction.text)} <span style="font-size:11px;opacity:0.7">✎</span></div>` : '';
             const isRec = !(!task.recurrence || task.recurrence.type === 'none' || !task.recurrence.type);
             const hasCL     = task.checklist?.length > 0;
             const clDoneSet = hasCL ? getClDoneSet(task, date) : new Set();
@@ -2179,10 +2179,10 @@ function _renderTodayInner() {
                         style="width:18px;height:18px;border-radius:3px;flex-shrink:0;cursor:pointer;padding:0;touch-action:manipulation;
                         border:1.5px solid ${cDone?'var(--green)':'var(--border)'};
                         background:${cDone?'var(--green-bg)':'none'};
-                        display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--green)">
+                        display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--green)">
                         ${cDone?'✓':''}
                     </button>
-                    <span style="font-size:11px;${cDone?'text-decoration:line-through;color:var(--text-dim);opacity:0.6':''}">${escHtml(c.text)}</span>
+                    <span style="font-size:13px;${cDone?'text-decoration:line-through;color:var(--text-dim);opacity:0.6':''}">${escHtml(c.text)}</span>
                 </div>`;
             }).join('') + '</div>' : '';
             return `<div class="item-row scheduled-card" style="display:flex;align-items:flex-start;gap:8px;padding:8px 2px;${isDone?'border-color:var(--green)!important;background:var(--green-bg);':''}">
@@ -2190,22 +2190,22 @@ function _renderTodayInner() {
                     style="width:22px;height:22px;border-radius:5px;flex-shrink:0;cursor:pointer;padding:0;margin-top:1px;touch-action:manipulation;
                     border:1.5px solid ${isDone?'var(--green)':'var(--border)'};
                     background:${isDone?'var(--green-bg)':'none'};
-                    display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green)">
+                    display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--green)">
                     ${isDone?'✓':''}
                 </button>
                 <div style="flex:1;min-width:0">
-                    <div class="item-name" style="font-size:13px;${isDone?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(task.text)}${hasCL&&!isDone?` <span style="font-size:10px;color:var(--text-dim);opacity:0.7">${clDone}/${clTotal}</span>`:''}</div>
+                    <div class="item-name" style="font-size:15px;${isDone?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(task.text)}${hasCL&&!isDone?` <span style="font-size:12px;color:var(--text-dim);opacity:0.7">${clDone}/${clTotal}</span>`:''}</div>
                     ${naLine}
                     ${clHtml}
                     ${!isDone?`<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:3px;align-items:center">
                         ${recLabel?`<span class="rec-badge active">🔁 ${recLabel}</span>`:''}
-                        <span onclick="scheduleAssign('${task.id}');event.stopPropagation()" style="font-size:10px;color:var(--accent);font-weight:700;cursor:pointer">↗ Assign to slot</span>
+                        <span onclick="scheduleAssign('${task.id}');event.stopPropagation()" style="font-size:12px;color:var(--accent);font-weight:700;cursor:pointer">↗ Assign to slot</span>
                         ${isRec ? `<span onclick="skipRecurringDate('${task.id}','${date}');event.stopPropagation()"
-                            style="font-size:10px;color:var(--red);font-weight:700;cursor:pointer;padding:1px 6px;border:1px solid var(--red-border);border-radius:5px">✕ Skip</span>` : ''}
+                            style="font-size:12px;color:var(--red);font-weight:700;cursor:pointer;padding:1px 6px;border:1px solid var(--red-border);border-radius:5px">✕ Skip</span>` : ''}
                     </div>`:''}
                 </div>
                 <button onclick="openTaskAction('${task.id}','sched','${date}','sched');event.stopPropagation()"
-                    style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;flex-shrink:0;white-space:nowrap;font-weight:600;touch-action:manipulation">Open</button>
+                    style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;flex-shrink:0;white-space:nowrap;font-weight:600;touch-action:manipulation">Open</button>
             </div>`;
         };
 
@@ -2216,7 +2216,7 @@ function _renderTodayInner() {
             const label = TAG_LABEL[groupTag] || (groupTag.charAt(0).toUpperCase() + groupTag.slice(1));
             const cls   = TAG_CLASS[groupTag] || 'tag-general';
             html += `<div style="margin:6px 0 2px">
-                <span class="tag-chip ${cls}" style="font-size:11px;font-weight:800">${label}</span>
+                <span class="tag-chip ${cls}" style="font-size:13px;font-weight:800">${label}</span>
             </div>`;
             tasks.forEach(task => { html += renderSchedTask(task); });
         });
@@ -2267,7 +2267,7 @@ function _renderTodayInner() {
                         <div class="ifr-dot"></div>
                         <div class="ifr-body">
                             <div class="ifr-label">${item.name}</div>
-                            <div class="ifr-value">${displayVal}<span style="font-size:12px;font-weight:400;color:var(--text-dim);margin-left:3px">${notMeasured ? 'not measured' : 'lbs'}</span></div>
+                            <div class="ifr-value">${displayVal}<span style="font-size:14px;font-weight:400;color:var(--text-dim);margin-left:3px">${notMeasured ? 'not measured' : 'lbs'}</span></div>
                             <div class="ifr-sub">${notMeasured ? '<span style="color:var(--yellow)">chose not to measure today</span>' : `${lbsToGo} lbs to go · <span style="color:${pctColor}">${pctAttained}% of goal</span><span style="color:var(--text-dim);margin-left:5px">· goal ${item.target} lbs</span>`}</div>
                         </div>
                     </div>`;
@@ -2278,7 +2278,7 @@ function _renderTodayInner() {
                         <div class="ifr-dot"></div>
                         <div class="ifr-body">
                             <div class="ifr-label">${item.name}</div>
-                            <div class="ifr-value">${log.value}<span style="font-size:12px;font-weight:400;color:var(--text-dim);margin-left:3px">${item.unit||''}</span></div>
+                            <div class="ifr-value">${log.value}<span style="font-size:14px;font-weight:400;color:var(--text-dim);margin-left:3px">${item.unit||''}</span></div>
                             ${item.target?`<div class="ifr-sub">target ${item.target}${item.unit||''} ${pct!=null?`· <span style="color:${pctColor}">${pct}%</span>`:''}</div>`:''}
                         </div>
                     </div>`;
@@ -2331,13 +2331,13 @@ function _renderTodayInner() {
                             style="width:22px;height:22px;border-radius:4px;flex-shrink:0;cursor:pointer;padding:0;touch-action:manipulation;
                             border:1.5px solid ${taskDone?'var(--green)':'var(--border)'};
                             background:${taskDone?'var(--green-bg)':'none'};
-                            display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green)">
+                            display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--green)">
                             ${taskDone?'✓':''}
                         </button>
                         <span onclick="openTaskAction('${t.id}','${item.id}','${date}','slot');event.stopPropagation()"
-                            style="font-size:12px;flex:1;cursor:pointer;${taskDone?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(t.text)}${hasCL?` <span style="font-size:10px;color:var(--text-dim);opacity:0.7">${clDone}/${clTotal}</span>`:''}</span>
+                            style="font-size:14px;flex:1;cursor:pointer;${taskDone?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(t.text)}${hasCL?` <span style="font-size:12px;color:var(--text-dim);opacity:0.7">${clDone}/${clTotal}</span>`:''}</span>
                         <button type="button" onclick="openTaskAction('${t.id}','${item.id}','${date}','slot');event.stopPropagation()"
-                            style="font-size:11px;color:var(--accent);cursor:pointer;padding:3px 8px;border-radius:4px;flex-shrink:0;background:none;border:1px solid var(--accent);font-weight:600;touch-action:manipulation"
+                            style="font-size:13px;color:var(--accent);cursor:pointer;padding:3px 8px;border-radius:4px;flex-shrink:0;background:none;border:1px solid var(--accent);font-weight:600;touch-action:manipulation"
                             title="Task options">Open</button>
                     </div>`;
                     // Inline checklist items
@@ -2350,10 +2350,10 @@ function _renderTodayInner() {
                             style="width:20px;height:20px;border-radius:3px;flex-shrink:0;cursor:pointer;padding:0;touch-action:manipulation;
                             border:1.5px solid ${cDone?'var(--green)':'var(--border)'};
                             background:${cDone?'var(--green-bg)':'none'};
-                            display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green)">
+                            display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--green)">
                             ${cDone?'✓':''}
                         </button>
-                        <span style="font-size:11px;flex:1;${cDone?'text-decoration:line-through;color:var(--text-dim);opacity:0.6':''}">${escHtml(c.text)}</span>
+                        <span style="font-size:13px;flex:1;${cDone?'text-decoration:line-through;color:var(--text-dim);opacity:0.6':''}">${escHtml(c.text)}</span>
                     </div>`;
                         }).join('');
                     }
@@ -2370,16 +2370,16 @@ function _renderTodayInner() {
                             style="width:18px;height:18px;border-radius:4px;flex-shrink:0;cursor:pointer;padding:0;
                             border:1.5px solid ${t.done?'var(--green)':'var(--border)'};
                             background:${t.done?'var(--green-bg)':'none'};
-                            display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green)">
+                            display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--green)">
                             ${t.done?'✓':''}
                         </button>
-                        <span style="font-size:12px;flex:1;${t.done?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(t.text)}</span>
+                        <span style="font-size:14px;flex:1;${t.done?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(t.text)}</span>
                         <button onclick="event.stopPropagation();deleteLegacyTask('${item.id}','${date}',${origIdx})"
-                            style="font-size:11px;color:var(--text-dim);cursor:pointer;padding:2px 5px;border-radius:4px;flex-shrink:0;opacity:0.6;background:none;border:none"
+                            style="font-size:13px;color:var(--text-dim);cursor:pointer;padding:2px 5px;border-radius:4px;flex-shrink:0;opacity:0.6;background:none;border:none"
                             title="Remove from today">✕</button>
                     </div>`).join('');
                 const dayplanTextHtml = item.category === 'dayplan' && log.text
-                    ? `<div onclick="cycleItem('${item.id}');event.stopPropagation()" style="font-size:13px;color:var(--text);padding:5px 0 2px;line-height:1.4;cursor:pointer">${escHtml(log.text)}</div>`
+                    ? `<div onclick="cycleItem('${item.id}');event.stopPropagation()" style="font-size:15px;color:var(--text);padding:5px 0 2px;line-height:1.4;cursor:pointer">${escHtml(log.text)}</div>`
                     : '';
                 html += `<div class="item-filled-row ${status}">
                     <div class="ifr-dot"></div>
@@ -2390,7 +2390,7 @@ function _renderTodayInner() {
                         ${legacyHtml}
                         <div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center">
                             <button onclick="skipPrioritySlot('${item.id}','${date}');event.stopPropagation()"
-                                style="font-size:11px;padding:3px 10px;border-radius:6px;cursor:pointer;font-weight:700;
+                                style="font-size:13px;padding:3px 10px;border-radius:6px;cursor:pointer;font-weight:700;
                                 border:1px solid ${status==='skipped'?'var(--red)':'var(--border)'};
                                 color:${status==='skipped'?'var(--red)':'var(--text-dim)'};
                                 background:${status==='skipped'?'var(--red-bg)':'none'}">
@@ -2421,8 +2421,8 @@ function _renderTodayInner() {
                         <div class="item-plan-empty">tap to plan →</div>
                         <div style="display:flex;gap:4px;align-items:center">
                             <button onclick="skipPrioritySlot('${item.id}','${date}');event.stopPropagation()"
-                                style="font-size:10px;padding:2px 6px;border-radius:5px;cursor:pointer;font-weight:700;border:1px solid var(--border);color:var(--text-dim);background:none">✕</button>
-                            <button class="pomo-cat-btn${pomoCategory===(ITEM_TAG[item.id]||'priority')?' active-cat':''}" style="padding:2px 6px;font-size:13px" onclick="startPomoForCategory('${ITEM_TAG[item.id]||'priority'}');event.stopPropagation()" title="Start Pomodoro">🍅</button>
+                                style="font-size:12px;padding:2px 6px;border-radius:5px;cursor:pointer;font-weight:700;border:1px solid var(--border);color:var(--text-dim);background:none">✕</button>
+                            <button class="pomo-cat-btn${pomoCategory===(ITEM_TAG[item.id]||'priority')?' active-cat':''}" style="padding:2px 6px;font-size:15px" onclick="startPomoForCategory('${ITEM_TAG[item.id]||'priority'}');event.stopPropagation()" title="Start Pomodoro">🍅</button>
                         </div>
                     </div>`;
                 } else {
@@ -2450,7 +2450,7 @@ function _renderTodayInner() {
             html += `<div class="section" style="padding:12px 14px">
                 <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
                     <div class="section-title" style="margin:0">📋 Daily Review</div>
-                    <span style="font-size:12px;font-weight:700;color:${drColor2}">${drDone2}/${drTotal2}${drSkipLbl2}</span>
+                    <span style="font-size:14px;font-weight:700;color:${drColor2}">${drDone2}/${drTotal2}${drSkipLbl2}</span>
                 </div>` +
                 DAILY_REVIEW_ITEMS.map((item, i) => {
                     const st = drChecks2[i] || 'pending';
@@ -2466,11 +2466,11 @@ function _renderTodayInner() {
                     <button onclick="toggleDailyReview('${date}',${i})"
                         style="flex-shrink:0;width:20px;height:20px;border-radius:5px;cursor:pointer;
                         border:2px solid ${btnBorder};background:${btnBg};
-                        color:${btnColor};font-size:12px;display:flex;align-items:center;justify-content:center">
+                        color:${btnColor};font-size:14px;display:flex;align-items:center;justify-content:center">
                         ${btnLabel}
                     </button>
-                    <span style="font-size:13px;flex:1;${textStyle}">${escHtml(item)}</span>
-                    ${isSkip ? `<span style="font-size:10px;color:var(--red);font-weight:700;white-space:nowrap">not completed</span>` : ''}
+                    <span style="font-size:15px;flex:1;${textStyle}">${escHtml(item)}</span>
+                    ${isSkip ? `<span style="font-size:12px;color:var(--red);font-weight:700;white-space:nowrap">not completed</span>` : ''}
                 </div>`;
                 }).join('') +
             `</div>`;
@@ -2479,8 +2479,8 @@ function _renderTodayInner() {
 
     if (db.items.length===0) {
         html += `<div class="empty-state"><div style="font-size:40px">📋</div>
-            <div style="font-size:15px;font-weight:700;margin:10px 0 6px">Nothing here yet</div>
-            <div style="font-size:12px">Tap Items below to add habits & metrics</div></div>`;
+            <div style="font-size:17px;font-weight:700;margin:10px 0 6px">Nothing here yet</div>
+            <div style="font-size:14px">Tap Items below to add habits & metrics</div></div>`;
     }
 
     // ── Task Bank (all tasks, grouped by tag) ──
@@ -2508,20 +2508,20 @@ function _renderTodayInner() {
             const isToday = !isDone && isScheduledOn(t, date);
             return `<div style="display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--border)">
                 <div style="flex:1;min-width:0">
-                    <div style="font-size:13px;font-weight:500;color:${isDone?'var(--text-dim)':'var(--text)'};${isDone?'text-decoration:line-through':''}">${escHtml(t.text)}</div>
-                    ${recLabel?`<div style="font-size:10px;color:var(--text-dim);margin-top:1px">🔁 ${recLabel}</div>`:''}
-                    ${t.onDate&&!isRec?`<div style="font-size:10px;color:var(--accent);margin-top:1px">📅 ${t.onDate}</div>`:''}
-                    ${isDone&&t.archivedAt?`<div style="font-size:10px;color:var(--text-dim);margin-top:1px">✅ done ${t.archivedAt}</div>`:''}
+                    <div style="font-size:15px;font-weight:500;color:${isDone?'var(--text-dim)':'var(--text)'};${isDone?'text-decoration:line-through':''}">${escHtml(t.text)}</div>
+                    ${recLabel?`<div style="font-size:12px;color:var(--text-dim);margin-top:1px">🔁 ${recLabel}</div>`:''}
+                    ${t.onDate&&!isRec?`<div style="font-size:12px;color:var(--accent);margin-top:1px">📅 ${t.onDate}</div>`:''}
+                    ${isDone&&t.archivedAt?`<div style="font-size:12px;color:var(--text-dim);margin-top:1px">✅ done ${t.archivedAt}</div>`:''}
                 </div>
-                ${isToday?`<span style="font-size:10px;font-weight:700;color:var(--green);white-space:nowrap">✓ today</span>`:''}
+                ${isToday?`<span style="font-size:12px;font-weight:700;color:var(--green);white-space:nowrap">✓ today</span>`:''}
                 ${isDone
                     ? `<button onclick="restoreBankTask('${t.id}')"
-                        style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap">Restore</button>`
+                        style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap">Restore</button>`
                     : `<div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
                         <button onclick="archiveBankTask('${t.id}')"
-                            style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--green);color:var(--green);background:none;cursor:pointer;white-space:nowrap">✓ Done</button>
+                            style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--green);color:var(--green);background:none;cursor:pointer;white-space:nowrap">✓ Done</button>
                         <button onclick="openBankSheet('${t.id}')"
-                            style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);color:var(--text-dim);background:none;cursor:pointer;white-space:nowrap">✎</button>
+                            style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);color:var(--text-dim);background:none;cursor:pointer;white-space:nowrap">✎</button>
                        </div>`
                 }
             </div>`;
@@ -2530,8 +2530,8 @@ function _renderTodayInner() {
         html += `<div class="section" style="padding:12px 14px;margin-bottom:14px">
             <div style="display:flex;align-items:center;justify-content:space-between;cursor:pointer"
                 onclick="todayBankOpen=!todayBankOpen;renderToday()">
-                <div class="section-title" style="margin:0">📦 Task Bank <span style="font-size:11px;font-weight:600;color:var(--text-dim);margin-left:4px">${totalActive}</span></div>
-                <span style="font-size:14px;color:var(--text-dim)">${todayBankOpen?'▾':'▸'}</span>
+                <div class="section-title" style="margin:0">📦 Task Bank <span style="font-size:13px;font-weight:600;color:var(--text-dim);margin-left:4px">${totalActive}</span></div>
+                <span style="font-size:16px;color:var(--text-dim)">${todayBankOpen?'▾':'▸'}</span>
             </div>`;
 
         if (todayBankOpen) {
@@ -2543,7 +2543,7 @@ function _renderTodayInner() {
                 const cls   = TAG_CLASS[tag] || 'tag-general';
                 const emoji = TAG_EMOJI_BANK[tag] || '';
                 html += `<div style="margin:12px 0 4px">
-                    <span class="tag-chip ${cls}" style="font-size:11px;font-weight:800">${emoji} ${label} <span style="opacity:0.7;font-weight:600">${tasks.length}</span></span>
+                    <span class="tag-chip ${cls}" style="font-size:13px;font-weight:800">${emoji} ${label} <span style="opacity:0.7;font-weight:600">${tasks.length}</span></span>
                 </div>`;
                 tasks.forEach(t => { html += renderBankTask(t, false); });
             });
@@ -2552,8 +2552,8 @@ function _renderTodayInner() {
             if (doneBankTasks.length) {
                 html += `<div style="margin:16px 0 4px;display:flex;align-items:center;gap:8px;cursor:pointer"
                     onclick="todayBankDoneOpen=!todayBankDoneOpen;renderToday()">
-                    <span style="font-size:12px;font-weight:700;color:var(--text-dim)">✅ Done (${doneBankTasks.length})</span>
-                    <span style="font-size:12px;color:var(--text-dim)">${todayBankDoneOpen?'▾':'▸'}</span>
+                    <span style="font-size:14px;font-weight:700;color:var(--text-dim)">✅ Done (${doneBankTasks.length})</span>
+                    <span style="font-size:14px;color:var(--text-dim)">${todayBankDoneOpen?'▾':'▸'}</span>
                 </div>`;
                 if (todayBankDoneOpen) {
                     doneBankTasks.forEach(t => { html += renderBankTask(t, true); });
@@ -2590,17 +2590,17 @@ function _renderTodayInner() {
         sortedBank.forEach(task => {
             const taskGroup = bankSortKey(task) === 0 ? 'high' : bankSortKey(task) === 2 ? 'recurring' : 'normal';
             if (taskGroup !== lastGroup) {
-                if (taskGroup === 'high')      html += `<div style="font-size:10px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.07em;padding:4px 0 2px;opacity:0.8">🔴 High Priority</div>`;
-                if (taskGroup === 'normal' && lastGroup === 'high') html += `<div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;padding:8px 0 2px;opacity:0.7">Normal</div>`;
-                if (taskGroup === 'recurring') html += `<div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.07em;padding:8px 0 2px;opacity:0.7">🔁 Recurring</div>`;
+                if (taskGroup === 'high')      html += `<div style="font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:0.07em;padding:4px 0 2px;opacity:0.8">🔴 High Priority</div>`;
+                if (taskGroup === 'normal' && lastGroup === 'high') html += `<div style="font-size:12px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;padding:8px 0 2px;opacity:0.7">Normal</div>`;
+                if (taskGroup === 'recurring') html += `<div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.07em;padding:8px 0 2px;opacity:0.7">🔁 Recurring</div>`;
                 lastGroup = taskGroup;
             }
             const tagHtml = (task.tags||[]).map(t=>
                 `<span class="tag-chip ${TAG_CLASS[t]||'tag-general'}">${TAG_LABEL[t]||t}</span>`
             ).join('');
             const nextAction = task.type==='project' ? task.subtasks?.find(s=>s.nextAction&&!s.done) : null;
-            const naLine = nextAction ? `<div onclick="openBankSheet('${task.id}');event.stopPropagation()" style="font-size:11px;color:#fbbf24;margin-top:2px;cursor:pointer">⚡ ${escHtml(nextAction.text)} <span style="font-size:9px;opacity:0.7">✎</span></div>` : '';
-            const noteLine = task.notes ? `<div style="font-size:11px;color:var(--text-dim);margin-top:3px;line-height:1.4;white-space:pre-wrap">${escHtml(task.notes)}</div>` : '';
+            const naLine = nextAction ? `<div onclick="openBankSheet('${task.id}');event.stopPropagation()" style="font-size:13px;color:#fbbf24;margin-top:2px;cursor:pointer">⚡ ${escHtml(nextAction.text)} <span style="font-size:11px;opacity:0.7">✎</span></div>` : '';
+            const noteLine = task.notes ? `<div style="font-size:13px;color:var(--text-dim);margin-top:3px;line-height:1.4;white-space:pre-wrap">${escHtml(task.notes)}</div>` : '';
             let clHtml = '';
             if (task.checklist?.length) {
                 const undone = task.checklist.filter(c=>!c.done);
@@ -2611,17 +2611,17 @@ function _renderTodayInner() {
                         <button onclick="toggleTaskChecklist('${task.id}',${task.checklist.indexOf(c)});event.stopPropagation()"
                             style="background:none;border:2px solid ${c.done?'var(--green)':'var(--border)'};
                             width:16px;height:16px;border-radius:3px;cursor:pointer;flex-shrink:0;
-                            color:var(--green);font-size:10px;display:flex;align-items:center;justify-content:center">
+                            color:var(--green);font-size:12px;display:flex;align-items:center;justify-content:center">
                             ${c.done?'✓':''}
                         </button>
-                        <span style="font-size:12px;${c.done?'text-decoration:line-through;color:var(--text-dim)':''}">${linkify(c.text)}</span>
+                        <span style="font-size:14px;${c.done?'text-decoration:line-through;color:var(--text-dim)':''}">${linkify(c.text)}</span>
                     </div>`).join('') + `</div>`;
             }
             const typePill   = task.type==='project'
                 ? `<span class="type-badge project">📁 Project</span>`
                 : `<span class="type-badge task">☑ Task</span>`;
             const overdueTag = task.onDate && task.onDate < today
-                ? `<span style="font-size:10px;color:var(--red);font-weight:700">⚠ was ${task.onDate}</span>`
+                ? `<span style="font-size:12px;color:var(--red);font-weight:700">⚠ was ${task.onDate}</span>`
                 : '';
             const dotColor = task.onDate && task.onDate < today ? 'var(--red)' : task.priority === 'high' ? '#f97316' : 'var(--border)';
             html += `<div class="item-row" style="cursor:pointer" onclick="scheduleAssign('${task.id}')">
@@ -2631,16 +2631,16 @@ function _renderTodayInner() {
                     ${naLine}${noteLine}${clHtml}
                     <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:3px;align-items:center">
                         ${tagHtml}${overdueTag}
-                        <span style="font-size:10px;color:var(--text-dim);margin-left:4px">tap to assign →</span>
+                        <span style="font-size:12px;color:var(--text-dim);margin-left:4px">tap to assign →</span>
                     </div>
                 </div>
                 <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0">
                     <button onclick="openBankSheet('${task.id}');event.stopPropagation()"
                         style="background:none;border:1px solid var(--border);border-radius:7px;color:var(--text-dim);
-                        font-size:12px;padding:4px 8px;cursor:pointer;white-space:nowrap">✏️ Edit</button>
+                        font-size:14px;padding:4px 8px;cursor:pointer;white-space:nowrap">✏️ Edit</button>
                     <button onclick="openTaskDate('${task.id}');event.stopPropagation()"
                         style="background:none;border:1px solid var(--border);border-radius:7px;color:var(--accent);
-                        font-size:12px;padding:4px 8px;cursor:pointer;white-space:nowrap">📅 Date</button>
+                        font-size:14px;padding:4px 8px;cursor:pointer;white-space:nowrap">📅 Date</button>
                 </div>
             </div>`;
         });
@@ -2662,7 +2662,7 @@ function linkify(s) {
         '<a href="$1" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="color:var(--accent);text-decoration:underline;word-break:break-all">$1</a>');
 }
 function btnSm(label, color, onclick) {
-    return `<button onclick="${onclick}" style="font-size:10px;padding:3px 7px;border-radius:6px;border:1px solid ${color};color:${color};background:none;cursor:pointer;white-space:nowrap">${label}</button>`;
+    return `<button onclick="${onclick}" style="font-size:12px;padding:3px 7px;border-radius:6px;border:1px solid ${color};color:${color};background:none;cursor:pointer;white-space:nowrap">${label}</button>`;
 }
 
 function updateBadge() {
@@ -2926,11 +2926,11 @@ function openBankSheet(editId) {
             const log = existing?.workLog || [];
             wlList.innerHTML = log.length
                 ? [...log].reverse().map(e =>
-                    `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
-                        <span style="color:var(--text-dim);flex-shrink:0;font-size:11px">${e.completedAt}</span>
+                    `<div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:14px">
+                        <span style="color:var(--text-dim);flex-shrink:0;font-size:13px">${e.completedAt}</span>
                         <span style="color:var(--text)">✓ ${escHtml(e.text)}</span>
                     </div>`).join('')
-                : '<div style="font-size:12px;color:var(--text-dim);padding:4px 0">No completed actions yet</div>';
+                : '<div style="font-size:14px;color:var(--text-dim);padding:4px 0">No completed actions yet</div>';
         }
     }
 
@@ -3014,7 +3014,7 @@ function removeBankSubtask(idx) {
 function renderBankSubtasks() {
     const el = document.getElementById('bank-subtasks-list');
     if (!el) return;
-    if (!bankSubtasks.length) { el.innerHTML = '<div style="font-size:11px;color:var(--text-dim);padding:4px 0">No next actions yet — add one below</div>'; return; }
+    if (!bankSubtasks.length) { el.innerHTML = '<div style="font-size:13px;color:var(--text-dim);padding:4px 0">No next actions yet — add one below</div>'; return; }
     const undone = bankSubtasks.filter(s=>!s.done);
     const done   = bankSubtasks.filter(s=>s.done);
     const sorted = [...undone, ...done];
@@ -3023,20 +3023,20 @@ function renderBankSubtasks() {
         if (bankSTEditing === i) {
             return `<div class="subtask-row" style="gap:5px">
                 <input type="text" id="st-edit-${i}" value="${escHtml(s.text)}"
-                    style="flex:1;padding:5px 8px;font-size:13px;background:var(--surface3);border:1px solid var(--accent);border-radius:6px;color:var(--text)"
+                    style="flex:1;padding:5px 8px;font-size:15px;background:var(--surface3);border:1px solid var(--accent);border-radius:6px;color:var(--text)"
                     onkeydown="if(event.key==='Enter') saveBankSTEdit(${i}); if(event.key==='Escape'){bankSTEditing=-1;renderBankSubtasks();}">
-                <button onclick="saveBankSTEdit(${i})" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 9px;font-size:12px;cursor:pointer;font-weight:700">Save</button>
-                <button onclick="bankSTEditing=-1;renderBankSubtasks()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:13px">✕</button>
+                <button onclick="saveBankSTEdit(${i})" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 9px;font-size:14px;cursor:pointer;font-weight:700">Save</button>
+                <button onclick="bankSTEditing=-1;renderBankSubtasks()" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:15px">✕</button>
             </div>`;
         }
         return `<div class="subtask-row" style="${s.done?'opacity:0.45':''}">
             <button class="na-btn${s.nextAction&&!s.done?' active':''}" onclick="${s.done?'':` toggleBankNA(${i})`}" style="${s.done?'pointer-events:none':''}">
                 ${s.nextAction&&!s.done?'⚡':'○'}
             </button>
-            <span style="flex:1;font-size:13px;${s.done?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(s.text)}</span>
-            ${!s.done?`<button onclick="doneBankSubtask(${i})" title="Mark done" style="background:none;border:1px solid var(--green);color:var(--green);cursor:pointer;font-size:12px;padding:2px 6px;border-radius:5px;flex-shrink:0">✓</button>`:''}
-            <button onclick="editBankSubtask(${i})" title="Edit" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:13px;padding:2px 4px">✎</button>
-            <button onclick="removeBankSubtask(${i})" title="Remove" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:13px;padding:2px 4px">✕</button>
+            <span style="flex:1;font-size:15px;${s.done?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(s.text)}</span>
+            ${!s.done?`<button onclick="doneBankSubtask(${i})" title="Mark done" style="background:none;border:1px solid var(--green);color:var(--green);cursor:pointer;font-size:14px;padding:2px 6px;border-radius:5px;flex-shrink:0">✓</button>`:''}
+            <button onclick="editBankSubtask(${i})" title="Edit" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:15px;padding:2px 4px">✎</button>
+            <button onclick="removeBankSubtask(${i})" title="Remove" style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:15px;padding:2px 4px">✕</button>
         </div>`;
     }).join('');
 }
@@ -3270,11 +3270,11 @@ function renderBankChecklistUI() {
     list.innerHTML = items.map(c => {
         if (bankCLEditing === c.id) {
             return `<div style="display:flex;flex-direction:column;gap:5px;padding:6px 8px;background:var(--surface3);border-radius:7px;border:1px solid var(--accent)">
-                <textarea id="cl-edit-${c.id}" style="width:100%;padding:5px 8px;font-size:13px;background:var(--surface2);border:none;border-radius:5px;color:var(--text);resize:vertical;min-height:56px;line-height:1.4"
+                <textarea id="cl-edit-${c.id}" style="width:100%;padding:5px 8px;font-size:15px;background:var(--surface2);border:none;border-radius:5px;color:var(--text);resize:vertical;min-height:56px;line-height:1.4"
                     onkeydown="if(event.key==='Escape'){bankCLEditing=null;renderBankChecklistUI();}">${escHtml(c.text)}</textarea>
                 <div style="display:flex;gap:6px">
-                    <button onclick="saveBankCLEdit('${c.id}')" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:700;cursor:pointer">Save</button>
-                    <button onclick="bankCLEditing=null;renderBankChecklistUI()" style="background:none;border:1px solid var(--border);color:var(--text-dim);border-radius:6px;padding:4px 10px;font-size:12px;cursor:pointer">Cancel</button>
+                    <button onclick="saveBankCLEdit('${c.id}')" style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:4px 10px;font-size:14px;font-weight:700;cursor:pointer">Save</button>
+                    <button onclick="bankCLEditing=null;renderBankChecklistUI()" style="background:none;border:1px solid var(--border);color:var(--text-dim);border-radius:6px;padding:4px 10px;font-size:14px;cursor:pointer">Cancel</button>
                 </div>
             </div>`;
         }
@@ -3283,14 +3283,14 @@ function renderBankChecklistUI() {
                 <button onclick="bankClToggle('${c.id}')"
                     style="background:none;border:2px solid ${c.done?'var(--green)':'var(--border)'};
                     width:18px;height:18px;border-radius:4px;cursor:pointer;flex-shrink:0;
-                    color:var(--green);font-size:11px;display:flex;align-items:center;justify-content:center">
+                    color:var(--green);font-size:13px;display:flex;align-items:center;justify-content:center">
                     ${c.done?'✓':''}
                 </button>
-                <span style="flex:1;font-size:13px;word-break:break-word;${c.done?'text-decoration:line-through;color:var(--text-dim)':''}">${linkify(c.text)}</span>
+                <span style="flex:1;font-size:15px;word-break:break-word;${c.done?'text-decoration:line-through;color:var(--text-dim)':''}">${linkify(c.text)}</span>
                 <button onclick="bankCLEditing='${c.id}';renderBankChecklistUI();setTimeout(()=>{const el=document.getElementById('cl-edit-${c.id}');if(el){el.focus();el.setSelectionRange(el.value.length,el.value.length);}},30)"
-                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:13px;padding:2px 4px;flex-shrink:0">✎</button>
+                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:15px;padding:2px 4px;flex-shrink:0">✎</button>
                 <button onclick="bankClDelete('${c.id}')"
-                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;padding:2px 4px;flex-shrink:0">✕</button>
+                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:2px 4px;flex-shrink:0">✕</button>
             </div>
         </div>`;
     }).join('');
@@ -3362,11 +3362,11 @@ function renderBankSection() {
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
             <div class="section-title" style="margin:0">📋 Task Bank</div>
             <button onclick="openBankSheet(null)"
-                style="background:var(--accent);color:#fff;border:none;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer">+ Add</button>
+                style="background:var(--accent);color:#fff;border:none;border-radius:8px;padding:5px 12px;font-size:14px;font-weight:700;cursor:pointer">+ Add</button>
         </div>`;
 
     if (!db.taskBank.length) {
-        html += `<div style="color:var(--text-dim);font-size:12px;padding:10px 0">
+        html += `<div style="color:var(--text-dim);font-size:14px;padding:10px 0">
             No tasks yet. Add tasks and tag them so they appear as suggestions when you plan your day.</div>`;
     } else {
         const _isRec = t => !(!t.recurrence || t.recurrence.type === 'none' || !t.recurrence.type);
@@ -3380,26 +3380,26 @@ function renderBankSection() {
             const recLabel   = recurrenceLabel(task.recurrence, task.onDate);
             const recBadge   = recLabel ? `<span class="rec-badge active">🔁 ${recLabel}</span>` : '';
             const typeBadge  = `<span class="type-badge ${task.type==='project'?'project':'task'}">${task.type==='project'?'📁 Project':'☑ Task'}</span>`;
-            const priDot     = task.priority === 'high' ? `<span style="color:#f97316;font-size:10px;font-weight:700">● </span>` : task.priority === 'routine' ? `<span style="color:#a78bfa;font-size:10px;font-weight:700">● </span>` : '';
+            const priDot     = task.priority === 'high' ? `<span style="color:#f97316;font-size:12px;font-weight:700">● </span>` : task.priority === 'routine' ? `<span style="color:#a78bfa;font-size:12px;font-weight:700">● </span>` : '';
             const nextAction = task.type==='project' ? task.subtasks?.find(s=>s.nextAction) : null;
-            const naBadge    = nextAction ? `<div style="font-size:11px;color:#fbbf24;margin-top:2px">⚡ Next: ${escHtml(nextAction.text)}</div>` : '';
-            const notePrev   = task.notes ? `<div style="font-size:11px;color:var(--text-dim);margin-top:3px;line-height:1.4;white-space:pre-wrap">${escHtml(task.notes)}</div>` : '';
+            const naBadge    = nextAction ? `<div style="font-size:13px;color:#fbbf24;margin-top:2px">⚡ Next: ${escHtml(nextAction.text)}</div>` : '';
+            const notePrev   = task.notes ? `<div style="font-size:13px;color:var(--text-dim);margin-top:3px;line-height:1.4;white-space:pre-wrap">${escHtml(task.notes)}</div>` : '';
             const clLen = task.checklist?.length || 0;
             const clDone = task.checklist?.filter(c=>c.done).length || 0;
-            const clBadge = clLen ? `<div style="font-size:11px;color:${clDone===clLen?'var(--green)':'var(--text-dim)'};margin-top:2px">☑ ${clDone}/${clLen} checklist</div>` : '';
+            const clBadge = clLen ? `<div style="font-size:13px;color:${clDone===clLen?'var(--green)':'var(--text-dim)'};margin-top:2px">☑ ${clDone}/${clLen} checklist</div>` : '';
             const doneStyle = isDone ? 'opacity:0.5;text-decoration:line-through;' : '';
             return `<div class="bank-task-row">
                 <div class="bank-task-info" style="${doneStyle}">
                     <div class="bank-task-name">${typeBadge} ${priDot}${escHtml(task.text)} ${recBadge}</div>
-                    <div class="bank-task-tags">${tagHtml||'<span style="font-size:10px;color:var(--text-dim)">no tags</span>'}</div>
+                    <div class="bank-task-tags">${tagHtml||'<span style="font-size:12px;color:var(--text-dim)">no tags</span>'}</div>
                     ${naBadge}${notePrev}${clBadge}
                 </div>
                 ${isDone
                     ? `<button onclick="restoreBankTask('${task.id}')"
-                        style="background:none;border:1px solid var(--accent);color:var(--accent);cursor:pointer;padding:3px 8px;font-size:11px;border-radius:5px;font-weight:700;white-space:nowrap">Restore</button>`
-                    : `${task.priority === 'routine' ? `<button onclick="useRoutineTask('${task.id}')" style="background:none;border:1px solid #a78bfa;color:#a78bfa;cursor:pointer;padding:3px 7px;font-size:11px;border-radius:5px;font-weight:700" title="Copy as one-time task">📋 Use</button>` : ''}
-                       <button onclick="openBankSheet('${task.id}')" style="background:none;border:none;color:var(--text-dim);cursor:pointer;padding:4px;font-size:13px">✏️</button>
-                       <button onclick="deleteBankTask('${task.id}')" style="background:none;border:none;color:var(--text-dim);cursor:pointer;padding:4px;font-size:13px">✕</button>`
+                        style="background:none;border:1px solid var(--accent);color:var(--accent);cursor:pointer;padding:3px 8px;font-size:13px;border-radius:5px;font-weight:700;white-space:nowrap">Restore</button>`
+                    : `${task.priority === 'routine' ? `<button onclick="useRoutineTask('${task.id}')" style="background:none;border:1px solid #a78bfa;color:#a78bfa;cursor:pointer;padding:3px 7px;font-size:13px;border-radius:5px;font-weight:700" title="Copy as one-time task">📋 Use</button>` : ''}
+                       <button onclick="openBankSheet('${task.id}')" style="background:none;border:none;color:var(--text-dim);cursor:pointer;padding:4px;font-size:15px">✏️</button>
+                       <button onclick="deleteBankTask('${task.id}')" style="background:none;border:none;color:var(--text-dim);cursor:pointer;padding:4px;font-size:15px">✕</button>`
                 }
             </div>`;
         };
@@ -3419,10 +3419,10 @@ function renderBankSection() {
             const sk = _sortKey(task);
             const taskGroup = sk === 0 ? 'high' : sk === 1 ? 'normal' : sk === 2 ? 'routine' : 'recurring';
             if (taskGroup !== lastGroup) {
-                if (taskGroup === 'high')      html += `<div style="font-size:10px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.07em;padding:6px 0 2px;opacity:0.9">🔴 High Priority</div>`;
-                if (taskGroup === 'normal')    html += `<div style="font-size:10px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;padding:10px 0 2px;opacity:0.7">Normal</div>`;
-                if (taskGroup === 'routine')   html += `<div style="font-size:10px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:0.07em;padding:10px 0 2px;opacity:0.9">🔄 Routine</div>`;
-                if (taskGroup === 'recurring') html += `<div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.07em;padding:10px 0 2px;opacity:0.8">🔁 Recurring</div>`;
+                if (taskGroup === 'high')      html += `<div style="font-size:12px;font-weight:700;color:#f97316;text-transform:uppercase;letter-spacing:0.07em;padding:6px 0 2px;opacity:0.9">🔴 High Priority</div>`;
+                if (taskGroup === 'normal')    html += `<div style="font-size:12px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;padding:10px 0 2px;opacity:0.7">Normal</div>`;
+                if (taskGroup === 'routine')   html += `<div style="font-size:12px;font-weight:700;color:#a78bfa;text-transform:uppercase;letter-spacing:0.07em;padding:10px 0 2px;opacity:0.9">🔄 Routine</div>`;
+                if (taskGroup === 'recurring') html += `<div style="font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:0.07em;padding:10px 0 2px;opacity:0.8">🔁 Recurring</div>`;
                 lastGroup = taskGroup;
             }
             html += renderBankRow(task, false);
@@ -3431,8 +3431,8 @@ function renderBankSection() {
         if (doneTasks.length) {
             html += `<div style="margin:16px 0 4px;display:flex;align-items:center;gap:8px;cursor:pointer"
                 onclick="window._bankDoneOpen=!window._bankDoneOpen;renderSettings()">
-                <span style="font-size:12px;font-weight:700;color:var(--text-dim)">✅ Done (${doneTasks.length})</span>
-                <span style="font-size:12px;color:var(--text-dim)">${window._bankDoneOpen?'▾':'▸'}</span>
+                <span style="font-size:14px;font-weight:700;color:var(--text-dim)">✅ Done (${doneTasks.length})</span>
+                <span style="font-size:14px;color:var(--text-dim)">${window._bankDoneOpen?'▾':'▸'}</span>
             </div>`;
             if (window._bankDoneOpen) {
                 doneTasks.forEach(task => { html += renderBankRow(task, true); });
@@ -3536,7 +3536,7 @@ function renderPlanTaskList() {
         !['priority','quickwin','bonus','tiger'].some(st => (t.tags||[]).includes(st))
     );
     if (!tasks.length && !orphans.length) {
-        el.innerHTML = '<div style="color:var(--text-dim);font-size:13px;padding:4px 0 10px">No tasks scheduled yet — add below or choose from bank</div>';
+        el.innerHTML = '<div style="color:var(--text-dim);font-size:15px;padding:4px 0 10px">No tasks scheduled yet — add below or choose from bank</div>';
         return;
     }
     const log = getLog(activePlanDate, activePlanItem.id);
@@ -3552,20 +3552,20 @@ function renderPlanTaskList() {
                     style="flex-shrink:0;width:20px;height:20px;border-radius:5px;cursor:pointer;
                     border:2px solid ${isDone?'var(--green)':'var(--border)'};
                     background:${isDone?'var(--green-bg)':'none'};
-                    color:var(--green);font-size:12px;display:flex;align-items:center;justify-content:center">
+                    color:var(--green);font-size:14px;display:flex;align-items:center;justify-content:center">
                     ${isDone?'✓':''}
                 </button>
-                <span style="flex:1;font-size:14px;${isDone?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(t.text)}</span>
+                <span style="flex:1;font-size:16px;${isDone?'text-decoration:line-through;color:var(--text-dim)':''}">${escHtml(t.text)}</span>
                 <button onclick="unschedulePlanTask('${t.id}')"
-                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:2px 6px;line-height:1"
+                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:18px;padding:2px 6px;line-height:1"
                     title="Remove from today">✕</button>
             </div>
             ${isDone ? `<div style="display:flex;align-items:center;gap:6px;margin-top:6px;padding-left:28px;flex-wrap:wrap">
-                <span style="font-size:11px;color:var(--text-dim)">📋 Copy to:</span>
+                <span style="font-size:13px;color:var(--text-dim)">📋 Copy to:</span>
                 <button onclick="reschedulePlanTask('${t.id}','${tomorrow}')"
-                    style="font-size:11px;padding:3px 9px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;font-weight:700">Tomorrow</button>
+                    style="font-size:13px;padding:3px 9px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;font-weight:700">Tomorrow</button>
                 <input type="date" id="reschedule-date-${t.id}" min="${activePlanDate}"
-                    style="font-size:11px;padding:3px 7px;border-radius:6px;border:1px solid var(--border);background:var(--surface3);color:var(--text);cursor:pointer"
+                    style="font-size:13px;padding:3px 7px;border-radius:6px;border:1px solid var(--border);background:var(--surface3);color:var(--text);cursor:pointer"
                     onchange="reschedulePlanTask('${t.id}',this.value)">
             </div>` : ''}
         </div>`;
@@ -3573,17 +3573,17 @@ function renderPlanTaskList() {
 
     const orphanRows = orphans.map(t => `
         <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)">
-            <span style="flex:1;font-size:14px;color:var(--text-dim)">${escHtml(t.text)}</span>
+            <span style="flex:1;font-size:16px;color:var(--text-dim)">${escHtml(t.text)}</span>
             <button onclick="assignOrphanToSlot('${t.id}')"
-                style="background:none;border:1px solid var(--accent);border-radius:6px;color:var(--accent);cursor:pointer;font-size:11px;padding:2px 8px;white-space:nowrap"
+                style="background:none;border:1px solid var(--accent);border-radius:6px;color:var(--accent);cursor:pointer;font-size:13px;padding:2px 8px;white-space:nowrap"
                 title="Add to this slot">+ Add to slot</button>
         </div>`).join('');
 
     el.innerHTML = `
         <div style="margin-bottom:10px">
-            ${tasks.length ? `<div style="font-size:11px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Scheduled (${tasks.length})</div>` : ''}
+            ${tasks.length ? `<div style="font-size:13px;font-weight:700;color:var(--text-dim);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px">Scheduled (${tasks.length})</div>` : ''}
             ${taskRows}
-            ${orphans.length ? `<div style="font-size:11px;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:.04em;margin:${tasks.length?'10px':'0'} 0 6px">Scheduled but no slot assigned</div>${orphanRows}` : ''}
+            ${orphans.length ? `<div style="font-size:13px;font-weight:700;color:var(--yellow);text-transform:uppercase;letter-spacing:.04em;margin:${tasks.length?'10px':'0'} 0 6px">Scheduled but no slot assigned</div>${orphanRows}` : ''}
         </div>`;
 }
 
@@ -3670,7 +3670,7 @@ function planBankSearch(q) {
         !hasSchedule(t)
     ).slice(0, 8);
     if (!results.length) {
-        el.innerHTML = '<div style="font-size:12px;color:var(--text-dim);padding:3px 0">No matches — hit + to add as new</div>';
+        el.innerHTML = '<div style="font-size:14px;color:var(--text-dim);padding:3px 0">No matches — hit + to add as new</div>';
         return;
     }
     el.innerHTML = '<div style="display:flex;flex-wrap:wrap;gap:6px">' +
@@ -3774,15 +3774,15 @@ function renderTigerList() {
     const log   = getLog(activeTigerDate, activeTigerId);
     const tasks = log.tasks || [];
     const listEl = document.getElementById('tiger-task-list');
-    if (!tasks.length) { listEl.innerHTML = '<div style="color:var(--text-dim);font-size:12px;padding:4px 0">No tasks yet — add one below</div>'; return; }
+    if (!tasks.length) { listEl.innerHTML = '<div style="color:var(--text-dim);font-size:14px;padding:4px 0">No tasks yet — add one below</div>'; return; }
     listEl.innerHTML = tasks.map((t,i)=>`
         <div class="tiger-task-row" style="background:var(--surface2);border-radius:8px;padding:8px 10px;margin-bottom:5px">
             <div class="tiger-cb${t.done?' done':''}" onclick="toggleTigerTask('${activeTigerId}','${activeTigerDate}',${i});renderTigerList()">
                 ${t.done?'✓':''}
             </div>
-            <div class="tiger-task-text${t.done?' done':''}" style="font-size:13px">${escHtml(t.text)}</div>
+            <div class="tiger-task-text${t.done?' done':''}" style="font-size:15px">${escHtml(t.text)}</div>
             <button onclick="deleteTigerTask(${i})"
-                style="background:none;border:none;color:var(--text-dim);cursor:pointer;padding:2px 4px;font-size:14px">✕</button>
+                style="background:none;border:none;color:var(--text-dim);cursor:pointer;padding:2px 4px;font-size:16px">✕</button>
         </div>`).join('');
 }
 
@@ -3843,7 +3843,7 @@ function renderDeclutterSheet() {
     const el = document.getElementById('declutter-bank-list');
 
     if (!bankItems.length) {
-        el.innerHTML = '<div style="font-size:12px;color:var(--text-dim);padding:4px 0">Add declutter areas to your task bank tagged 🧹 Declutter</div>';
+        el.innerHTML = '<div style="font-size:14px;color:var(--text-dim);padding:4px 0">Add declutter areas to your task bank tagged 🧹 Declutter</div>';
         return;
     }
     el.innerHTML = bankItems.map(t=>{
@@ -3856,7 +3856,7 @@ function renderDeclutterSheet() {
             <div class="tiger-task-text${done?' done':''}">
                 ${escHtml(t.text)}
                 ${t.type==='project'&&t.subtasks?.find(s=>s.nextAction)
-                    ? `<span style="font-size:10px;color:#fbbf24;margin-left:6px">⚡ ${escHtml(t.subtasks.find(s=>s.nextAction).text)}</span>`
+                    ? `<span style="font-size:12px;color:#fbbf24;margin-left:6px">⚡ ${escHtml(t.subtasks.find(s=>s.nextAction).text)}</span>`
                     : ''}
             </div>
         </div>`;
@@ -3919,31 +3919,31 @@ function openProjPick(task, showOptions) {
     const subtaskHtml = (task.subtasks||[]).map((s,i) => {
         if (s.done) {
             return `<div style="display:flex;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);opacity:0.4">
-                <div style="width:20px;height:20px;border-radius:4px;background:var(--green-bg);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--green);flex-shrink:0">✓</div>
-                <div style="flex:1;font-size:13px;text-decoration:line-through;color:var(--text-dim)">${escHtml(s.text)}</div>
+                <div style="width:20px;height:20px;border-radius:4px;background:var(--green-bg);border:1.5px solid var(--green);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--green);flex-shrink:0">✓</div>
+                <div style="flex:1;font-size:15px;text-decoration:line-through;color:var(--text-dim)">${escHtml(s.text)}</div>
             </div>`;
         }
         return `<div style="display:flex;align-items:center;gap:6px;padding:8px 0;border-bottom:1px solid var(--border)">
             <button type="button" onclick="completeProjectAction('${task.id}',${i});event.stopPropagation()"
-                style="width:20px;height:20px;border-radius:4px;border:1.5px solid var(--border);background:none;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--text-dim)">○</button>
+                style="width:20px;height:20px;border-radius:4px;border:1.5px solid var(--border);background:none;flex-shrink:0;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--text-dim)">○</button>
             <button type="button" onclick="setNextAction('${task.id}',${i});event.stopPropagation()"
                 title="Set as next action"
-                style="width:22px;height:22px;border:none;background:none;flex-shrink:0;cursor:pointer;font-size:15px;padding:0;opacity:${s.nextAction?'1':'0.22'};transition:opacity 0.15s">⚡</button>
-            <div style="flex:1;font-size:13px;color:${s.nextAction?'var(--text)':'var(--text-dim)'}${s.nextAction?';font-weight:600':''}">${escHtml(s.text)}</div>
-            <span style="font-size:10px;color:var(--accent);font-weight:700;cursor:pointer;padding:4px 8px;flex-shrink:0" onclick="pickProjSubtask(${i})">→</span>
+                style="width:22px;height:22px;border:none;background:none;flex-shrink:0;cursor:pointer;font-size:17px;padding:0;opacity:${s.nextAction?'1':'0.22'};transition:opacity 0.15s">⚡</button>
+            <div style="flex:1;font-size:15px;color:${s.nextAction?'var(--text)':'var(--text-dim)'}${s.nextAction?';font-weight:600':''}">${escHtml(s.text)}</div>
+            <span style="font-size:12px;color:var(--accent);font-weight:700;cursor:pointer;padding:4px 8px;flex-shrink:0" onclick="pickProjSubtask(${i})">→</span>
         </div>`;
     }).join('');
 
     const log = task.workLog || [];
     const logHtml = `
         <div style="margin-top:16px">
-            <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">📋 Work Log</div>
+            <div style="font-size:13px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px">📋 Work Log</div>
             ${log.length ? [...log].reverse().map(e => `
-                <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px">
-                    <span style="color:#a0a8cc;flex-shrink:0;font-size:11px">${e.completedAt}</span>
+                <div style="display:flex;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:14px">
+                    <span style="color:#a0a8cc;flex-shrink:0;font-size:13px">${e.completedAt}</span>
                     <span style="color:#f0f0ff;font-weight:600">✓ ${escHtml(e.text)}</span>
                 </div>`).join('')
-            : '<div style="font-size:12px;color:var(--text-dim);padding:4px 0">No completed actions yet — tap ○ to mark one done</div>'}
+            : '<div style="font-size:14px;color:var(--text-dim);padding:4px 0">No completed actions yet — tap ○ to mark one done</div>'}
         </div>`;
 
     listEl.innerHTML = subtaskHtml + logHtml;
@@ -4283,7 +4283,7 @@ function showToast(msg, ms) {
     if (!t) {
         t = document.createElement('div');
         t.id = '__toast';
-        t.style.cssText = 'position:fixed;top:66px;left:50%;transform:translateX(-50%);background:var(--surface2);color:var(--green);border:1px solid var(--green-border);padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;z-index:9999;pointer-events:none;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3)';
+        t.style.cssText = 'position:fixed;top:66px;left:50%;transform:translateX(-50%);background:var(--surface2);color:var(--green);border:1px solid var(--green-border);padding:7px 14px;border-radius:8px;font-size:14px;font-weight:700;z-index:9999;pointer-events:none;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,0.3)';
         document.body.appendChild(t);
     }
     t.textContent = msg;
@@ -4917,17 +4917,17 @@ function toggleDailyReview(date, idx) {
 function renderGTD() {
 
     // ── INBOX ──
-    const inboxBadge = `<span style="font-size:12px;color:${db.inbox.length?'var(--red)':'var(--green)'};font-weight:700">${db.inbox.length ? '('+db.inbox.length+')' : '✓'}</span>`;
-    const inboxBtn   = `<button onclick="openInbox();event.stopPropagation()" style="background:var(--accent);color:#fff;border:none;border-radius:8px;padding:5px 12px;font-size:12px;font-weight:700;cursor:pointer">+ Capture</button>`;
+    const inboxBadge = `<span style="font-size:14px;color:${db.inbox.length?'var(--red)':'var(--green)'};font-weight:700">${db.inbox.length ? '('+db.inbox.length+')' : '✓'}</span>`;
+    const inboxBtn   = `<button onclick="openInbox();event.stopPropagation()" style="background:var(--accent);color:#fff;border:none;border-radius:8px;padding:5px 12px;font-size:14px;font-weight:700;cursor:pointer">+ Capture</button>`;
     let html = `<div class="section">
         ${secHdr('gtd_inbox','📥 Inbox '+inboxBadge, inboxBtn)}`;
     if (secIsOpen('gtd_inbox')) {
         if (!db.inbox.length) {
-            html += `<div style="color:var(--text-dim);font-size:12px;padding:6px 0">Inbox is empty — great!</div>`;
+            html += `<div style="color:var(--text-dim);font-size:14px;padding:6px 0">Inbox is empty — great!</div>`;
         } else {
             db.inbox.forEach(item => {
                 html += `<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px">
-                    <div style="font-size:13px;margin-bottom:8px">${escHtml(item.text)}</div>
+                    <div style="font-size:15px;margin-bottom:8px">${escHtml(item.text)}</div>
                     <div style="display:flex;gap:6px;flex-wrap:wrap">
                         ${btnSm('→ Task Bank','var(--accent)',`inboxToTaskBank('${item.id}')`)}
                         ${btnSm('→ Waiting For','var(--yellow)',`inboxToWaiting('${item.id}')`)}
@@ -4946,30 +4946,30 @@ function renderGTD() {
         ${secHdr('gtd_waiting','⏳ Waiting For')}`;
     if (secIsOpen('gtd_waiting')) {
     if (isMonday && db.waitingFor.length > 0) {
-        html += `<div style="background:var(--yellow-bg);border:1px solid var(--yellow-border);border-radius:var(--radius-sm);padding:8px 12px;margin-bottom:10px;font-size:12px;color:var(--yellow)">
+        html += `<div style="background:var(--yellow-bg);border:1px solid var(--yellow-border);border-radius:var(--radius-sm);padding:8px 12px;margin-bottom:10px;font-size:14px;color:var(--yellow)">
             📋 Monday Review — follow up on each open item
         </div>`;
     }
     html += `<div style="display:flex;gap:6px;margin-bottom:6px">
-            <input class="form-inp" id="wf-inp" type="text" placeholder="Waiting for what…" style="flex:1;padding:8px 10px;font-size:13px"
+            <input class="form-inp" id="wf-inp" type="text" placeholder="Waiting for what…" style="flex:1;padding:8px 10px;font-size:15px"
                 onkeydown="if(event.key==='Enter') document.getElementById('wf-who').focus()">
-            <input class="form-inp" id="wf-who" type="text" placeholder="From whom" style="width:110px;padding:8px 10px;font-size:13px"
+            <input class="form-inp" id="wf-who" type="text" placeholder="From whom" style="width:110px;padding:8px 10px;font-size:15px"
                 onkeydown="if(event.key==='Enter') document.getElementById('wf-notes-inp').focus()">
             <button onclick="addWaitingFor()" style="background:var(--surface3);border:1px solid var(--border);color:var(--text);border-radius:var(--radius-sm);padding:0 12px;font-size:18px;cursor:pointer">+</button>
         </div>
-        <textarea class="form-inp" id="wf-notes-inp" placeholder="Notes / email subject / link (optional)" style="width:100%;padding:8px 10px;font-size:12px;resize:vertical;min-height:48px;margin-bottom:10px;line-height:1.4" onkeydown="if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) addWaitingFor()"></textarea>`;
+        <textarea class="form-inp" id="wf-notes-inp" placeholder="Notes / email subject / link (optional)" style="width:100%;padding:8px 10px;font-size:14px;resize:vertical;min-height:48px;margin-bottom:10px;line-height:1.4" onkeydown="if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) addWaitingFor()"></textarea>`;
     if (!db.waitingFor.length) {
-        html += `<div style="color:var(--text-dim);font-size:12px;padding:4px 0">Nothing waiting.</div>`;
+        html += `<div style="color:var(--text-dim);font-size:14px;padding:4px 0">Nothing waiting.</div>`;
     } else {
         db.waitingFor.forEach(w => {
             const isEditing = wfEditingId === w.id;
             const notesRaw  = w.notes || '';
             html += `<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px">
-                <div style="font-size:13px;font-weight:500">${escHtml(w.text)}</div>
-                ${w.who ? `<div style="font-size:11px;color:var(--yellow);margin-top:3px">⏳ from ${escHtml(w.who)}</div>` : ''}
-                <div style="font-size:10px;color:var(--text-dim);margin-top:2px">added ${w.date}</div>
+                <div style="font-size:15px;font-weight:500">${escHtml(w.text)}</div>
+                ${w.who ? `<div style="font-size:13px;color:var(--yellow);margin-top:3px">⏳ from ${escHtml(w.who)}</div>` : ''}
+                <div style="font-size:12px;color:var(--text-dim);margin-top:2px">added ${w.date}</div>
                 ${isEditing ? `
-                <textarea id="wf-notes-edit-${w.id}" style="width:100%;padding:8px 10px;font-size:12px;resize:vertical;min-height:64px;margin-top:8px;background:var(--surface3);border:1px solid var(--accent);border-radius:var(--radius-sm);color:var(--text);line-height:1.4" onkeydown="if(event.key==='Escape') cancelWFEdit(); if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) saveWFNotes('${w.id}')">${escHtml(notesRaw)}</textarea>
+                <textarea id="wf-notes-edit-${w.id}" style="width:100%;padding:8px 10px;font-size:14px;resize:vertical;min-height:64px;margin-top:8px;background:var(--surface3);border:1px solid var(--accent);border-radius:var(--radius-sm);color:var(--text);line-height:1.4" onkeydown="if(event.key==='Escape') cancelWFEdit(); if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) saveWFNotes('${w.id}')">${escHtml(notesRaw)}</textarea>
                 <div style="display:flex;gap:6px;margin-top:6px">
                     ${btnSm('💾 Save','var(--accent)',`saveWFNotes('${w.id}')`)}
                     ${btnSm('Cancel','var(--surface3)',`cancelWFEdit()`)}
@@ -4978,9 +4978,9 @@ function renderGTD() {
                     const key = 'wf_'+w.id;
                     const open = notesOpen[key];
                     const preview = notesRaw.split('\n')[0].slice(0,80) + (notesRaw.split('\n')[0].length > 80 || notesRaw.includes('\n') ? '…' : '');
-                    return `<div onclick="toggleNoteExpand('${key}')" style="font-size:12px;color:var(--text-dim);margin-top:6px;padding:6px 8px;background:var(--surface3);border-radius:6px;border-left:2px solid var(--border);cursor:pointer;line-height:1.5">
+                    return `<div onclick="toggleNoteExpand('${key}')" style="font-size:14px;color:var(--text-dim);margin-top:6px;padding:6px 8px;background:var(--surface3);border-radius:6px;border-left:2px solid var(--border);cursor:pointer;line-height:1.5">
                         ${open ? `<div style="white-space:pre-wrap">${wfNotesHtml(notesRaw)}</div>` : `<span>${escHtml(preview)}</span>`}
-                        <span style="font-size:10px;color:var(--accent);margin-left:4px">${open?'▲':'▼'}</span>
+                        <span style="font-size:12px;color:var(--accent);margin-left:4px">${open?'▲':'▼'}</span>
                     </div>`;
                 })() : ''}
                 <div style="display:flex;gap:6px;margin-top:8px;flex-wrap:wrap">
@@ -4999,22 +4999,22 @@ function renderGTD() {
         ${secHdr('gtd_someday','💭 Someday / Maybe')}`;
     if (secIsOpen('gtd_someday')) {
     html += `<div style="display:flex;gap:6px;margin-bottom:6px">
-            <input class="form-inp" id="sm-inp" type="text" placeholder="An idea or future project…" style="flex:1;padding:8px 10px;font-size:13px"
+            <input class="form-inp" id="sm-inp" type="text" placeholder="An idea or future project…" style="flex:1;padding:8px 10px;font-size:15px"
                 onkeydown="if(event.key==='Enter') document.getElementById('sm-notes-inp').focus()">
             <button onclick="addSomeday()" style="background:var(--surface3);border:1px solid var(--border);color:var(--text);border-radius:var(--radius-sm);padding:0 12px;font-size:18px;cursor:pointer">+</button>
         </div>
-        <textarea class="form-inp" id="sm-notes-inp" placeholder="Notes / context (optional)" style="width:100%;padding:8px 10px;font-size:12px;resize:vertical;min-height:48px;margin-bottom:10px;line-height:1.4" onkeydown="if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) addSomeday()"></textarea>`;
+        <textarea class="form-inp" id="sm-notes-inp" placeholder="Notes / context (optional)" style="width:100%;padding:8px 10px;font-size:14px;resize:vertical;min-height:48px;margin-bottom:10px;line-height:1.4" onkeydown="if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) addSomeday()"></textarea>`;
     if (!db.somedayMaybe.length) {
-        html += `<div style="color:var(--text-dim);font-size:12px;padding:4px 0">No ideas yet. Add things you might want to do someday.</div>`;
+        html += `<div style="color:var(--text-dim);font-size:14px;padding:4px 0">No ideas yet. Add things you might want to do someday.</div>`;
     } else {
         db.somedayMaybe.forEach(s => {
             const isEditing = smEditingId === s.id;
             const notesRaw  = s.notes || '';
             html += `<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px">
-                <div style="font-size:13px;font-weight:500">${escHtml(s.text)}</div>
-                <div style="font-size:10px;color:var(--text-dim);margin-top:2px">added ${s.date}</div>
+                <div style="font-size:15px;font-weight:500">${escHtml(s.text)}</div>
+                <div style="font-size:12px;color:var(--text-dim);margin-top:2px">added ${s.date}</div>
                 ${isEditing ? `
-                <textarea id="sm-notes-edit-${s.id}" style="width:100%;padding:8px 10px;font-size:12px;resize:vertical;min-height:64px;margin-top:8px;background:var(--surface3);border:1px solid var(--accent);border-radius:var(--radius-sm);color:var(--text);line-height:1.4" onkeydown="if(event.key==='Escape') cancelSMEdit(); if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) saveSMNotes('${s.id}')">${escHtml(notesRaw)}</textarea>
+                <textarea id="sm-notes-edit-${s.id}" style="width:100%;padding:8px 10px;font-size:14px;resize:vertical;min-height:64px;margin-top:8px;background:var(--surface3);border:1px solid var(--accent);border-radius:var(--radius-sm);color:var(--text);line-height:1.4" onkeydown="if(event.key==='Escape') cancelSMEdit(); if(event.key==='Enter'&&(event.metaKey||event.ctrlKey)) saveSMNotes('${s.id}')">${escHtml(notesRaw)}</textarea>
                 <div style="display:flex;gap:6px;margin-top:6px">
                     ${btnSm('💾 Save','var(--accent)',`saveSMNotes('${s.id}')`)}
                     ${btnSm('Cancel','var(--surface3)',`cancelSMEdit()`)}
@@ -5023,9 +5023,9 @@ function renderGTD() {
                     const key = 'sm_'+s.id;
                     const open = notesOpen[key];
                     const preview = notesRaw.split('\n')[0].slice(0,80) + (notesRaw.split('\n')[0].length > 80 || notesRaw.includes('\n') ? '…' : '');
-                    return `<div onclick="toggleNoteExpand('${key}')" style="font-size:12px;color:var(--text-dim);margin-top:6px;padding:6px 8px;background:var(--surface3);border-radius:6px;border-left:2px solid var(--border);cursor:pointer;line-height:1.5">
+                    return `<div onclick="toggleNoteExpand('${key}')" style="font-size:14px;color:var(--text-dim);margin-top:6px;padding:6px 8px;background:var(--surface3);border-radius:6px;border-left:2px solid var(--border);cursor:pointer;line-height:1.5">
                         ${open ? `<div style="white-space:pre-wrap">${wfNotesHtml(notesRaw)}</div>` : `<span>${escHtml(preview)}</span>`}
-                        <span style="font-size:10px;color:var(--accent);margin-left:4px">${open?'▲':'▼'}</span>
+                        <span style="font-size:12px;color:var(--accent);margin-left:4px">${open?'▲':'▼'}</span>
                     </div>`;
                 })() : ''}
                 <div style="display:flex;gap:6px;margin-top:8px">
@@ -5047,17 +5047,17 @@ function renderGTD() {
     const totalActive    = activeProjects.length + bankProjects.length;
 
     html += `<div class="section">
-        ${secHdr('gtd_projects',`📁 Projects <span style="font-size:12px;font-weight:600;color:var(--text-dim)">(${totalActive} active)</span>`)}`;
+        ${secHdr('gtd_projects',`📁 Projects <span style="font-size:14px;font-weight:600;color:var(--text-dim)">(${totalActive} active)</span>`)}`;
     if (secIsOpen('gtd_projects')) {
     html += `<div style="display:flex;gap:6px;margin-bottom:10px">
             <input class="form-inp" id="proj-inp" type="text" placeholder="New project outcome…"
-                style="flex:1;padding:8px 10px;font-size:13px"
+                style="flex:1;padding:8px 10px;font-size:15px"
                 onkeydown="if(event.key==='Enter') addProject()">
             <button onclick="addProject()" style="background:var(--surface3);border:1px solid var(--border);color:var(--text);border-radius:var(--radius-sm);padding:0 12px;font-size:18px;cursor:pointer">+</button>
         </div>`;
 
     if (!totalActive) {
-        html += `<div style="color:var(--text-dim);font-size:12px;padding:4px 0">No active projects. Add a multi-step outcome above.</div>`;
+        html += `<div style="color:var(--text-dim);font-size:14px;padding:4px 0">No active projects. Add a multi-step outcome above.</div>`;
     }
 
     // db.projects entries
@@ -5065,8 +5065,8 @@ function renderGTD() {
         const taskCount = db.taskBank.filter(t=>t.projectId===p.id).length;
         html += `<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;gap:8px">
             <div style="flex:1;min-width:0">
-                <div style="font-size:13px;font-weight:600">${escHtml(p.name)}</div>
-                <div style="font-size:11px;color:var(--text-dim);margin-top:2px">${taskCount} task${taskCount!==1?'s':''}</div>
+                <div style="font-size:15px;font-weight:600">${escHtml(p.name)}</div>
+                <div style="font-size:13px;color:var(--text-dim);margin-top:2px">${taskCount} task${taskCount!==1?'s':''}</div>
             </div>
             <div style="display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end">
                 ${btnSm('✓ Close','var(--green)',`closeProject('${p.id}')`)}
@@ -5082,8 +5082,8 @@ function renderGTD() {
         const subtaskCount = (p.subtasks||[]).length;
         html += `<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;gap:8px;border-left:3px solid var(--accent)">
             <div style="flex:1;min-width:0">
-                <div style="font-size:13px;font-weight:600">${escHtml(p.text)}</div>
-                <div style="font-size:11px;color:var(--text-dim);margin-top:2px">${subtaskCount} step${subtaskCount!==1?'s':''} · <span style="color:var(--accent)">task bank project</span></div>
+                <div style="font-size:15px;font-weight:600">${escHtml(p.text)}</div>
+                <div style="font-size:13px;color:var(--text-dim);margin-top:2px">${subtaskCount} step${subtaskCount!==1?'s':''} · <span style="color:var(--accent)">task bank project</span></div>
             </div>
             <div style="display:flex;gap:5px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end">
                 ${btnSm('✎ Edit','var(--accent)',`openBankSheet('${p.id}')`)}
@@ -5094,10 +5094,10 @@ function renderGTD() {
     });
 
     if (closedProjects.length) {
-        html += `<div style="font-size:10px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;margin:10px 0 6px">Closed</div>`;
+        html += `<div style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;margin:10px 0 6px">Closed</div>`;
         closedProjects.forEach(p => {
             html += `<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:8px 12px;margin-bottom:5px;display:flex;align-items:center;justify-content:space-between;gap:8px;opacity:0.6">
-                <div style="font-size:12px;text-decoration:line-through;color:var(--text-dim)">${escHtml(p.name)}</div>
+                <div style="font-size:14px;text-decoration:line-through;color:var(--text-dim)">${escHtml(p.name)}</div>
                 <div style="display:flex;gap:5px">
                     ${btnSm('Reopen','var(--accent)',`reopenProject('${p.id}')`)}
                     ${btnSm('✕','var(--red)',`deleteProject('${p.id}')`)}
@@ -5114,7 +5114,7 @@ function renderGTD() {
 
     const renderTaskRow = (t) => {
         const tagHtml = (t.tags||[]).map(tag =>
-            `<span style="font-size:9px;padding:1px 6px;border-radius:10px;border:1px solid ${TAG_COLOR[tag]||'var(--border)'};color:${TAG_COLOR[tag]||'var(--text-dim)'}">${TAG_LABEL[tag]||tag}</span>`
+            `<span style="font-size:11px;padding:1px 6px;border-radius:10px;border:1px solid ${TAG_COLOR[tag]||'var(--border)'};color:${TAG_COLOR[tag]||'var(--text-dim)'}">${TAG_LABEL[tag]||tag}</span>`
         ).join('');
         const recLabel = (() => {
             const rec = t.recurrence || {};
@@ -5132,13 +5132,13 @@ function renderGTD() {
         return `<div style="background:var(--surface3);border-radius:var(--radius-sm);padding:9px 11px;margin-bottom:5px">
             <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
                 <div style="flex:1;min-width:0">
-                    <div style="font-size:12px;font-weight:600">${escHtml(t.text)}</div>
+                    <div style="font-size:14px;font-weight:600">${escHtml(t.text)}</div>
                     <div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:4px">${tagHtml}</div>
-                    ${recLabel?`<div style="font-size:10px;color:var(--text-dim);margin-top:3px">${recLabel}</div>`:''}
+                    ${recLabel?`<div style="font-size:12px;color:var(--text-dim);margin-top:3px">${recLabel}</div>`:''}
                 </div>
                 <div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0">
                     <button onclick="openBankSheet('${t.id}')"
-                        style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px;padding:2px 4px">✎</button>
+                        style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:16px;padding:2px 4px">✎</button>
                     ${btnSm('💭','var(--text-dim)',`moveTaskToSomeday('${t.id}')`)}
                     ${btnSm('⏳','var(--yellow)',`moveTaskToWaiting('${t.id}')`)}
                 </div>
@@ -5159,17 +5159,17 @@ function renderGTD() {
                 background:var(--surface2);border-radius:var(--radius-sm);cursor:pointer;border-left:3px solid var(--accent)"
                 onclick="toggleProjectCollapse('${p.id}')">
                 <div>
-                    <span style="font-size:12px;font-weight:700">${escHtml(p.name)}</span>
-                    <span style="font-size:11px;color:var(--text-dim);margin-left:6px">${tasks.length} task${tasks.length!==1?'s':''}</span>
+                    <span style="font-size:14px;font-weight:700">${escHtml(p.name)}</span>
+                    <span style="font-size:13px;color:var(--text-dim);margin-left:6px">${tasks.length} task${tasks.length!==1?'s':''}</span>
                 </div>
                 <div style="display:flex;align-items:center;gap:6px">
                     <button onclick="event.stopPropagation();openBankSheetForProject('${p.id}')"
-                        style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:2px 8px;font-size:11px;cursor:pointer">+ Task</button>
-                    <span style="color:var(--text-dim);font-size:12px">${collapsed?'▶':'▼'}</span>
+                        style="background:var(--accent);color:#fff;border:none;border-radius:6px;padding:2px 8px;font-size:13px;cursor:pointer">+ Task</button>
+                    <span style="color:var(--text-dim);font-size:14px">${collapsed?'▶':'▼'}</span>
                 </div>
             </div>
             ${collapsed ? '' : `<div style="padding:6px 0 0 0">
-                ${tasks.length ? tasks.map(renderTaskRow).join('') : `<div style="font-size:11px;color:var(--text-dim);padding:8px 10px">No tasks — add one above.</div>`}
+                ${tasks.length ? tasks.map(renderTaskRow).join('') : `<div style="font-size:13px;color:var(--text-dim);padding:8px 10px">No tasks — add one above.</div>`}
             </div>`}
         </div>`;
     });
@@ -5183,17 +5183,17 @@ function renderGTD() {
                 background:var(--surface2);border-radius:var(--radius-sm);cursor:pointer;border-left:3px solid var(--border)"
                 onclick="toggleProjectCollapse('__none__')">
                 <div>
-                    <span style="font-size:12px;font-weight:700;color:var(--text-dim)">No Project</span>
-                    <span style="font-size:11px;color:var(--text-dim);margin-left:6px">${unassigned.length} task${unassigned.length!==1?'s':''}</span>
+                    <span style="font-size:14px;font-weight:700;color:var(--text-dim)">No Project</span>
+                    <span style="font-size:13px;color:var(--text-dim);margin-left:6px">${unassigned.length} task${unassigned.length!==1?'s':''}</span>
                 </div>
                 <div style="display:flex;align-items:center;gap:6px">
                     <button onclick="event.stopPropagation();openBankSheet(null)"
-                        style="background:var(--surface3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:2px 8px;font-size:11px;cursor:pointer">+ Task</button>
-                    <span style="color:var(--text-dim);font-size:12px">${unassCollapsed?'▶':'▼'}</span>
+                        style="background:var(--surface3);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:2px 8px;font-size:13px;cursor:pointer">+ Task</button>
+                    <span style="color:var(--text-dim);font-size:14px">${unassCollapsed?'▶':'▼'}</span>
                 </div>
             </div>
             ${unassCollapsed ? '' : `<div style="padding:6px 0 0 0">
-                ${unassigned.length ? unassigned.map(renderTaskRow).join('') : `<div style="font-size:11px;color:var(--text-dim);padding:8px 10px">No unassigned tasks.</div>`}
+                ${unassigned.length ? unassigned.map(renderTaskRow).join('') : `<div style="font-size:13px;color:var(--text-dim);padding:8px 10px">No unassigned tasks.</div>`}
             </div>`}
         </div>`;
     }
@@ -5216,14 +5216,14 @@ function renderGTD() {
     if (secIsOpen('gtd_watchlist')) {
     html += `<div style="display:flex;gap:6px;margin-bottom:8px">
             <input class="form-inp" id="wl-name" type="text" placeholder="Show name…"
-                style="flex:1;padding:8px 10px;font-size:13px"
+                style="flex:1;padding:8px 10px;font-size:15px"
                 onkeydown="if(event.key==='Enter') addWatchlistShow()">
             <input class="form-inp" id="wl-network" type="text" placeholder="Network"
-                style="width:90px;padding:8px 10px;font-size:13px">
+                style="width:90px;padding:8px 10px;font-size:15px">
         </div>
         <div style="display:flex;gap:6px;margin-bottom:10px">
             <select id="wl-status" style="flex:1;background:var(--surface3);border:1px solid var(--border);
-                border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:13px">
+                border-radius:var(--radius-sm);color:var(--text);padding:8px 10px;font-size:15px">
                 <option value="possible">❔ Possible Watch</option>
                 <option value="watching">🟢 Watching</option>
                 <option value="hiatus">⏸ Hiatus</option>
@@ -5232,14 +5232,14 @@ function renderGTD() {
                 <option value="cancelled">❌ Cancelled</option>
             </select>
             <input class="form-inp" id="wl-return" type="date" title="Expected return date"
-                style="width:130px;padding:8px 10px;font-size:13px">
+                style="width:130px;padding:8px 10px;font-size:15px">
             <button onclick="addWatchlistShow()"
                 style="background:var(--surface3);border:1px solid var(--border);color:var(--text);
                 border-radius:var(--radius-sm);padding:0 12px;font-size:18px;cursor:pointer">+</button>
         </div>`;
 
     if (!db.watchlist.length) {
-        html += `<div style="color:var(--text-dim);font-size:12px;padding:4px 0">No shows yet. Add something you're watching or tracking.</div>`;
+        html += `<div style="color:var(--text-dim);font-size:14px;padding:4px 0">No shows yet. Add something you're watching or tracking.</div>`;
     } else {
         // Group by status order
         const ORDER = ['watching','hiatus','unknown','possible','done','cancelled'];
@@ -5254,7 +5254,7 @@ function renderGTD() {
                 });
             if (!shows.length) return;
             const st = WL_STATUS[status];
-            html += `<div style="font-size:10px;font-weight:800;color:${st.color};text-transform:uppercase;
+            html += `<div style="font-size:12px;font-weight:800;color:${st.color};text-transform:uppercase;
                 letter-spacing:0.07em;margin:10px 0 5px">${st.label}</div>`;
             shows.forEach(show => {
                 const today = todayStr();
@@ -5262,9 +5262,9 @@ function renderGTD() {
                 const isEditing = wlEditingId === show.id;
                 if (isEditing) {
                     html += `<div style="background:var(--surface2);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:6px;border:1px solid var(--accent)">
-                        <input id="wle-name-${show.id}" class="form-inp" value="${escHtml(show.name)}" placeholder="Show name" style="width:100%;margin-bottom:7px;padding:7px 10px;font-size:13px">
-                        <input id="wle-net-${show.id}" class="form-inp" value="${escHtml(show.network||'')}" placeholder="Network" style="width:100%;margin-bottom:7px;padding:7px 10px;font-size:13px">
-                        <select id="wle-status-${show.id}" style="width:100%;margin-bottom:7px;padding:7px 10px;font-size:13px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text)">
+                        <input id="wle-name-${show.id}" class="form-inp" value="${escHtml(show.name)}" placeholder="Show name" style="width:100%;margin-bottom:7px;padding:7px 10px;font-size:15px">
+                        <input id="wle-net-${show.id}" class="form-inp" value="${escHtml(show.network||'')}" placeholder="Network" style="width:100%;margin-bottom:7px;padding:7px 10px;font-size:15px">
+                        <select id="wle-status-${show.id}" style="width:100%;margin-bottom:7px;padding:7px 10px;font-size:15px;background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text)">
                             <option value="possible"  ${show.status==='possible' ?'selected':''}>❔ Possible Watch</option>
                             <option value="watching"  ${show.status==='watching' ?'selected':''}>🟢 Watching</option>
                             <option value="hiatus"    ${show.status==='hiatus'   ?'selected':''}>⏸ Hiatus</option>
@@ -5272,7 +5272,7 @@ function renderGTD() {
                             <option value="done"      ${show.status==='done'     ?'selected':''}>✅ Done</option>
                             <option value="cancelled" ${show.status==='cancelled'?'selected':''}>❌ Cancelled</option>
                         </select>
-                        <input id="wle-date-${show.id}" class="form-inp" type="date" value="${show.returnDate||''}" style="width:100%;margin-bottom:10px;padding:7px 10px;font-size:13px">
+                        <input id="wle-date-${show.id}" class="form-inp" type="date" value="${show.returnDate||''}" style="width:100%;margin-bottom:10px;padding:7px 10px;font-size:15px">
                         <div style="display:flex;gap:7px">
                             <button onclick="saveWLEdit('${show.id}')" style="flex:1;padding:9px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);font-weight:700;cursor:pointer">Save</button>
                             <button onclick="cancelWLEdit()" style="flex:1;padding:9px;background:var(--surface3);color:var(--text-dim);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer">Cancel</button>
@@ -5283,18 +5283,18 @@ function renderGTD() {
                         padding:10px 12px;margin-bottom:6px;${returning?'border:1px solid var(--green)':''}">
                         <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:8px">
                             <div style="flex:1">
-                                <div style="font-size:13px;font-weight:700">${escHtml(show.name)}</div>
-                                ${show.network ? `<div style="font-size:11px;color:var(--text-dim);margin-top:2px">${escHtml(show.network)}</div>` : ''}
-                                ${show.returnDate ? `<div style="font-size:11px;color:${returning?'var(--green)':'var(--text-dim)'};margin-top:2px">
+                                <div style="font-size:15px;font-weight:700">${escHtml(show.name)}</div>
+                                ${show.network ? `<div style="font-size:13px;color:var(--text-dim);margin-top:2px">${escHtml(show.network)}</div>` : ''}
+                                ${show.returnDate ? `<div style="font-size:13px;color:${returning?'var(--green)':'var(--text-dim)'};margin-top:2px">
                                     ${returning?'🔔 Returns now! ':'📅 Returns '} ${show.returnDate}</div>` : ''}
                             </div>
                             <div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;align-items:flex-end">
                                 <button onclick="cycleWatchlistStatus('${show.id}')"
-                                    style="font-size:10px;padding:3px 8px;border-radius:6px;border:1px solid ${st.color};
+                                    style="font-size:12px;padding:3px 8px;border-radius:6px;border:1px solid ${st.color};
                                     color:${st.color};background:none;cursor:pointer;white-space:nowrap">${st.label}</button>
                                 ${btnSm('✎ Edit','var(--text-dim)',`startWLEdit('${show.id}')`)}
                                 <button onclick="deleteWatchlistShow('${show.id}')"
-                                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:12px">✕</button>
+                                    style="background:none;border:none;color:var(--text-dim);cursor:pointer;font-size:14px">✕</button>
                             </div>
                         </div>
                     </div>`;
@@ -5362,7 +5362,7 @@ function renderReview() {
         html += `<div style="text-align:right;margin-bottom:6px">
             <button onclick="exportWeekReport()"
                 style="background:var(--surface3);border:1px solid var(--border);border-radius:var(--radius-sm);
-                color:var(--text-dim);font-size:12px;font-weight:700;padding:5px 12px;cursor:pointer">
+                color:var(--text-dim);font-size:14px;font-weight:700;padding:5px 12px;cursor:pointer">
                 ⬇ Export Report
             </button>
         </div>`;
@@ -5476,17 +5476,17 @@ function renderReview() {
                     style="flex-shrink:0;margin-top:2px;width:20px;height:20px;border-radius:5px;cursor:pointer;
                     border:2px solid ${wr[key]?'var(--green)':'var(--border)'};
                     background:${wr[key]?'var(--green-bg)':'none'};
-                    color:var(--green);font-size:12px;display:flex;align-items:center;justify-content:center">
+                    color:var(--green);font-size:14px;display:flex;align-items:center;justify-content:center">
                     ${wr[key]?'✓':''}
                 </button>
                 <div>
-                    <div style="font-size:13px;font-weight:600;${wr[key]?'text-decoration:line-through;color:var(--text-dim)':''}">${label}</div>
-                    ${hint?`<div style="font-size:11px;color:var(--text-dim);margin-top:2px">${hint}</div>`:''}
+                    <div style="font-size:15px;font-weight:600;${wr[key]?'text-decoration:line-through;color:var(--text-dim)':''}">${label}</div>
+                    ${hint?`<div style="font-size:13px;color:var(--text-dim);margin-top:2px">${hint}</div>`:''}
                 </div>
             </div>`;
 
         const phaseHeader = (emoji, title) =>
-            `<div style="font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;
+            `<div style="font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:0.1em;
             color:var(--accent);margin:14px 0 4px;padding-bottom:4px;border-bottom:2px solid var(--accent)">${emoji} ${title}</div>`;
 
         // Count all checklist keys
@@ -5496,7 +5496,7 @@ function renderReview() {
             'org_hidden1','org_hidden2','org_projects','org_nextactions','org_someday','org_waiting','org_calendar'];
         const clDone = allKeys.filter(k=>wr[k]).length;
 
-        const wkRevExtra = `<span style="font-size:12px;color:${clDone===allKeys.length?'var(--green)':'var(--text-dim)'};font-weight:700;pointer-events:none">${clDone}/${allKeys.length}</span>`;
+        const wkRevExtra = `<span style="font-size:14px;color:${clDone===allKeys.length?'var(--green)':'var(--text-dim)'};font-weight:700;pointer-events:none">${clDone}/${allKeys.length}</span>`;
         html += `<div class="section" style="background:var(--surface);border-radius:var(--radius);padding:14px;margin-bottom:8px">
             ${secHdr('rev_weekly','✅ Weekly Review', wkRevExtra)}
             `;
@@ -5520,11 +5520,11 @@ function renderReview() {
         const unprocessed = db.taskBank.filter(t => !(t.tags||[]).length || (t.tags||[]).includes('general'));
         if (unprocessed.length) {
             html += `<div style="background:var(--yellow-bg);border:1px solid var(--yellow-border);border-radius:var(--radius-sm);padding:10px 12px;margin:8px 0">
-                <div style="font-size:11px;font-weight:700;color:var(--yellow);margin-bottom:8px">
+                <div style="font-size:13px;font-weight:700;color:var(--yellow);margin-bottom:8px">
                     📥 ${unprocessed.length} task${unprocessed.length!==1?'s':''} need processing</div>`;
             unprocessed.forEach(t => {
                 html += `<div style="padding:6px 0;border-bottom:1px solid var(--yellow-border)">
-                    <div style="font-size:12px;font-weight:600;margin-bottom:5px">${escHtml(t.text)}</div>
+                    <div style="font-size:14px;font-weight:600;margin-bottom:5px">${escHtml(t.text)}</div>
                     <div style="display:flex;gap:4px;flex-wrap:wrap">
                         ${btnSm('P1 Priority','var(--accent)',`processGeneralTask('${t.id}','priority')`)}
                         ${btnSm('Quick Win','var(--green)',`processGeneralTask('${t.id}','quickwin')`)}
@@ -5651,7 +5651,7 @@ function renderReview() {
             ['pod-ac-plays','Total Plays'],['pod-ac-listeners','Unique Listeners'],['pod-ac-downloads','Downloads'],['pod-ac-neweps','New Episodes']
           ]}
         ].map(platform => `
-          <div style="font-size:11px;font-weight:800;color:${platform.color};text-transform:uppercase;letter-spacing:0.08em;margin:10px 0 8px">${platform.label}</div>
+          <div style="font-size:13px;font-weight:800;color:${platform.color};text-transform:uppercase;letter-spacing:0.08em;margin:10px 0 8px">${platform.label}</div>
           ${platform.fields.reduce((rows, f, i) => {
             if (i % 2 === 0) rows.push([]);
             rows[rows.length-1].push(f);
@@ -5683,10 +5683,10 @@ function renderReview() {
                     style="flex-shrink:0;width:20px;height:20px;border-radius:5px;cursor:pointer;
                     border:2px solid ${mr[key]?'var(--green)':'var(--border)'};
                     background:${mr[key]?'var(--green-bg)':'none'};
-                    color:var(--green);font-size:12px;display:flex;align-items:center;justify-content:center">
+                    color:var(--green);font-size:14px;display:flex;align-items:center;justify-content:center">
                     ${mr[key]?'✓':''}
                 </button>
-                <div style="font-size:13px;font-weight:600;${mr[key]?'text-decoration:line-through;color:var(--text-dim)':''}">${label}</div>
+                <div style="font-size:15px;font-weight:600;${mr[key]?'text-decoration:line-through;color:var(--text-dim)':''}">${label}</div>
             </div>`;
 
         const aofAreas = [
@@ -5702,11 +5702,11 @@ function renderReview() {
         ];
         const aofDone = aofAreas.filter(a => mr[a.key]).length;
 
-        const aofExtra = `<span style="font-size:12px;color:${aofDone===aofAreas.length?'var(--green)':'var(--text-dim)'};font-weight:700;pointer-events:none">${aofDone}/${aofAreas.length}</span>`;
+        const aofExtra = `<span style="font-size:14px;color:${aofDone===aofAreas.length?'var(--green)':'var(--text-dim)'};font-weight:700;pointer-events:none">${aofDone}/${aofAreas.length}</span>`;
         html += `
         <div class="section" style="background:var(--surface);border-radius:var(--radius);padding:14px;margin-bottom:8px">
             ${secHdr('rev_month_aof','🗓 Monthly Review — Areas of Focus', aofExtra)}
-            ${secIsOpen('rev_month_aof') ? `<div style="font-size:11px;color:var(--text-dim);margin-bottom:10px">
+            ${secIsOpen('rev_month_aof') ? `<div style="font-size:13px;color:var(--text-dim);margin-bottom:10px">
                 Review each area. Are current projects and next actions still right? Update your external Areas of Focus spreadsheet.
             </div>${aofAreas.map(a => mrCheckRow(a.key, a.label)).join('')}` : ''}
         </div>
@@ -5730,14 +5730,14 @@ function renderReview() {
 
         ${isDecember ? `
         <div style="background:var(--yellow-bg);border:1px solid var(--yellow-border);border-radius:var(--radius);padding:14px;margin-bottom:8px">
-            <div style="font-size:14px;font-weight:700;margin-bottom:6px">🎯 Annual Review — December Reminder</div>
-            <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">
+            <div style="font-size:16px;font-weight:700;margin-bottom:6px">🎯 Annual Review — December Reminder</div>
+            <div style="font-size:14px;color:var(--text-dim);margin-bottom:10px">
                 Time to complete your Annual Review document in Evernote. Cover Goals Review (Personal / Health / Career / Financial) and Last Year Review (Wins, Mistakes, How You'll Improve).
             </div>
             <button onclick="toggleMRCheck('annual_done')"
                 style="padding:8px 14px;border-radius:var(--radius-sm);border:2px solid ${mr.annual_done?'var(--green)':'var(--accent)'};
                 background:${mr.annual_done?'var(--green-bg)':'none'};color:${mr.annual_done?'var(--green)':'var(--accent)'};
-                font-size:13px;font-weight:700;cursor:pointer">
+                font-size:15px;font-weight:700;cursor:pointer">
                 ${mr.annual_done?'✓ Annual Review Complete':'Mark Annual Review Done'}
             </button>
         </div>` : ''}`;
@@ -5790,7 +5790,7 @@ function exportWeekReport() {
 
     // ── habits table ──
     const habitItems = db.items.filter(i => i.type !== 'metric');
-    let habitsHtml = `<table style="width:100%;border-collapse:collapse;font-size:13px">
+    let habitsHtml = `<table style="width:100%;border-collapse:collapse;font-size:15px">
         <tr style="background:#f3f4f6"><th style="text-align:left;padding:6px 8px;font-weight:700">Habit</th>
         ${DAY.map(d=>`<th style="padding:6px 4px;text-align:center;font-weight:700">${d}</th>`).join('')}
         <th style="padding:6px 8px;text-align:center;font-weight:700">%</th></tr>`;
@@ -5825,7 +5825,7 @@ function exportWeekReport() {
                 const sym = e.status==='done'?'✓ Done':e.status==='partial'?'~ Partial':'✕ Skipped';
                 const d   = new Date(e.date+'T12:00:00');
                 const lbl = DAY[(d.getDay()+6)%7]+' '+e.date.slice(5).replace('-','/');
-                return `<div style="display:flex;gap:8px;padding:4px 0;border-bottom:1px solid #e5e7eb;font-size:13px">
+                return `<div style="display:flex;gap:8px;padding:4px 0;border-bottom:1px solid #e5e7eb;font-size:15px">
                     <span style="min-width:70px;color:#6b7280">${lbl}</span>
                     <span style="color:${col};font-weight:700;min-width:70px">${sym}</span>
                     ${e.text ? `<span style="color:#374151">${esc(e.text)}</span>` : ''}
@@ -5837,11 +5837,11 @@ function exportWeekReport() {
     const metItems = db.items.filter(i => i.type === 'metric');
     let metHtml = metItems.map(item => {
         const vals = past.map(d => getLog(d, item.id).value).filter(v => v != null);
-        if (!vals.length) return `<div style="margin-bottom:8px;font-size:13px"><span style="font-weight:700">${esc(item.name)}</span> — no data</div>`;
+        if (!vals.length) return `<div style="margin-bottom:8px;font-size:15px"><span style="font-weight:700">${esc(item.name)}</span> — no data</div>`;
         const avg = (vals.reduce((a,b)=>a+b,0)/vals.length).toFixed(1);
         const pct = item.target ? Math.round(past.filter(d=>{const v=getLog(d,item.id).value;return v!=null&&v>=item.target;}).length/past.length*100) : null;
         return `<div style="margin-bottom:10px">
-            <div style="display:flex;justify-content:space-between;font-size:13px">
+            <div style="display:flex;justify-content:space-between;font-size:15px">
                 <span style="font-weight:700">${esc(item.name)}</span>
                 <span style="color:#6b7280">avg ${avg}${item.unit||''}${item.target?' · target hit '+(pct)+'%':''}</span>
             </div>${pct!=null?bar(pct,pctColor(pct)):''}</div>`;
@@ -5851,11 +5851,11 @@ function exportWeekReport() {
     const catGroups = {};
     pomoLogWk.forEach(e => { const c=e.category||'general'; catGroups[c]=(catGroups[c]||0)+1; });
     let pomoHtml = Object.entries(catGroups).sort((a,b)=>b[1]-a[1])
-        .map(([cat,cnt]) => `<div style="display:flex;justify-content:space-between;font-size:13px;padding:4px 0;border-bottom:1px solid #e5e7eb">
+        .map(([cat,cnt]) => `<div style="display:flex;justify-content:space-between;font-size:15px;padding:4px 0;border-bottom:1px solid #e5e7eb">
             <span>${EMOJI[cat]||'⏱'} ${LABEL[cat]||cat}</span>
             <span style="font-weight:700">${cnt} × 25 min = ${cnt*25} min</span>
         </div>`).join('');
-    if (!pomoHtml) pomoHtml = `<div style="color:#9ca3af;font-size:13px">No sessions logged this week.</div>`;
+    if (!pomoHtml) pomoHtml = `<div style="color:#9ca3af;font-size:15px">No sessions logged this week.</div>`;
 
     // ── Go For No ──
     const gfnEntries = gfnWeekEntries(dates);
@@ -5863,11 +5863,11 @@ function exportWeekReport() {
         ? gfnEntries.map(e => {
             const d = new Date(e.date+'T12:00:00');
             const lbl = DAY[(d.getDay()+6)%7]+' '+e.date.slice(5).replace('-','/');
-            return `<div style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid #e5e7eb;font-size:13px">
+            return `<div style="display:flex;gap:8px;padding:5px 0;border-bottom:1px solid #e5e7eb;font-size:15px">
                 <span style="min-width:70px;color:#6b7280;flex-shrink:0">${lbl}</span>
                 <span>${esc(e.note)}</span></div>`;
           }).join('')
-        : `<div style="color:#9ca3af;font-size:13px">No attempts logged this week.</div>`;
+        : `<div style="color:#9ca3af;font-size:15px">No attempts logged this week.</div>`;
 
     // ── weekly review notes ──
     const wrFields = [
@@ -5878,16 +5878,16 @@ function exportWeekReport() {
     let notesHtml = wrFields.map(([label, key]) => {
         const val = wr[key];
         if (!val) return '';
-        return `<div style="margin-bottom:10px"><div style="font-weight:700;font-size:13px;margin-bottom:3px">${esc(label)}</div>
-            <div style="font-size:13px;color:#374151;white-space:pre-wrap">${esc(String(val))}</div></div>`;
+        return `<div style="margin-bottom:10px"><div style="font-weight:700;font-size:15px;margin-bottom:3px">${esc(label)}</div>
+            <div style="font-size:15px;color:#374151;white-space:pre-wrap">${esc(String(val))}</div></div>`;
     }).join('');
-    if (!notesHtml) notesHtml = `<div style="color:#9ca3af;font-size:13px">No review notes this week.</div>`;
+    if (!notesHtml) notesHtml = `<div style="color:#9ca3af;font-size:15px">No review notes this week.</div>`;
 
     // ── assemble report ──
     const weekLabel = dates[0].slice(5).replace('-','/') + ' – ' + dates[6].slice(5).replace('-','/');
     const section = (title, content) => `
         <div style="margin-bottom:28px">
-            <h2 style="font-size:16px;font-weight:800;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb">${title}</h2>
+            <h2 style="font-size:18px;font-weight:800;margin:0 0 12px;padding-bottom:6px;border-bottom:2px solid #e5e7eb">${title}</h2>
             ${content}
         </div>`;
 
@@ -5920,7 +5920,7 @@ function exportWeekReport() {
     ${section('🍅 Focus Sessions', pomoHtml)}
     ${section('🚫 Go For No', gfnHtml)}
     ${section('📝 Weekly Review Notes', notesHtml)}
-    <div style="color:#9ca3af;font-size:11px;margin-top:32px;border-top:1px solid #e5e7eb;padding-top:12px">
+    <div style="color:#9ca3af;font-size:13px;margin-top:32px;border-top:1px solid #e5e7eb;padding-top:12px">
         Generated ${new Date().toLocaleString()} · cherylking@realsmartonline.com
     </div>
     </body></html>`;
@@ -5952,7 +5952,7 @@ function renderGoForNoSection(dates) {
 
     const addBtn = `<button onclick="openGFNEntry();event.stopPropagation()"
         style="background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);
-        padding:3px 10px;font-size:12px;font-weight:700;cursor:pointer">+ Log</button>`;
+        padding:3px 10px;font-size:14px;font-weight:700;cursor:pointer">+ Log</button>`;
 
     let html = `<div class="section">${secHdr('rev_gfn', '🚫 Go For No ' + badge, addBtn)}`;
 
@@ -5963,16 +5963,16 @@ function renderGoForNoSection(dates) {
         </div>`;
 
         if (!entries.length) {
-            html += `<div style="color:var(--text-dim);font-size:13px;padding:4px 0 10px">No attempts logged this week yet.</div>`;
+            html += `<div style="color:var(--text-dim);font-size:15px;padding:4px 0 10px">No attempts logged this week yet.</div>`;
         } else {
             entries.forEach(e => {
                 const d = new Date(e.date+'T12:00:00');
                 const dayName = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
                 html += `<div style="display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);align-items:flex-start">
-                    <div style="flex-shrink:0;font-size:11px;font-weight:700;color:var(--text-dim);padding-top:2px;min-width:32px">${dayName}</div>
-                    <div style="flex:1;font-size:13px;color:var(--text);line-height:1.4">${escHtml(e.note)}</div>
+                    <div style="flex-shrink:0;font-size:13px;font-weight:700;color:var(--text-dim);padding-top:2px;min-width:32px">${dayName}</div>
+                    <div style="flex:1;font-size:15px;color:var(--text);line-height:1.4">${escHtml(e.note)}</div>
                     <button onclick="deleteGFNEntry(${e.ts})"
-                        style="background:none;border:none;color:var(--text-dim);font-size:13px;cursor:pointer;padding:2px 4px;flex-shrink:0">✕</button>
+                        style="background:none;border:none;color:var(--text-dim);font-size:15px;cursor:pointer;padding:2px 4px;flex-shrink:0">✕</button>
                 </div>`;
             });
         }
@@ -5984,20 +5984,20 @@ function renderGoForNoSection(dates) {
             const pe = gfnWeekEntries(pd);
             if (!pe.length) return;
             prevHtml += `<div style="margin-top:10px">
-                <div style="font-size:11px;font-weight:700;color:var(--text-dim);margin-bottom:6px">${label} · ${pe.length}/${GFN_TARGET}</div>`;
+                <div style="font-size:13px;font-weight:700;color:var(--text-dim);margin-bottom:6px">${label} · ${pe.length}/${GFN_TARGET}</div>`;
             pe.forEach(e => {
                 const d = new Date(e.date+'T12:00:00');
                 const dayName = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][d.getDay()];
                 prevHtml += `<div style="display:flex;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);align-items:flex-start">
-                    <div style="flex-shrink:0;font-size:11px;font-weight:700;color:var(--text-dim);padding-top:2px;min-width:32px">${dayName}</div>
-                    <div style="flex:1;font-size:12px;color:var(--text-dim);line-height:1.4">${escHtml(e.note)}</div>
+                    <div style="flex-shrink:0;font-size:13px;font-weight:700;color:var(--text-dim);padding-top:2px;min-width:32px">${dayName}</div>
+                    <div style="flex:1;font-size:14px;color:var(--text-dim);line-height:1.4">${escHtml(e.note)}</div>
                 </div>`;
             });
             prevHtml += `</div>`;
         });
         if (prevHtml) {
             html += `<div style="margin-top:14px;padding-top:10px;border-top:1px solid var(--border)">
-                <div style="font-size:11px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px">Previous Weeks</div>
+                <div style="font-size:13px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px">Previous Weeks</div>
                 ${prevHtml}</div>`;
         }
     }
@@ -6103,20 +6103,20 @@ function renderPomoSessionLog() {
     };
 
     let html = `<div style="border-top:1px solid var(--border);padding-top:16px;text-align:left">
-        <div style="font-size:12px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">🍅 Session Log</div>`;
+        <div style="font-size:14px;font-weight:800;color:var(--text-dim);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:10px">🍅 Session Log</div>`;
 
     dates.forEach(date => {
         const sessions = byDate[date];
         html += `<div style="margin-bottom:12px">
-            <div style="font-size:11px;font-weight:700;color:var(--text-dim);margin-bottom:5px">${fmtDate(date)} · ${sessions.length} session${sessions.length>1?'s':''}</div>`;
+            <div style="font-size:13px;font-weight:700;color:var(--text-dim);margin-bottom:5px">${fmtDate(date)} · ${sessions.length} session${sessions.length>1?'s':''}</div>`;
         sessions.forEach(s => {
             const emoji = EMOJI[s.category] || '⏱';
             const label = LABEL[s.category] || s.category || 'General';
             html += `<div style="display:flex;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--border)">
-                <span style="font-size:16px">${emoji}</span>
-                <span style="flex:1;font-size:13px;color:var(--text)">${label}</span>
-                <span style="font-size:11px;color:var(--text-dim)">${fmtTime(s.ts)}</span>
-                <button onclick="deletePomoSession(${s.ts})" style="background:none;border:none;color:var(--text-dim);font-size:14px;cursor:pointer;padding:2px 4px;flex-shrink:0" title="Delete this session">✕</button>
+                <span style="font-size:18px">${emoji}</span>
+                <span style="flex:1;font-size:15px;color:var(--text)">${label}</span>
+                <span style="font-size:13px;color:var(--text-dim)">${fmtTime(s.ts)}</span>
+                <button onclick="deletePomoSession(${s.ts})" style="background:none;border:none;color:var(--text-dim);font-size:16px;cursor:pointer;padding:2px 4px;flex-shrink:0" title="Delete this session">✕</button>
             </div>`;
         });
         html += `</div>`;
@@ -6150,7 +6150,7 @@ function updatePomoPreview() {
     let html = '';
     for (let i = 0; i < _pomoManualCount; i++) {
         const endMs = baseMs + (i + 1) * 25 * 60000;
-        html += `<div style="font-size:11px;color:var(--text-dim)">🍅 ${i+1} → ends ${fmtMs(endMs)}</div>`;
+        html += `<div style="font-size:13px;color:var(--text-dim)">🍅 ${i+1} → ends ${fmtMs(endMs)}</div>`;
     }
     el.innerHTML = html;
 }
@@ -6329,8 +6329,8 @@ function renderSettings() {
 
     if(!db.items.length) {
         html+=`<div class="empty-state"><div style="font-size:36px">✨</div>
-            <div style="font-size:14px;font-weight:700;margin:8px 0 4px">No items yet</div>
-            <div style="font-size:11px">Add your first habit, task, or metric</div></div>`;
+            <div style="font-size:16px;font-weight:700;margin:8px 0 4px">No items yet</div>
+            <div style="font-size:13px">Add your first habit, task, or metric</div></div>`;
     } else {
         const cats=CAT_ORDER;
         cats.forEach(cat=>{
@@ -6374,7 +6374,7 @@ function renderSettings() {
         <div id="paste-import-wrap" style="display:none;margin-top:8px">
             <textarea id="paste-import-inp"
                 style="width:100%;height:100px;background:var(--surface3);border:1px solid var(--border);
-                border-radius:var(--radius-sm);color:var(--text);padding:8px;font-size:11px;
+                border-radius:var(--radius-sm);color:var(--text);padding:8px;font-size:13px;
                 font-family:monospace;resize:none" placeholder="Paste exported JSON here…"></textarea>
             <div style="display:flex;gap:8px;margin-top:6px">
                 <button class="btn btn-p" style="flex:1" onclick="importPasted()">Import</button>
@@ -6529,15 +6529,15 @@ function renderCal() {
         <div style="display:flex;align-items:center;gap:8px;flex:1;min-width:0">
             <span style="font-size:18px">📅</span>
             <div style="min-width:0">
-                <div style="font-size:13px;font-weight:700">Google Calendar</div>
-                ${lastSync ? `<div style="font-size:10px;color:var(--text-dim)">Synced ${lastSync}</div>` : `<div style="font-size:10px;color:var(--text-dim)">${connected ? 'Tap Sync to refresh' : 'Tap Connect to set up'}</div>`}
+                <div style="font-size:15px;font-weight:700">Google Calendar</div>
+                ${lastSync ? `<div style="font-size:12px;color:var(--text-dim)">Synced ${lastSync}</div>` : `<div style="font-size:12px;color:var(--text-dim)">${connected ? 'Tap Sync to refresh' : 'Tap Connect to set up'}</div>`}
             </div>
         </div>
         <div style="display:flex;gap:6px;flex-shrink:0">
-            ${connected ? `<button onclick="syncGCal()" style="font-size:11px;font-weight:800;color:var(--green);padding:5px 10px;border:1.5px solid var(--green-border);border-radius:8px;background:var(--green-bg);cursor:pointer">↻ Sync</button>` : ''}
-            <button onclick="openIcalSheet()" style="font-size:11px;font-weight:800;color:var(--accent);padding:5px 10px;border:1.5px solid var(--accent);border-radius:8px;background:none;cursor:pointer">${connected ? '⚙' : 'Connect'}</button>
+            ${connected ? `<button onclick="syncGCal()" style="font-size:13px;font-weight:800;color:var(--green);padding:5px 10px;border:1.5px solid var(--green-border);border-radius:8px;background:var(--green-bg);cursor:pointer">↻ Sync</button>` : ''}
+            <button onclick="openIcalSheet()" style="font-size:13px;font-weight:800;color:var(--accent);padding:5px 10px;border:1.5px solid var(--accent);border-radius:8px;background:none;cursor:pointer">${connected ? '⚙' : 'Connect'}</button>
             <a href="${gcUrl}" target="_blank" rel="noopener"
-                style="font-size:11px;font-weight:800;color:var(--text-dim);text-decoration:none;
+                style="font-size:13px;font-weight:800;color:var(--text-dim);text-decoration:none;
                 padding:5px 10px;border:1.5px solid var(--border);border-radius:8px">Open →</a>
         </div>
     </div>`;
@@ -6590,7 +6590,7 @@ function renderCal() {
     });
     const priorityStrip = `<div class="cal-priority-strip">
         <div class="cal-priority-strip-title">Today's Tasks</div>
-        <div style="display:flex;flex-wrap:wrap;gap:0">${priorityChips || '<span style="font-size:11px;color:var(--text-dim)">No tasks scheduled</span>'}</div>
+        <div style="display:flex;flex-wrap:wrap;gap:0">${priorityChips || '<span style="font-size:13px;color:var(--text-dim)">No tasks scheduled</span>'}</div>
     </div>`;
 
     // Time grid — merge manual events + gcal cache
@@ -6838,10 +6838,10 @@ function renderIcalUrlList() {
     el.innerHTML = urls.map((u, i) => `
         <div style="display:flex;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid var(--border)">
             <div style="flex:1;min-width:0">
-                <div style="font-size:12px;font-weight:700">${escHtml(u.label||'Calendar '+( i+1))}</div>
-                <div style="font-size:10px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(u.url)}</div>
+                <div style="font-size:14px;font-weight:700">${escHtml(u.label||'Calendar '+( i+1))}</div>
+                <div style="font-size:12px;color:var(--text-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${escHtml(u.url)}</div>
             </div>
-            <button onclick="removeIcalUrl(${i})" style="font-size:11px;color:var(--red);background:none;border:1px solid var(--red-border);border-radius:6px;padding:3px 8px;cursor:pointer">Remove</button>
+            <button onclick="removeIcalUrl(${i})" style="font-size:13px;color:var(--red);background:none;border:1px solid var(--red-border);border-radius:6px;padding:3px 8px;cursor:pointer">Remove</button>
         </div>`).join('');
 }
 function addIcalUrl() {
