@@ -5,30 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Daily Tracker v634</title>
+    <title>Daily Tracker v635</title>
     <style>
         :root {
-            --bg: #1c1e30;
-            --surface: #252840;
-            --surface2: #2e3150;
-            --surface3: #363960;
-            --border: #464970;
-            --text: #f0f0fa;
-            --text-dim: #a0a2c8;
-            --green: #3de07e;
-            --green-bg: #0f3d25;
-            --green-border: #1f7a44;
-            --yellow: #f7cc50;
-            --yellow-bg: #3a2900;
-            --yellow-border: #8a6500;
-            --red: #f56868;
-            --red-bg: #3a1010;
-            --red-border: #8a2020;
-            --accent: #8b5cf6;
-            --accent2: #6d44e0;
-            --radius: 14px;
-            --radius-sm: 10px;
-        }
+        --bg: #f5f2ee; --surface: #ffffff; --surface2: #f0ece6; --surface3: #e8e2d8;
+        --border: #d8d0c4; --text: #2c2820; --text-dim: #8a8070;
+        --green: #1e7e45; --green-bg: #eaf6ef; --green-border: #a8d8b8;
+        --yellow: #9a6800; --yellow-bg: #fdf6e3; --yellow-border: #e8c870;
+        --red: #c0392b; --red-bg: #fdecea; --red-border: #f0b0a8;
+        --accent: #6d44e0; --accent2: #8b5cf6; --radius: 14px; --radius-sm: 10px;
+        --shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] {
+        --bg: #1c1e30; --surface: #252840; --surface2: #2e3150; --surface3: #363960;
+        --border: #464970; --text: #f0f0fa; --text-dim: #a0a2c8;
+        --green: #3de07e; --green-bg: #0f3d25; --green-border: #1f7a44;
+        --yellow: #f7cc50; --yellow-bg: #3a2900; --yellow-border: #8a6500;
+        --red: #f56868; --red-bg: #3a1010; --red-border: #8a2020;
+        --accent: #8b5cf6; --accent2: #6d44e0; --radius: 14px; --radius-sm: 10px;
+        --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
         * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
@@ -159,7 +155,7 @@
         .item-name { font-size:15px; font-weight:700; line-height:1.3; padding-right:14px; }
         .item-sub  { font-size:12px; color:var(--text-dim); margin-top:3px; }
         .item-val  { font-size:22px; font-weight:900; margin-top:5px; letter-spacing:-0.5px; }
-        .item-unit { font-size:13px; font-weight:400; color:rgba(255,255,255,0.45); }
+        .item-unit { font-size:13px; font-weight:400; color:var(--text-dim); }
         .item-check { font-size:22px; margin-top:4px; line-height:1; }
         .item-hint  { font-size:11px; color:var(--text-dim); margin-top:3px; }
 
@@ -645,8 +641,14 @@
         <div class="header-badge" id="hdr-badge" style="display:none">
             <b id="badge-d">0</b>/<b id="badge-t">0</b>
         </div>
-        <div id="sync-dot" title="Synced"
-            style="width:8px;height:8px;border-radius:50%;background:var(--border);flex-shrink:0;margin-left:6px;transition:background 0.4s"></div>
+        <button id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark"
+            style="background:none;border:1px solid var(--border);border-radius:20px;padding:4px 10px;font-size:15px;cursor:pointer;color:var(--text-dim);flex-shrink:0;margin-left:6px;line-height:1">
+            <span id="theme-icon">🌙</span>
+        </button>
+        <button id="sync-dot" onclick="showSyncStatus()" title="Sync status"
+            style="width:28px;height:28px;border-radius:50%;background:var(--border);flex-shrink:0;margin-left:6px;transition:background 0.4s;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px">
+            ✓
+        </button>
     </div>
 </div>
 
@@ -669,6 +671,22 @@
         <div class="leg leg-g">✓ Done</div>
         <div class="leg leg-y">~ Partial</div>
         <div class="leg leg-r">✕ Skipped</div>
+    </div>
+    <div id="wrap-day-banner" style="padding:0 14px 16px;display:none">
+        <button onclick="scrollToDailyReview()" style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:var(--radius);font-size:15px;font-weight:800;cursor:pointer;letter-spacing:0.3px">
+            📋 Wrap Day — Daily Review
+        </button>
+    </div>
+    <div id="quick-capture-bar" style="padding:0 14px 12px">
+        <div style="display:flex;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:10px 12px;box-shadow:var(--shadow)">
+            <span style="font-size:18px">📥</span>
+            <input id="quick-capture-inp" type="text" placeholder="Quick capture — what's on your mind?"
+                autocomplete="off" autocorrect="off"
+                style="flex:1;background:none;border:none;outline:none;font-size:14px;color:var(--text);min-width:0"
+                onkeydown="if(event.key==='Enter'&&!event.isComposing&&this.value.trim()){quickCapture(this.value);this.value=''}">
+            <button onclick="var v=document.getElementById('quick-capture-inp');if(v.value.trim()){quickCapture(v.value);v.value=''}"
+                style="font-size:18px;background:none;border:none;cursor:pointer;padding:0;color:var(--accent);font-weight:800">+</button>
+        </div>
     </div>
     <div id="today-content"></div>
     <!-- Inbox FAB -->
@@ -1573,11 +1591,78 @@ async function loadFromCloud() {
     } catch(e) { setSyncStatus('err'); }
 }
 
-function setSyncStatus(s) {
+function setSyncStatus(s, detail) {
     const el = document.getElementById('sync-dot');
     if (!el) return;
-    el.title = s === 'ok' ? 'Synced' : s === 'syncing' ? 'Syncing…' : 'Sync error';
+    window._lastSyncStatus = s;
+    window._lastSyncDetail = detail || '';
+    window._lastSyncTime   = new Date().toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+    el.title = s === 'ok' ? 'Synced ✓' : s === 'syncing' ? 'Syncing…' : 'Sync error — tap for details';
     el.style.background = s === 'ok' ? 'var(--green)' : s === 'syncing' ? '#f5c542' : 'var(--red)';
+    el.innerHTML = s === 'ok' ? '✓' : s === 'syncing' ? '↻' : '!';
+    if (s === 'ok') { const hdr = document.getElementById('sync-error-hdr'); if (hdr) hdr.style.display = 'none'; }
+}
+
+function showSyncStatus() {
+    const s = window._lastSyncStatus || 'ok';
+    const detail = window._lastSyncDetail || '';
+    const time   = window._lastSyncTime || 'never';
+    const msg = s === 'ok' ? '✅ Synced at ' + time :
+                s === 'syncing' ? '🔄 Sync in progress…' :
+                '❌ Sync error at ' + time + '\n' + detail;
+    if (s === 'error') {
+        if (confirm(msg + '\n\nRetry sync now?')) { syncNow && syncNow(); }
+    } else { alert(msg); }
+}
+
+function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+        html.removeAttribute('data-theme');
+        document.getElementById('theme-icon').textContent = '🌙';
+        localStorage.setItem('dt_theme', 'light');
+    } else {
+        html.setAttribute('data-theme', 'dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+        localStorage.setItem('dt_theme', 'dark');
+    }
+}
+(function applyTheme() {
+    const saved = localStorage.getItem('dt_theme');
+    if (saved === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        const icon = document.getElementById('theme-icon');
+        if (icon) icon.textContent = '☀️';
+    }
+})();
+
+function quickCapture(text) {
+    if (!text || !text.trim()) return;
+    db.inbox = db.inbox || [];
+    db.inbox.push({ id: 'ic_' + Date.now(), text: text.trim(), addedAt: new Date().toISOString() });
+    save();
+    const bar = document.getElementById('quick-capture-bar');
+    if (bar) {
+        const fb = document.createElement('div');
+        fb.textContent = '✓ Added to inbox';
+        fb.style.cssText = 'font-size:12px;color:var(--green);font-weight:700;padding:2px 0 6px 32px;';
+        bar.appendChild(fb);
+        setTimeout(() => fb.remove(), 1800);
+    }
+}
+
+function scrollToDailyReview() {
+    const drSections = document.querySelectorAll('.section');
+    let drEl = null;
+    drSections.forEach(s => { if (s.textContent && s.textContent.includes('Daily Review')) drEl = s; });
+    if (!drEl) {
+        if (window._flowOpen) { window._flowOpen['flow-evening'] = true; }
+        renderToday();
+        setTimeout(() => scrollToDailyReview(), 150);
+        return;
+    }
+    drEl.scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
 let db = load();
@@ -1973,6 +2058,13 @@ function _renderTodayInner() {
     const today  = todayStr();
     const isFuture = date > today;
 
+    // Show Wrap Day banner in evening (5pm+) for today
+    const wrapBanner = document.getElementById('wrap-day-banner');
+    if (wrapBanner) {
+        const _h = new Date().getHours();
+        wrapBanner.style.display = (date === today && _h >= 17) ? 'block' : 'none';
+    }
+
     // Auto-inject scheduled tasks into their slots (once per date)
     injectScheduledTasksForDate(date);
 
@@ -2225,8 +2317,39 @@ function _renderTodayInner() {
         html += `</div>`;
     }
 
+    // ── Guided flow section wrappers ────────────────────────────────────────────
+    const FLOW_SECTIONS = [
+        { id:'flow-morning', label:'☀️ Morning',  cats:['priority','dayplan','quickwin','tiger'] },
+        { id:'flow-workday', label:'💼 Workday',  cats:['morning','afternoon','health','learning','metrics','tasks'] },
+        { id:'flow-evening', label:'🌆 Evening',  cats:['evening','night'] },
+        { id:'flow-review',  label:'📋 Daily Review', cats:['bonus','declutter'] },
+    ];
+    const _flowOpen = window._flowOpen = window._flowOpen || { 'flow-morning':true, 'flow-workday':true, 'flow-evening':false, 'flow-review':false };
+    const _nowHour = new Date().getHours();
+    if (_nowHour >= 17) { _flowOpen['flow-evening'] = _flowOpen['flow-evening'] !== false; _flowOpen['flow-review'] = _flowOpen['flow-review'] !== false; }
+
+    let _openFlowSectionId = null;
     CAT_ORDER.forEach(cat=>{
         if (!groups[cat]?.length) return;
+        FLOW_SECTIONS.forEach(fs => {
+            const firstActiveCat = fs.cats.find(fc => groups[fc]?.length);
+            if (firstActiveCat === cat) {
+                if (_openFlowSectionId) { html += '</div>'; _openFlowSectionId = null; }
+                const open = _flowOpen[fs.id] !== false;
+                const catItems = fs.cats.reduce((acc,fc)=>(groups[fc]?.length?acc+groups[fc].length:acc),0);
+                const catDone  = fs.cats.reduce((acc,fc)=>acc+(groups[fc]||[]).filter(fi=>itemStatus(fi,date)!=='pending').length,0);
+                html += '<div style="margin-bottom:4px;margin-top:' + (fs.id==='flow-morning'?'0':'8px') + '">' +
+                    '<button onclick="window._flowOpen[\''+fs.id+'\']' + "=!window._flowOpen['" + "'+fs.id+'" + "'];renderToday()" + '"' +
+                    ' style="width:100%;display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);cursor:pointer;box-shadow:var(--shadow);margin-bottom:6px">' +
+                    '<span style="font-size:14px;font-weight:800;color:var(--text)">' + fs.label + '</span>' +
+                    '<span style="display:flex;align-items:center;gap:8px">' +
+                    '<span style="font-size:12px;color:var(--text-dim)">' + catDone + '/' + catItems + ' done</span>' +
+                    '<span style="font-size:18px;color:var(--text-dim)">' + (open?'▲':'▼') + '</span>' +
+                    '</span></button></div>' +
+                    '<div style="display:' + (open?'block':'none') + '">';
+                _openFlowSectionId = fs.id;
+            }
+        });
         const isActiveCat = pomoCategory === cat;
         html += `<div class="section">
             <div class="section-title">
@@ -2333,7 +2456,7 @@ function _renderTodayInner() {
                     const taskDone = isDone || (hasCL && clDone === clTotal);
                     // Task header row
                     let html = `
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.06)">
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px solid var(--border)">
                         <button type="button" onclick="toggleSlotTask('${item.id}','${date}','${t.id}');event.stopPropagation()"
                             style="width:22px;height:22px;border-radius:4px;flex-shrink:0;cursor:pointer;padding:0;touch-action:manipulation;
                             border:1.5px solid ${taskDone?'var(--green)':'var(--border)'};
@@ -2372,7 +2495,7 @@ function _renderTodayInner() {
                     .map((lt, origIdx) => ({ lt, origIdx }))
                     .filter(({ lt }) => !slotTasks.some(bt => bt.text === lt.text));
                 const legacyHtml = legacyTasksWithIdx.map(({ lt: t, origIdx }) => `
-                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px solid rgba(255,255,255,0.06)">
+                    <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-top:1px solid var(--border)">
                         <button onclick="event.stopPropagation();toggleLegacyTask('${item.id}','${date}',${origIdx})"
                             style="width:18px;height:18px;border-radius:4px;flex-shrink:0;cursor:pointer;padding:0;
                             border:1.5px solid ${t.done?'var(--green)':'var(--border)'};
@@ -2419,9 +2542,9 @@ function _renderTodayInner() {
                 let bottom = '';
                 if (item.type==='metric') {
                     if (item.id === 'm1' && item.target) {
-                        bottom = `<div class="item-hint">tap to log · goal ${item.target} lbs</div>`;
+                        bottom = `<div style="display:flex;align-items:center;justify-content:space-between"><div class="item-hint">goal ${item.target} lbs</div><button onclick="cycleItem('${item.id}');event.stopPropagation()" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;border:1.5px solid var(--accent);color:var(--accent);background:none;cursor:pointer">📝 Log</button></div>`;
                     } else {
-                        bottom = `<div class="item-hint">tap to log${item.target?' · target '+item.target+(item.unit||''):''}</div>`;
+                        bottom = `<div style="display:flex;align-items:center;justify-content:space-between"><div class="item-hint">${item.target?'target '+item.target+(item.unit||''):item.name}</div><button onclick="cycleItem('${item.id}');event.stopPropagation()" style="font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;border:1.5px solid var(--accent);color:var(--accent);background:none;cursor:pointer">📝 Log</button></div>`;
                     }
                 } else if (isPriorityItem(item)) {
                     bottom = `<div style="display:flex;align-items:center;justify-content:space-between;gap:4px">
@@ -2483,6 +2606,8 @@ function _renderTodayInner() {
             `</div>`;
         }
     });
+    // Close any open guided flow section
+    if (_openFlowSectionId) { html += '</div>'; _openFlowSectionId = null; }
 
     if (db.items.length===0) {
         html += `<div class="empty-state"><div style="font-size:40px">📋</div>
@@ -2558,11 +2683,16 @@ function _renderTodayInner() {
                 ${isDone
                     ? `<button onclick="restoreBankTask('${t.id}')"
                         style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap">Restore</button>`
-                    : `<div style="display:flex;gap:6px;align-items:center;flex-shrink:0">
+                    : `<div style="display:flex;gap:5px;align-items:center;flex-shrink:0">
+                        ${isToday
+                            ? `<span style="font-size:10px;font-weight:700;color:var(--green);white-space:nowrap;padding:3px 8px;border:1px solid var(--green);border-radius:6px">✓ Today</span>`
+                            : `<button onclick="addTaskToToday('${t.id}')"
+                                style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--accent);color:var(--accent);background:none;cursor:pointer;white-space:nowrap;font-weight:700">+ Today</button>`
+                        }
                         <button onclick="archiveBankTask('${t.id}')"
-                            style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--green);color:var(--green);background:none;cursor:pointer;white-space:nowrap">✓ Done</button>
+                            style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--green);color:var(--green);background:none;cursor:pointer;white-space:nowrap">✓</button>
                         <button onclick="openBankSheet('${t.id}')"
-                            style="font-size:13px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);color:var(--text-dim);background:none;cursor:pointer;white-space:nowrap">✎</button>
+                            style="font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--border);color:var(--text-dim);background:none;cursor:pointer;white-space:nowrap">✎</button>
                        </div>`
                 }
             </div>`;
@@ -4374,6 +4504,22 @@ function archiveBankTask(taskId) {
 function restoreBankTask(taskId) {
     const task = db.taskBank.find(t => t.id === taskId);
     if (task) { delete task.archivedAt; save(); renderToday(); }
+}
+
+function addTaskToToday(taskId) {
+    const task = db.taskBank.find(t => t.id === taskId);
+    if (!task) return;
+    const td = todayStr();
+    if (task.onDate !== td) {
+        task.onDate = td;
+        save();
+        renderToday();
+        const toast = document.createElement('div');
+        toast.textContent = '✓ Added to today';
+        toast.style.cssText = 'position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 20px;border-radius:20px;font-size:13px;font-weight:700;z-index:9999;pointer-events:none;';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 1800);
+    }
 }
 
 function deleteLegacyTask(itemId, date, idx) {
