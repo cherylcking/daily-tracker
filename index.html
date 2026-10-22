@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Daily Tracker v635</title>
+    <title>Daily Tracker v636</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <style>
         :root {
         --bg: #f5f2ee; --surface: #ffffff; --surface2: #f0ece6; --surface3: #e8e2d8;
@@ -1223,6 +1224,20 @@
                 placeholder="Context, links, details…"
                 style="resize:none;line-height:1.5;font-size:15px"></textarea>
         </div>
+        <!-- EMAIL LINK SECTION -->
+        <div class="form-group">
+            <label class="form-lbl">Related Email</label>
+            <input class="form-inp" type="text" id="bank-email-url"
+                placeholder="Paste Gmail URL to link…"
+                oninput="onGmailUrlPaste(this.value)"
+                style="font-size:13px">
+            <div id="bank-email-parsed" style="display:none;margin-top:4px;font-size:11px;color:var(--green);font-weight:700">✓ Thread linked</div>
+            <input class="form-inp" type="text" id="bank-email-subject"
+                placeholder="Email subject (optional)" style="margin-top:6px;font-size:13px">
+            <input class="form-inp" type="text" id="bank-email-from"
+                placeholder="From (optional)" style="margin-top:6px;font-size:13px">
+            <input type="hidden" id="bank-email-thread-id">
+        </div>
         <!-- CHECKLIST SECTION -->
         <div class="form-group">
             <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:7px">
@@ -1664,6 +1679,169 @@ function scrollToDailyReview() {
     }
     drEl.scrollIntoView({ behavior:'smooth', block:'start' });
 }
+
+// ══════════════════════════════════════════════════════
+//  GOOGLE TASKS SYNC  (v636)
+// ══════════════════════════════════════════════════════
+
+window._gToken = null;
+window._gTokenClient = null;
+
+function saveGoogleClientId() {
+    const val = document.getElementById('gt-client-id')?.value.trim();
+    if (!val) return;
+    if (!db.settings) db.settings = {};
+    db.settings.googleClientId = val;
+    save();
+    renderSettings();
+}
+
+function toggleGtList(listId, checked) {
+    if (!db.settings) db.settings = {};
+    const sel = db.settings.googleSyncLists || [];
+    if (checked) { if (!sel.includes(listId)) sel.push(listId); }
+    else { const i = sel.indexOf(listId); if (i !== -1) sel.splice(i, 1); }
+    db.settings.googleSyncLists = sel;
+    save();
+}
+
+function connectGoogleTasks() {
+    const clientId = db.settings?.googleClientId;
+    if (!clientId) { alert('Enter your Google Client ID first.'); return; }
+    if (typeof google === 'undefined') {
+        alert('Google Identity Services not loaded. Check internet connection and refresh.');
+        return;
+    }
+    window._gTokenClient = google.accounts.oauth2.initTokenClient({
+        client_id: clientId,
+        scope: 'https://www.googleapis.com/auth/tasks',
+        callback: async (resp) => {
+            if (resp.error) { alert('Google auth error: ' + resp.error); return; }
+            window._gToken = resp.access_token;
+            await _fetchGoogleTaskLists();
+            renderSettings();
+            syncGoogleTasks(true);
+        }
+    });
+    window._gTokenClient.requestAccessToken({ prompt: 'consent' });
+}
+
+async function _fetchGoogleTaskLists() {
+    try {
+        const r = await fetch('https://www.googleapis.com/tasks/v1/users/@me/lists?maxResults=100', {
+            headers: { Authorization: 'Bearer ' + window._gToken }
+        });
+        const data = await r.json();
+        if (!db.settings) db.settings = {};
+        db.settings.googleTaskLists = (data.items || []).map(l => ({ id: l.id, title: l.title }));
+        if (!db.settings.googleSyncLists?.length) {
+            db.settings.googleSyncLists = db.settings.googleTaskLists.map(l => l.id);
+        }
+        save();
+    } catch(e) { console.error('fetchGoogleTaskLists error', e); }
+}
+
+async function syncGoogleTasks(showToast) {
+    if (!window._gToken) { alert('Connect Google first (Settings → Google Tasks Sync → Connect Google).'); return; }
+    const selectedLists = db.settings?.googleSyncLists || [];
+    if (!selectedLists.length) { alert('Select at least one Google Task list to sync.'); return; }
+    setSyncStatus('syncing');
+    let added = 0, updated = 0;
+    const tod = todayStr();
+    try {
+        for (const listId of selectedLists) {
+            const r = await fetch('https://www.googleapis.com/tasks/v1/lists/' + listId + '/tasks?maxResults=100&showCompleted=false', {
+                headers: { Authorization: 'Bearer ' + window._gToken }
+            });
+            const data = await r.json();
+            for (const gt of (data.items || [])) {
+                const existing = db.taskBank.find(t => t.googleTaskId === gt.id && t.googleTaskListId === listId);
+                if (existing) {
+                    existing.text  = gt.title || existing.text;
+                    existing.notes = gt.notes || existing.notes;
+                    if (gt.due) existing.onDate = gt.due.substring(0, 10);
+                    updated++;
+                } else {
+                    const dueDate  = gt.due ? gt.due.substring(0, 10) : null;
+                    const isUrgent = dueDate && (dueDate === tod || dueDate === _addDays(tod, 1));
+                    const importance = isUrgent ? 'high' : 'none';
+                    db.taskBank.push({
+                        id: 'g' + Date.now() + '_' + Math.random().toString(36).slice(2,7),
+                        text: gt.title || '(untitled)',
+                        tags: ['general'],
+                        type: 'task',
+                        priority: importance,
+                        notes: gt.notes || '',
+                        onDate: dueDate,
+                        recurrence: { type: 'none' },
+                        subtasks: [],
+                        checklist: [],
+                        projectId: null,
+                        googleTaskId: gt.id,
+                        googleTaskListId: listId,
+                        emailThreadId: '',
+                        emailUrl: '',
+                        emailSubject: '',
+                        emailFrom: ''
+                    });
+                    added++;
+                }
+            }
+        }
+        if (!db.settings) db.settings = {};
+        db.settings.googleLastSync = new Date().toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+        save();
+        setSyncStatus('ok', 'Google Tasks: +' + added + ' added, ' + updated + ' updated');
+        renderSettings();
+        renderToday();
+        if (showToast) _toast('✓ Synced: ' + added + ' added, ' + updated + ' updated');
+    } catch(e) {
+        console.error('syncGoogleTasks error', e);
+        setSyncStatus('error', 'Google sync failed: ' + e.message);
+    }
+}
+
+async function markGoogleTaskComplete(googleTaskId, googleTaskListId) {
+    if (!window._gToken) return;
+    try {
+        await fetch('https://www.googleapis.com/tasks/v1/lists/' + googleTaskListId + '/tasks/' + googleTaskId, {
+            method: 'PATCH',
+            headers: { Authorization: 'Bearer ' + window._gToken, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ status: 'completed' })
+        });
+    } catch(e) { console.error('markGoogleTaskComplete error', e); }
+}
+
+function _addDays(dateStr, n) {
+    const d = new Date(dateStr + 'T12:00:00');
+    d.setDate(d.getDate() + n);
+    return d.toISOString().substring(0, 10);
+}
+
+function onGmailUrlPaste(val) {
+    const threadId = parseGmailUrl(val);
+    const thEl = document.getElementById('bank-email-thread-id');
+    const parsedEl = document.getElementById('bank-email-parsed');
+    if (threadId && thEl) {
+        thEl.value = threadId;
+        if (parsedEl) parsedEl.style.display = '';
+    } else {
+        if (thEl) thEl.value = '';
+        if (parsedEl) parsedEl.style.display = 'none';
+    }
+}
+
+function parseGmailUrl(url) {
+    const m = (url||'').match(/mail\.google\.com\/mail\/[^#]*#[^/]+\/([a-zA-Z0-9]+)/);
+    return m ? m[1] : null;
+}
+
+window.addEventListener('load', function() {
+    if (db.settings?.googleClientId) {
+        setTimeout(connectGoogleTasks, 1000);
+    }
+});
+
 
 let db = load();
 const _originalSavedAt = db._savedAt || ''; // capture BEFORE startup save() calls mutate _savedAt
@@ -2335,6 +2513,43 @@ function _renderTodayInner() {
             const firstActiveCat = fs.cats.find(fc => groups[fc]?.length);
             if (firstActiveCat === cat) {
                 if (_openFlowSectionId) { html += '</div>'; _openFlowSectionId = null; }
+
+    // ── Daily Review — always inject after Evening section ──
+    {        const drRaw    = getLog(date, 'daily_review').checks || DAILY_REVIEW_ITEMS.map(()=>'pending');
+        const drChecks = drRaw.map(v => v === true ? 'done' : v === false ? 'pending' : (v || 'pending'));
+        const drDone   = drChecks.filter(v=>v==='done').length;
+        const drSkip   = drChecks.filter(v=>v==='skip').length;
+        const drTotal  = DAILY_REVIEW_ITEMS.length;
+        const drColor  = drDone === drTotal ? 'var(--green)' : drDone > 0 ? 'var(--yellow)' : 'var(--text-dim)';
+        const drSkipLbl = drSkip > 0 ? ` · <span style="color:var(--red)">${drSkip} skipped</span>` : '';
+        html += `<div class="section" style="padding:12px 14px">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+                <div class="section-title" style="margin:0">📋 Daily Review</div>
+                <span style="font-size:14px;font-weight:700;color:${drColor}">${drDone}/${drTotal}${drSkipLbl}</span>
+            </div>` +
+            DAILY_REVIEW_ITEMS.map((item, i) => {
+                const st = drChecks[i] || 'pending';
+                const isDone = st === 'done';
+                const isSkip = st === 'skip';
+                const btnBorder = isDone ? 'var(--green)' : isSkip ? 'var(--red)' : 'var(--border)';
+                const btnBg     = isDone ? 'var(--green-bg)' : isSkip ? 'var(--red-bg)' : 'none';
+                const btnColor  = isDone ? 'var(--green)' : 'var(--red)';
+                const btnLabel  = isDone ? '✓' : isSkip ? '✕' : '';
+                const textStyle = isDone ? 'text-decoration:line-through;color:var(--text-dim)' : isSkip ? 'color:var(--text-dim);opacity:0.5' : '';
+                return `
+            <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)">
+                <button onclick="toggleDailyReview('${date}',${i})"
+                    style="flex-shrink:0;width:20px;height:20px;border-radius:5px;cursor:pointer;
+                    border:2px solid ${btnBorder};background:${btnBg};
+                    color:${btnColor};font-size:14px;display:flex;align-items:center;justify-content:center">
+                    ${btnLabel}
+                </button>
+                <span style="font-size:15px;flex:1;${textStyle}">${escHtml(item)}</span>
+                ${isSkip ? `<span style="font-size:12px;color:var(--red);font-weight:700;white-space:nowrap">not completed</span>` : ''}
+            </div>`;
+            }).join('') +
+        `</div>`;
+    }
                 const open = _flowOpen[fs.id] !== false;
                 const catItems = fs.cats.reduce((acc,fc)=>(groups[fc]?.length?acc+groups[fc].length:acc),0);
                 const catDone  = fs.cats.reduce((acc,fc)=>acc+(groups[fc]||[]).filter(fi=>itemStatus(fi,date)!=='pending').length,0);
@@ -2567,44 +2782,6 @@ function _renderTodayInner() {
         }
 
         html += `</div>`;  // close section
-
-        // ── Daily Review — inject right after Night section ──
-        if (cat === 'night') {
-            const drRaw2    = getLog(date, 'daily_review').checks || DAILY_REVIEW_ITEMS.map(()=>'pending');
-            const drChecks2 = drRaw2.map(v => v === true ? 'done' : v === false ? 'pending' : (v || 'pending'));
-            const drDone2   = drChecks2.filter(v=>v==='done').length;
-            const drSkip2   = drChecks2.filter(v=>v==='skip').length;
-            const drTotal2  = DAILY_REVIEW_ITEMS.length;
-            const drColor2  = drDone2 === drTotal2 ? 'var(--green)' : drDone2 > 0 ? 'var(--yellow)' : 'var(--text-dim)';
-            const drSkipLbl2 = drSkip2 > 0 ? ` · <span style="color:var(--red)">${drSkip2} skipped</span>` : '';
-            html += `<div class="section" style="padding:12px 14px">
-                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-                    <div class="section-title" style="margin:0">📋 Daily Review</div>
-                    <span style="font-size:14px;font-weight:700;color:${drColor2}">${drDone2}/${drTotal2}${drSkipLbl2}</span>
-                </div>` +
-                DAILY_REVIEW_ITEMS.map((item, i) => {
-                    const st = drChecks2[i] || 'pending';
-                    const isDone = st === 'done';
-                    const isSkip = st === 'skip';
-                    const btnBorder = isDone ? 'var(--green)' : isSkip ? 'var(--red)' : 'var(--border)';
-                    const btnBg     = isDone ? 'var(--green-bg)' : isSkip ? 'var(--red-bg)' : 'none';
-                    const btnColor  = isDone ? 'var(--green)' : 'var(--red)';
-                    const btnLabel  = isDone ? '✓' : isSkip ? '✕' : '';
-                    const textStyle = isDone ? 'text-decoration:line-through;color:var(--text-dim)' : isSkip ? 'color:var(--text-dim);opacity:0.5' : '';
-                    return `
-                <div style="display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border)">
-                    <button onclick="toggleDailyReview('${date}',${i})"
-                        style="flex-shrink:0;width:20px;height:20px;border-radius:5px;cursor:pointer;
-                        border:2px solid ${btnBorder};background:${btnBg};
-                        color:${btnColor};font-size:14px;display:flex;align-items:center;justify-content:center">
-                        ${btnLabel}
-                    </button>
-                    <span style="font-size:15px;flex:1;${textStyle}">${escHtml(item)}</span>
-                    ${isSkip ? `<span style="font-size:12px;color:var(--red);font-weight:700;white-space:nowrap">not completed</span>` : ''}
-                </div>`;
-                }).join('') +
-            `</div>`;
-        }
     });
     // Close any open guided flow section
     if (_openFlowSectionId) { html += '</div>'; _openFlowSectionId = null; }
@@ -2678,6 +2855,7 @@ function _renderTodayInner() {
                     ${recLabel?`<div style="font-size:12px;color:var(--text-dim);margin-top:1px">🔁 ${recLabel}</div>`:''}
                     ${t.onDate&&!isRec?`<div style="font-size:12px;color:var(--accent);margin-top:1px">📅 ${t.onDate}</div>`:''}
                     ${isDone&&t.archivedAt?`<div style="font-size:12px;color:var(--text-dim);margin-top:1px">✅ done ${t.archivedAt}</div>`:''}
+                    ${t.googleTaskId&&!isDone?`<div style="display:flex;gap:5px;margin-top:4px"><a href="https://tasks.google.com/" target="_blank" style="font-size:10px;padding:2px 7px;border-radius:5px;border:1px solid var(--border);color:var(--text-dim);text-decoration:none">🔗 Google Tasks</a>${t.emailThreadId?`<a href="https://mail.google.com/mail/u/0/#inbox/${t.emailThreadId}" target="_blank" style="font-size:10px;padding:2px 7px;border-radius:5px;border:1px solid var(--border);color:var(--text-dim);text-decoration:none">✉️ Email</a>`:''}</div>`:''}
                 </div>
                 ${isToday?`<span style="font-size:12px;font-weight:700;color:var(--green);white-space:nowrap">✓ today</span>`:''}
                 ${isDone
@@ -3093,6 +3271,18 @@ function openBankSheet(editId) {
     updateRecUI();
     renderBankChecklistUI();
 
+    // Load email link fields
+    const emailUrlEl    = document.getElementById('bank-email-url');
+    const emailSubjEl   = document.getElementById('bank-email-subject');
+    const emailFromEl   = document.getElementById('bank-email-from');
+    const emailThEl     = document.getElementById('bank-email-thread-id');
+    const emailParsedEl = document.getElementById('bank-email-parsed');
+    if (emailUrlEl)    emailUrlEl.value    = existing?.emailUrl      || '';
+    if (emailSubjEl)   emailSubjEl.value   = existing?.emailSubject  || '';
+    if (emailFromEl)   emailFromEl.value   = existing?.emailFrom     || '';
+    if (emailThEl)     emailThEl.value     = existing?.emailThreadId || '';
+    if (emailParsedEl) emailParsedEl.style.display = existing?.emailThreadId ? '' : 'none';
+
     // Work log (projects only)
     const wlSec  = document.getElementById('bank-worklog-section');
     const wlList = document.getElementById('bank-worklog-list');
@@ -3273,7 +3463,11 @@ function saveBankTask() {
         }
     }
     const tags  = [...bankSelTags];
-    const notes = document.getElementById('bank-notes').value.trim();
+    const notes         = document.getElementById('bank-notes').value.trim();
+    const emailUrl      = document.getElementById('bank-email-url')?.value.trim()       || '';
+    const emailThreadId = document.getElementById('bank-email-thread-id')?.value.trim() || '';
+    const emailSubject  = document.getElementById('bank-email-subject')?.value.trim()   || '';
+    const emailFrom     = document.getElementById('bank-email-from')?.value.trim()      || '';
 
     // Build recurrence object
     const recType  = document.getElementById('bank-rec-type').value;
@@ -3306,9 +3500,9 @@ function saveBankTask() {
     const priority = bankPriority || 'none';
     if (bankEditId) {
         const t = db.taskBank.find(t=>t.id===bankEditId);
-        if (t) { t.text = text; t.tags = tags; t.recurrence = recurrence; t.onDate = onDate; t.type = bankType; t.subtasks = subtasks; t.notes = notes; t.checklist = checklist; t.projectId = projectId; t.priority = priority; }
+        if (t) { t.text = text; t.tags = tags; t.recurrence = recurrence; t.onDate = onDate; t.type = bankType; t.subtasks = subtasks; t.notes = notes; t.checklist = checklist; t.projectId = projectId; t.priority = priority; t.emailUrl = emailUrl; t.emailThreadId = emailThreadId; t.emailSubject = emailSubject; t.emailFrom = emailFrom; }
     } else {
-        db.taskBank.push({ id:'b'+Date.now(), text, tags, recurrence, onDate, type: bankType, subtasks, notes, checklist, projectId, priority });
+        db.taskBank.push({ id:'b'+Date.now(), text, tags, recurrence, onDate, type: bankType, subtasks, notes, checklist, projectId, priority, emailUrl, emailThreadId, emailSubject, emailFrom });
     }
     save();
     document.getElementById('bank-ov').classList.add('hidden');
@@ -3570,6 +3764,8 @@ function renderBankSection() {
                     <div class="bank-task-name">${typeBadge} ${priDot}${escHtml(task.text)} ${recBadge}</div>
                     <div class="bank-task-tags">${tagHtml||'<span style="font-size:12px;color:var(--text-dim)">no tags</span>'}</div>
                     ${naBadge}${notePrev}${clBadge}
+                    ${task.emailSubject?`<div style="font-size:11px;color:var(--text-dim);margin-top:2px">✉️ ${escHtml(task.emailSubject)}${task.emailFrom?' · '+escHtml(task.emailFrom):''}</div>`:''}
+                    ${task.googleTaskId?`<div style="display:flex;gap:5px;margin-top:4px"><a href="https://tasks.google.com/" target="_blank" style="font-size:10px;padding:2px 6px;border-radius:5px;border:1px solid var(--border);color:var(--text-dim);text-decoration:none">🔗 Google Tasks</a>${task.emailThreadId?`<a href="https://mail.google.com/mail/u/0/#inbox/${task.emailThreadId}" target="_blank" style="font-size:10px;padding:2px 6px;border-radius:5px;border:1px solid var(--border);color:var(--text-dim);text-decoration:none">✉️ Open Email</a>`:''}</div>`:''}
                 </div>
                 ${isDone
                     ? `<button onclick="restoreBankTask('${task.id}')"
@@ -4498,8 +4694,13 @@ function toggleSchedDone(taskId, date, btnEl) {
 
 function archiveBankTask(taskId) {
     const task = db.taskBank.find(t => t.id === taskId);
-    if (task) { task.archivedAt = todayStr(); save(); renderToday(); updateBadge(); }
-}
+    if (task) {
+        if (task.googleTaskId && task.googleTaskListId && window._gToken) {
+            markGoogleTaskComplete(task.googleTaskId, task.googleTaskListId);
+        }
+        task.archivedAt = todayStr(); save(); renderToday(); updateBadge();
+    }
+}}
 
 function restoreBankTask(taskId) {
     const task = db.taskBank.find(t => t.id === taskId);
@@ -6552,6 +6753,45 @@ function renderSettings() {
     }
 
     html += `</div>`; // close items wrapper
+
+    
+    // ══ Google Tasks Sync section ══
+    const gtConnected = !!(db.settings?.googleClientId && window._gToken);
+    const gtLastSync  = db.settings?.googleLastSync || '';
+    const gtLists     = db.settings?.googleTaskLists || [];
+    const gtSelected  = db.settings?.googleSyncLists || [];
+    html += `<div style="margin-top:24px;padding-top:14px;border-top:1px solid var(--border)">
+        <div class="section-title">🔗 Google Tasks Sync</div>
+        ${!db.settings?.googleClientId ? `
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.6;margin-bottom:10px">
+            Setup: <a href="https://console.cloud.google.com/" target="_blank" style="color:var(--accent)">Google Cloud Console</a>
+            → Create project → Enable <b>Tasks API</b> → OAuth 2.0 credentials (Web app)
+            → Add <code>https://cherylcking.github.io</code> as authorized JS origin → paste Client ID below.
+        </div>` : ''}
+        <div style="display:flex;gap:8px;align-items:center;margin-bottom:10px">
+            <input class="form-inp" type="text" id="gt-client-id"
+                placeholder="Google OAuth Client ID"
+                value="${escHtml(db.settings?.googleClientId||'')}"
+                style="flex:1;font-size:12px;padding:7px 10px">
+            <button onclick="saveGoogleClientId()"
+                style="background:var(--accent);color:#fff;border:none;border-radius:8px;padding:7px 12px;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap">Save</button>
+        </div>
+        ${db.settings?.googleClientId ? `
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px">
+            <button onclick="connectGoogleTasks()"
+                style="background:${gtConnected?'var(--green)':'var(--accent)'};color:#fff;border:none;border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">
+                ${gtConnected?'✓ Connected':'Connect Google'}
+            </button>
+            ${gtConnected?`<button onclick="syncGoogleTasks(true)"
+                style="background:none;border:1px solid var(--accent);color:var(--accent);border-radius:8px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer">🔄 Sync Now</button>`:''}
+            ${gtLastSync?`<span style="font-size:11px;color:var(--text-dim);align-self:center">Last: ${gtLastSync}</span>`:''}
+        </div>
+        ${gtLists.length?`<div style="margin-bottom:8px"><div style="font-size:11px;font-weight:700;color:var(--text-dim);margin-bottom:6px">SYNC LISTS</div>
+            ${gtLists.map(l=>`<label style="display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px;cursor:pointer">
+                <input type="checkbox" ${gtSelected.includes(l.id)?'checked':''} onchange="toggleGtList('${l.id}',this.checked)" style="width:16px;height:16px;accent-color:var(--accent)">
+                ${escHtml(l.title)}</label>`).join('')}</div>`:''}
+        `:''}
+    </div>`;
 
     html+=`<div style="margin-top:24px;padding-top:14px;border-top:1px solid var(--border)">
         <div class="section-title">Recovery</div>
