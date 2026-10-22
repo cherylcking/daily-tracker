@@ -4701,7 +4701,7 @@ function archiveBankTask(taskId) {
         }
         task.archivedAt = todayStr(); save(); renderToday(); updateBadge();
     }
-}}
+}
 
 function restoreBankTask(taskId) {
     const task = db.taskBank.find(t => t.id === taskId);
