@@ -4695,6 +4695,7 @@ function toggleSchedDone(taskId, date, btnEl) {
 function archiveBankTask(taskId) {
     const task = db.taskBank.find(t => t.id === taskId);
     if (task) {
+        // Bidirectional: also mark complete in Google Tasks if synced
         if (task.googleTaskId && task.googleTaskListId && window._gToken) {
             markGoogleTaskComplete(task.googleTaskId, task.googleTaskListId);
         }
