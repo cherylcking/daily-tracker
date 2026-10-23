@@ -1788,6 +1788,7 @@ async function syncGoogleTasks(showToast) {
     if (!selectedLists.length) { alert('Select at least one Google Task list to sync.'); return; }
     setSyncStatus('syncing');
     let added = 0, updated = 0;
+    const addedTasks = [];
     const today = todayStr();
     try {
         for (const listId of selectedLists) {
@@ -1861,11 +1862,13 @@ async function syncGoogleTasks(showToast) {
                         }
                     }
                     db.taskBank.push(task);
+                    addedTasks.push({ id: task.id, text: task.text });
                     added++;
                 }
             }
         }
         if (!db.settings) db.settings = {};
+        db.settings.googleLastSyncAdded = addedTasks;
         db.settings.googleLastSync = new Date().toLocaleString([], { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
         save();
         setSyncStatus('ok', `Google Tasks: +${added} added, ${updated} updated`);
@@ -2126,6 +2129,7 @@ let wfEditingId = null;
 let carryoverOpen = true;
 let todayBankOpen = true;
 let todayBankDoneOpen = false;
+let todaySyncGroupOpen = true;
 let secOpen = {}; // undefined = open, false = collapsed
 function toggleSec(key) { secOpen[key] = secOpen[key] === false ? undefined : false; renderReview(); }
 function secIsOpen(key) { return secOpen[key] !== false; }
@@ -3037,6 +3041,34 @@ function _renderTodayInner() {
             </div>`;
 
         if (todayBankOpen) {
+            // ── Added in last sync ──
+            {
+                const syncAdded = db.settings?.googleLastSyncAdded || [];
+                html += `<div style="margin:10px 0 4px;border-bottom:1px solid var(--border);padding-bottom:8px">
+                    <div style="display:flex;align-items:center;gap:6px;cursor:pointer"
+                        onclick="todaySyncGroupOpen=!todaySyncGroupOpen;renderToday()">
+                        <span style="font-size:11px;font-weight:700;color:var(--text-dim)">🔄 Added in last sync (${syncAdded.length})</span>
+                        <span style="font-size:11px;color:var(--text-dim)">${todaySyncGroupOpen?'▾':'▸'}</span>
+                    </div>`;
+                if (todaySyncGroupOpen) {
+                    if (syncAdded.length === 0) {
+                        html += `<div style="font-size:11px;color:var(--text-dim);padding:4px 0 2px;opacity:0.6">Nothing added yet</div>`;
+                    } else {
+                        syncAdded.forEach(item => {
+                            const task = db.taskBank.find(t => t.id === item.id);
+                            html += `<div style="font-size:12px;padding:3px 0;color:var(--text);display:flex;align-items:center;gap:6px">
+                                <span style="color:var(--green);font-size:10px">✦</span>
+                                ${task
+                                    ? `<span style="cursor:pointer;text-decoration:underline;text-underline-offset:2px" onclick="openBankSheet('${task.id}')">${escHtml(item.text)}</span>`
+                                    : `<span style="opacity:0.5;text-decoration:line-through">${escHtml(item.text)}</span>`
+                                }
+                            </div>`;
+                        });
+                    }
+                }
+                html += `</div>`;
+            }
+
             // Active tasks grouped by tag
             TAG_ORDER_BANK.forEach(tag => {
                 const tasks = activeBankGroups.get(tag) || [];
