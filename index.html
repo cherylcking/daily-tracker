@@ -1754,7 +1754,7 @@ function connectGoogleTasks() {
     }
     window._gTokenClient = google.accounts.oauth2.initTokenClient({
         client_id: clientId,
-        scope: 'https://www.googleapis.com/auth/tasks',
+        scope: 'https://www.googleapis.com/auth/tasks https://www.googleapis.com/auth/gmail.readonly',
         callback: async (resp) => {
             if (resp.error) { alert('Google auth error: ' + resp.error); return; }
             window._gToken = resp.access_token;
@@ -1798,18 +1798,38 @@ async function syncGoogleTasks(showToast) {
             for (const gt of (data.items || [])) {
                 const existing = db.taskBank.find(t => t.googleTaskId === gt.id && t.googleTaskListId === listId);
                 if (existing) {
-                    // Re-sync: only update title, notes, due, completed — NOT type/importance/tags/project
-                    existing.text  = gt.title || existing.text;
-                    existing.notes = gt.notes || existing.notes;
+                    // Re-sync: only update title and due date — NOT notes/type/importance/tags/project
+                    existing.text = gt.title || existing.text;
                     if (gt.due) existing.onDate = gt.due.substring(0, 10);
+                    // Auto-populate email link if not already stored
+                    if (!existing.emailThreadId) {
+                        const emailLink = (gt.links || []).find(l => l.type === 'email');
+                        if (emailLink?.link) {
+                            existing.emailUrl = emailLink.link;
+                            existing.emailThreadId = parseGmailUrl(emailLink.link) || '';
+                            if (existing.emailThreadId) {
+                                const gm = await _fetchGmailMessage(existing.emailThreadId);
+                                if (gm) {
+                                    existing.emailSubject = existing.emailSubject || gm.subject;
+                                    existing.emailFrom    = existing.emailFrom    || gm.from;
+                                    if (!existing.notes && gm.body) {
+                                        existing.notes = `From: ${gm.from}\nSubject: ${gm.subject}\nDate: ${gm.date}\n\n${gm.body}`;
+                                    }
+                                }
+                            }
+                        }
+                    }
                     updated++;
                 } else {
                     // First sync: apply defaults
                     const dueDate = gt.due ? gt.due.substring(0, 10) : null;
-                    const hasSubtasks = !!(gt.parent === undefined && gt.links?.length); // heuristic
                     const isUrgent = dueDate && (dueDate === today || dueDate === _addDays(today, 1));
-                    const isStarred = !!(gt.notes && gt.notes.includes('★')); // starred heuristic
+                    const isStarred = !!(gt.notes && gt.notes.includes('★'));
                     const importance = (isUrgent || isStarred) ? 'high' : 'none';
+                    // Auto-detect email link from task's links[]
+                    const emailLink = (gt.links || []).find(l => l.type === 'email');
+                    const rawEmailUrl = emailLink?.link || '';
+                    const rawThreadId = rawEmailUrl ? (parseGmailUrl(rawEmailUrl) || '') : '';
                     const task = {
                         id: 'g' + gt.id.replace(/[^a-zA-Z0-9]/g,'').substring(0, 20) + '_' + Date.now(),
                         text: gt.title || '(untitled)',
@@ -1824,11 +1844,22 @@ async function syncGoogleTasks(showToast) {
                         projectId: null,
                         googleTaskId: gt.id,
                         googleTaskListId: listId,
-                        emailThreadId: '',
-                        emailUrl: '',
+                        emailUrl: rawEmailUrl,
+                        emailThreadId: rawThreadId,
                         emailSubject: '',
                         emailFrom: ''
                     };
+                    // Fetch Gmail metadata when there's a linked email
+                    if (rawThreadId) {
+                        const gm = await _fetchGmailMessage(rawThreadId);
+                        if (gm) {
+                            task.emailSubject = gm.subject;
+                            task.emailFrom    = gm.from;
+                            if (!task.notes && gm.body) {
+                                task.notes = `From: ${gm.from}\nSubject: ${gm.subject}\nDate: ${gm.date}\n\n${gm.body}`;
+                            }
+                        }
+                    }
                     db.taskBank.push(task);
                     added++;
                 }
@@ -1884,6 +1915,41 @@ function parseGmailUrl(url) {
     return m ? m[1] : null;
 }
 
+// Fetch a Gmail thread and return { subject, from, date, body } — requires gmail.readonly scope
+async function _fetchGmailMessage(threadId) {
+    if (!window._gToken || !threadId) return null;
+    try {
+        const r = await fetch(`https://www.googleapis.com/gmail/v1/users/me/threads/${encodeURIComponent(threadId)}?format=full`, {
+            headers: { Authorization: 'Bearer ' + window._gToken }
+        });
+        if (!r.ok) return null;
+        const data = await r.json();
+        const msg = data.messages?.[0];
+        if (!msg) return null;
+        const headers = msg.payload?.headers || [];
+        const getH = name => headers.find(h => h.name.toLowerCase() === name.toLowerCase())?.value || '';
+        const subject = getH('subject');
+        const from    = getH('from');
+        const date    = getH('date');
+        // Recursively extract plain-text body from MIME parts
+        function extractText(part) {
+            if (!part) return '';
+            if (part.mimeType === 'text/plain' && part.body?.data) {
+                try { return atob(part.body.data.replace(/-/g, '+').replace(/_/g, '/')); } catch { return ''; }
+            }
+            if (part.parts) {
+                for (const p of part.parts) { const t = extractText(p); if (t) return t; }
+            }
+            return '';
+        }
+        const body = extractText(msg.payload).trim();
+        return { subject, from, date, body };
+    } catch(e) {
+        console.warn('_fetchGmailMessage error', e);
+        return null;
+    }
+}
+
 // (archiveBankTask directly handles Google Tasks completion — see the function above)
 
 // Auto-connect on load if token client was set up
@@ -1894,7 +1960,7 @@ function parseGmailUrl(url) {
             try {
                 window._gTokenClient = google.accounts.oauth2.initTokenClient({
                     client_id: db.settings.googleClientId,
-                    scope: 'https://www.googleapis.com/auth/tasks',
+                    scope: 'https://www.googleapis.com/auth/tasks https://www.googleapis.com/auth/gmail.readonly',
                     callback: (resp) => {
                         if (!resp.error) {
                             window._gToken = resp.access_token;
